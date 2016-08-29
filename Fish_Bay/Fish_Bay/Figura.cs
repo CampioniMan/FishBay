@@ -60,5 +60,11 @@ namespace Fish_Bay
         {
             g.DrawImage(this.img, this.coord);
         }
+
+        public void desenhar(Graphics g, Point desenhar)
+        {
+            g.DrawImage(this.img, desenhar);
+        }
+
     }
 }

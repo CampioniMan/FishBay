@@ -29,25 +29,12 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.pbDesenho = new System.Windows.Forms.PictureBox();
             this.btnInicio = new System.Windows.Forms.Button();
             this.btnRecordes = new System.Windows.Forms.Button();
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.timer = new System.Windows.Forms.Timer(this.components);
+            this.pbDesenho = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pbDesenho)).BeginInit();
             this.SuspendLayout();
-            // 
-            // pbDesenho
-            // 
-            this.pbDesenho.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.pbDesenho.Image = global::Fish_Bay.Properties.Resources.capa_inicio;
-            this.pbDesenho.Location = new System.Drawing.Point(0, 0);
-            this.pbDesenho.Name = "pbDesenho";
-            this.pbDesenho.Size = new System.Drawing.Size(1004, 633);
-            this.pbDesenho.TabIndex = 0;
-            this.pbDesenho.TabStop = false;
-            this.pbDesenho.Paint += new System.Windows.Forms.PaintEventHandler(this.pbDesenho_Paint);
             // 
             // btnInicio
             // 
@@ -73,10 +60,23 @@
             this.btnRecordes.UseVisualStyleBackColor = true;
             this.btnRecordes.Click += new System.EventHandler(this.btnRecordes_Click);
             // 
-            // timer1
+            // timer
             // 
-            this.timer1.Interval = 300;
-            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            this.timer.Interval = 300;
+            this.timer.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
+            // pbDesenho
+            // 
+            this.pbDesenho.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.pbDesenho.Image = global::Fish_Bay.Properties.Resources.capa_inicio;
+            this.pbDesenho.Location = new System.Drawing.Point(0, 0);
+            this.pbDesenho.Name = "pbDesenho";
+            this.pbDesenho.Size = new System.Drawing.Size(1004, 633);
+            this.pbDesenho.TabIndex = 0;
+            this.pbDesenho.TabStop = false;
+            this.pbDesenho.Paint += new System.Windows.Forms.PaintEventHandler(this.pbDesenho_Paint);
             // 
             // Menu
             // 
@@ -89,7 +89,7 @@
             this.MaximumSize = new System.Drawing.Size(1020, 671);
             this.MinimumSize = new System.Drawing.Size(1020, 671);
             this.Name = "Menu";
-            this.Text = "Form1";
+            this.Text = "Fish Bay - Menu";
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pbDesenho)).EndInit();
             this.ResumeLayout(false);
@@ -101,7 +101,7 @@
         private System.Windows.Forms.PictureBox pbDesenho;
         private System.Windows.Forms.Button btnInicio;
         private System.Windows.Forms.Button btnRecordes;
-        private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.Timer timer;
     }
 }
 

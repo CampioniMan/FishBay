@@ -31,7 +31,7 @@ namespace Fish_Bay
 
             pbDesenho.Invalidate();
 
-            timer1.Start();
+            timer.Start();
         }
 
         private void pbDesenho_Paint(object sender, PaintEventArgs e)
