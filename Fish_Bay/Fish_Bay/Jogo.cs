@@ -14,6 +14,7 @@ namespace Fish_Bay
     {
         private Menu menu;
         private Peixe[] peixes;
+        private Random rdn;
         public Jogo(Menu menuNovo)
         {
             this.menu = menuNovo;
@@ -27,28 +28,58 @@ namespace Fish_Bay
 
         private void Jogo_Load(object sender, EventArgs e)
         {
-            peixes = new Peixe[1];
-            peixes[0] = new Peixe(new Point(20, 80), 1, new Figura(Image.FromFile("../../../../Imagens/Peixe1.png")));
-            atualizarPeixe();
+            rdn = new Random();
+            peixes = new Peixe[6];
 
-            timer.Start();
+            for (int i = 0; i < peixes.Length; i++)
+                peixes[i] = new Peixe(new Point(20, rdn.Next(380, 530)), 1, new Figura(Image.FromFile("../../../../imagens/Peixe"+(i+1)+".png")));
+
+            atualizaCoordPeixe();
+
+            timerCoord.Start();
+            timerSpawn.Start();
         }
 
-        public void atualizarPeixe()
+        public void atualizaSpawn()
         {
-            peixes[0].nadar(5);
+            for (int i = 0; i < peixes.Length; i++)
+            {
+                if (peixes[i].Coord.X > 1500)
+                    peixes[i].Coord = new Point(20, peixes[0].Coord.Y);
+            }
+        }
+
+        public void atualizaCoordPeixe()
+        {
+            for (int i = 0; i < peixes.Length; i++)
+                peixes[i].nadar(rdn.Next(5,30));
             pbDesenho.Invalidate();
         }
 
         private void timer_Tick(object sender, EventArgs e)
         {
-            atualizarPeixe();
+            atualizaCoordPeixe();
         }
 
         private void pbDesenho_Paint(object sender, PaintEventArgs e)
         {
             Graphics g = e.Graphics;
-            peixes[0].Skin.desenhar(g, peixes[0].Coord);
+            for (int i = 0; i < peixes.Length; i++)
+                peixes[i].Skin.desenhar(g, peixes[i].Coord);
+        }
+
+        private void pbDesenho_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void timerSpawn_Tick(object sender, EventArgs e)
+        {
+            for (int i = 0; i < peixes.Length; i++)
+            {
+                if (peixes[i].Coord.X > 1200)
+                    peixes[i].Coord = new Point(20, peixes[i].Coord.Y);
+            }
         }
     }
 }

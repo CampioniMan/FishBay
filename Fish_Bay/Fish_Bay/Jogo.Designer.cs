@@ -30,7 +30,8 @@
         {
             this.components = new System.ComponentModel.Container();
             this.pbDesenho = new System.Windows.Forms.PictureBox();
-            this.timer = new System.Windows.Forms.Timer(this.components);
+            this.timerCoord = new System.Windows.Forms.Timer(this.components);
+            this.timerSpawn = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.pbDesenho)).BeginInit();
             this.SuspendLayout();
             // 
@@ -42,12 +43,18 @@
             this.pbDesenho.Size = new System.Drawing.Size(1270, 576);
             this.pbDesenho.TabIndex = 0;
             this.pbDesenho.TabStop = false;
+            this.pbDesenho.Click += new System.EventHandler(this.pbDesenho_Click);
             this.pbDesenho.Paint += new System.Windows.Forms.PaintEventHandler(this.pbDesenho_Paint);
             // 
-            // timer
+            // timerCoord
             // 
-            this.timer.Enabled = true;
-            this.timer.Tick += new System.EventHandler(this.timer_Tick);
+            this.timerCoord.Enabled = true;
+            this.timerCoord.Tick += new System.EventHandler(this.timer_Tick);
+            // 
+            // timerSpawn
+            // 
+            this.timerSpawn.Enabled = true;
+            this.timerSpawn.Tick += new System.EventHandler(this.timerSpawn_Tick);
             // 
             // Jogo
             // 
@@ -69,6 +76,7 @@
         #endregion
 
         private System.Windows.Forms.PictureBox pbDesenho;
-        private System.Windows.Forms.Timer timer;
+        private System.Windows.Forms.Timer timerCoord;
+        private System.Windows.Forms.Timer timerSpawn;
     }
 }
