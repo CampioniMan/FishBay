@@ -12,8 +12,11 @@ namespace Fish_Bay
 {
     public partial class Jogo : Form
     {
+        private const int LARGURA_PEIXE = 56, LARGURA_BOTA = 44, ALTURA_BOTA = 36, ALTURA_PEIXE = 22;
+        private const string DEFAULT_IMAGES = "../../../../imagens/";
         private Menu menu;
         private Peixe[] peixes;
+        private Peixe bota;
         private Random rdn;
         public Jogo(Menu menuNovo)
         {
@@ -32,27 +35,18 @@ namespace Fish_Bay
             peixes = new Peixe[6];
 
             for (int i = 0; i < peixes.Length; i++)
-                peixes[i] = new Peixe(new Point(20, rdn.Next(380, 530)), 1, new Figura(Image.FromFile("../../../../imagens/Peixe"+(i+1)+".png")));
-
-            atualizaCoordPeixe();
+                peixes[i] = new Peixe(new Point(-LARGURA_PEIXE, rdn.Next(380, 530)), 1, new Figura(Image.FromFile(DEFAULT_IMAGES + "Peixe" + (i + 1) + ".png")));
 
             timerCoord.Start();
             timerSpawn.Start();
-        }
-
-        public void atualizaSpawn()
-        {
-            for (int i = 0; i < peixes.Length; i++)
-            {
-                if (peixes[i].Coord.X > 1500)
-                    peixes[i].Coord = new Point(20, peixes[0].Coord.Y);
-            }
+            timerBota.Start();
         }
 
         public void atualizaCoordPeixe()
         {
             for (int i = 0; i < peixes.Length; i++)
-                peixes[i].nadar(rdn.Next(5,30));
+                peixes[i].nadar(rdn.Next(5, 50));
+            if (bota != null) bota.nadar(rdn.Next(5, 50));
             pbDesenho.Invalidate();
         }
 
@@ -66,19 +60,27 @@ namespace Fish_Bay
             Graphics g = e.Graphics;
             for (int i = 0; i < peixes.Length; i++)
                 peixes[i].Skin.desenhar(g, peixes[i].Coord);
-        }
-
-        private void pbDesenho_Click(object sender, EventArgs e)
-        {
-
+            if (bota != null) bota.Skin.desenhar(g, bota.Coord);
         }
 
         private void timerSpawn_Tick(object sender, EventArgs e)
         {
             for (int i = 0; i < peixes.Length; i++)
             {
-                if (peixes[i].Coord.X > 1200)
-                    peixes[i].Coord = new Point(20, peixes[i].Coord.Y);
+                if (peixes[i].Coord.X > pbDesenho.Size.Width)
+                    peixes[i].Coord = new Point(-LARGURA_PEIXE, rdn.Next(380, 530));
+            }
+        }
+
+        private void timerBota_Tick(object sender, EventArgs e)
+        {
+            if (rdn.Next(1, 1001) == 500)
+            {
+                if (bota != null && bota.Coord.X > pbDesenho.Size.Width) 
+                    bota.Coord = new Point(-LARGURA_BOTA, rdn.Next(380, 530));
+                else 
+                    bota = new Peixe(new Point(-LARGURA_BOTA, rdn.Next(380, 530)), 1, new Figura(Image.FromFile(DEFAULT_IMAGES + "bota.png")));
+                pbDesenho.Invalidate();
             }
         }
     }
