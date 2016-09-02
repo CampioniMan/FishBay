@@ -54,7 +54,8 @@ namespace Fish_Bay
 
         public Peixe(Point novaCoordenada, int direcaoAndar, Figura novaSkin)
         {
-            this.coord = novaCoordenada;
+            this.coord.X = novaCoordenada.X;
+            this.coord.Y = novaCoordenada.Y;
             this.direcao = direcaoAndar;
             this.skin = novaSkin;
         }

@@ -35,7 +35,7 @@ namespace Fish_Bay
             peixes = new Peixe[6];
 
             for (int i = 0; i < peixes.Length; i++)
-                peixes[i] = new Peixe(new Point(-LARGURA_PEIXE, rdn.Next(380, 530)), 1, new Figura(Image.FromFile(DEFAULT_IMAGES + "Peixe" + (i + 1) + ".png")));
+                peixes[i] = new Peixe(new Point(-LARGURA_PEIXE - rdn.Next(0, 10000), rdn.Next(380, 530)), 1, new Figura(Image.FromFile(DEFAULT_IMAGES + "Peixe" + (i + 1) + ".png")));
 
             timerCoord.Start();
             timerSpawn.Start();
@@ -83,5 +83,7 @@ namespace Fish_Bay
                 pbDesenho.Invalidate();
             }
         }
+
+
     }
 }
