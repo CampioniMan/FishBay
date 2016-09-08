@@ -63,7 +63,7 @@ namespace Fish_Bay
             for (int i = 0; i < peixes.Length; i++)
             {
                 for (int i2 = peixes[i].Coord.Y - peixes[i].Skin.Img.Height/2; i2 <= peixes[i].Coord.Y + peixes[i].Skin.Img.Height / 2; i2++)
-                    if (e.Y == i2 && peixes[i].Coord.X > 950 && peixes[i].Coord.X < 1050)
+                    if (e.Y == i2 && peixes[i].Coord.X > 858 && peixes[i].Coord.X < 918)
                         peixes[i].voltarAoZero();
             }
 
@@ -79,7 +79,9 @@ namespace Fish_Bay
             for (int i = 0; i < peixes.Length; i++)
                 peixes[i].Skin.desenhar(g, peixes[i].Coord);
             if (bota != null) bota.Skin.desenhar(g, bota.Coord);
-            g.DrawLine(new Pen(Color.White,2), new Point(1000, 100), new Point(1000, mY));
+            if(mY > 222)
+            g.DrawLine(new Pen(Color.White,2), new Point(908, 222), new Point(908, mY));
+            g.DrawImage(Image.FromFile(DEFAULT_IMAGES + "pescadoAtualizado.png"), new Point(840, 212));
         }
 
         private void timerSpawn_Tick(object sender, EventArgs e)
