@@ -69,5 +69,9 @@ namespace Fish_Bay
         {
             this.coord.X += velocidade*direcao;
         }
+        public void voltarAoZero()
+        {
+            this.coord.X = 0;
+        }
     }
 }

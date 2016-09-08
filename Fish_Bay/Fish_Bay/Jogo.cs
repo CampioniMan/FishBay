@@ -55,6 +55,18 @@ namespace Fish_Bay
             atualizaCoordPeixe();
         }
 
+        private void pbDesenho_MouseMove(object sender, MouseEventArgs e)
+        {
+            lblX.Text = Convert.ToString(e.X);
+            lblY.Text = Convert.ToString(e.Y);
+            for (int i = 0; i < peixes.Length; i++)
+            {
+                for (int i2 = peixes[i].Coord.Y - 5; i2 <= peixes[i].Coord.Y + 5; i2++)
+                    if (e.Y == i2 && peixes[i].Coord.X > 980 && peixes[i].Coord.X < 1020)
+                        peixes[i].voltarAoZero();
+            }
+        }
+
         private void pbDesenho_Paint(object sender, PaintEventArgs e)
         {
             Graphics g = e.Graphics;
