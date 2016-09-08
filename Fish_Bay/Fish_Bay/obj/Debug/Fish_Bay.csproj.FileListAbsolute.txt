@@ -1,0 +1,10 @@
+F:\4oSemestreAtivo\Simone\FishBay\Fish_Bay\Fish_Bay\obj\Debug\Fish_Bay.Jogo.resources
+F:\4oSemestreAtivo\Simone\FishBay\Fish_Bay\Fish_Bay\obj\Debug\Fish_Bay.Menu.resources
+F:\4oSemestreAtivo\Simone\FishBay\Fish_Bay\Fish_Bay\obj\Debug\Fish_Bay.Properties.Resources.resources
+F:\4oSemestreAtivo\Simone\FishBay\Fish_Bay\Fish_Bay\obj\Debug\Fish_Bay.Record.resources
+F:\4oSemestreAtivo\Simone\FishBay\Fish_Bay\Fish_Bay\obj\Debug\Fish_Bay.csproj.GenerateResource.Cache
+F:\4oSemestreAtivo\Simone\FishBay\Fish_Bay\Fish_Bay\bin\Debug\Fish_Bay.exe.config
+F:\4oSemestreAtivo\Simone\FishBay\Fish_Bay\Fish_Bay\bin\Debug\Fish_Bay.exe
+F:\4oSemestreAtivo\Simone\FishBay\Fish_Bay\Fish_Bay\bin\Debug\Fish_Bay.pdb
+F:\4oSemestreAtivo\Simone\FishBay\Fish_Bay\Fish_Bay\obj\Debug\Fish_Bay.exe
+F:\4oSemestreAtivo\Simone\FishBay\Fish_Bay\Fish_Bay\obj\Debug\Fish_Bay.pdb

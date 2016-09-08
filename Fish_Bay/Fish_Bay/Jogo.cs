@@ -57,9 +57,9 @@ namespace Fish_Bay
 
             for (int i = 0; i < peixes.Length; i++)
             {
-                if (peixes[i].pescou(new Point(1000, coordMouse.Y)))
+                if (peixes[i].pescou(new Point(908, coordMouse.Y)))
                     peixes[i].voltarAoZero();
-        }
+            }
         }
 
         private void pbDesenho_MouseMove(object sender, MouseEventArgs e)
@@ -75,13 +75,10 @@ namespace Fish_Bay
         {
             Graphics g = e.Graphics;
             for (int i = 0; i < peixes.Length; i++)
-            {
                 peixes[i].Skin.desenhar(g, peixes[i].Coord);
-                peixes[i].desenharDebug(g);
-            }
             if (bota != null) bota.Skin.desenhar(g, bota.Coord);
-            if(mY > 222)
-            g.DrawLine(new Pen(Color.White,2), new Point(908, 222), new Point(908, mY));
+            if(coordMouse.Y > 222)
+                g.DrawLine(new Pen(Color.White,2), new Point(908, 222), new Point(908, coordMouse.Y));
             g.DrawImage(Image.FromFile(DEFAULT_IMAGES + "pescadoAtualizado.png"), new Point(840, 212));
         }
 

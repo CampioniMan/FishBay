@@ -105,15 +105,15 @@ namespace Fish_Bay
             return ((pontoLinha.X <= this.coord.X + this.Diferenca.X && 
                 pontoLinha.X + this.Diferenca.X >= this.coord.X) 
                 && (pontoLinha.Y <= this.coord.Y + ALTURA &&
-                pontoLinha.Y + ALTURA >= this.coord.Y));
+                pontoLinha.Y >= this.coord.Y));
         }
 
         public void desenharDebug(Graphics g)
         {
             g.DrawLine(new Pen(Color.Red, 5), this.coord.X - this.Diferenca.X + LARGURA, this.Coord.Y         , this.coordAntigo.X                    + LARGURA, this.coordAntigo.Y + ALTURA);
             g.DrawLine(new Pen(Color.Red, 5), this.coord.X                    + LARGURA, this.Coord.Y         , this.coordAntigo.X + this.Diferenca.X + LARGURA, this.coordAntigo.Y + ALTURA);
-            g.DrawLine(new Pen(Color.Red, 5), this.coord.X - this.Diferenca.X + LARGURA, this.Coord.Y - ALTURA, this.coordAntigo.X                    + LARGURA, this.coordAntigo.Y);
-            g.DrawLine(new Pen(Color.Red, 5), this.coord.X                    + LARGURA, this.Coord.Y - ALTURA, this.coordAntigo.X + this.Diferenca.X + LARGURA, this.coordAntigo.Y);
+            g.DrawLine(new Pen(Color.Red, 5), this.coord.X - this.Diferenca.X + LARGURA, this.Coord.Y + ALTURA, this.coordAntigo.X                    + LARGURA, this.coordAntigo.Y);
+            g.DrawLine(new Pen(Color.Red, 5), this.coord.X                    + LARGURA, this.Coord.Y + ALTURA, this.coordAntigo.X + this.Diferenca.X + LARGURA, this.coordAntigo.Y);
             
         }
     }
