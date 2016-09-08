@@ -54,17 +54,23 @@ namespace Fish_Bay
         {
             atualizaCoordPeixe();
         }
-
+        int mY = 0;
         private void pbDesenho_MouseMove(object sender, MouseEventArgs e)
         {
             lblX.Text = Convert.ToString(e.X);
+            mY = e.Y;
             lblY.Text = Convert.ToString(e.Y);
             for (int i = 0; i < peixes.Length; i++)
             {
-                for (int i2 = peixes[i].Coord.Y - 5; i2 <= peixes[i].Coord.Y + 5; i2++)
+                for (int i2 = peixes[i].Coord.Y - peixes[i].Skin.Img.Height/2; i2 <= peixes[i].Coord.Y + peixes[i].Skin.Img.Height / 2; i2++)
                     if (e.Y == i2 && peixes[i].Coord.X > 950 && peixes[i].Coord.X < 1050)
                         peixes[i].voltarAoZero();
             }
+
+            pbDesenho.Invalidate();
+            
+
+
         }
 
         private void pbDesenho_Paint(object sender, PaintEventArgs e)
@@ -73,6 +79,7 @@ namespace Fish_Bay
             for (int i = 0; i < peixes.Length; i++)
                 peixes[i].Skin.desenhar(g, peixes[i].Coord);
             if (bota != null) bota.Skin.desenhar(g, bota.Coord);
+            g.DrawLine(new Pen(Color.White,2), new Point(1000, 100), new Point(1000, mY));
         }
 
         private void timerSpawn_Tick(object sender, EventArgs e)

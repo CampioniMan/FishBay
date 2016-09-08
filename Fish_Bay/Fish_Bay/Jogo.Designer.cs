@@ -32,9 +32,9 @@
             this.timerCoord = new System.Windows.Forms.Timer(this.components);
             this.timerSpawn = new System.Windows.Forms.Timer(this.components);
             this.timerBota = new System.Windows.Forms.Timer(this.components);
-            this.pbDesenho = new System.Windows.Forms.PictureBox();
             this.lblX = new System.Windows.Forms.Label();
             this.lblY = new System.Windows.Forms.Label();
+            this.pbDesenho = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pbDesenho)).BeginInit();
             this.SuspendLayout();
             // 
@@ -53,17 +53,6 @@
             this.timerBota.Interval = 1;
             this.timerBota.Tick += new System.EventHandler(this.timerBota_Tick);
             // 
-            // pbDesenho
-            // 
-            this.pbDesenho.Image = global::Fish_Bay.Properties.Resources.imagem_fundo_jogo;
-            this.pbDesenho.Location = new System.Drawing.Point(0, -2);
-            this.pbDesenho.Name = "pbDesenho";
-            this.pbDesenho.Size = new System.Drawing.Size(1270, 576);
-            this.pbDesenho.TabIndex = 0;
-            this.pbDesenho.TabStop = false;
-            this.pbDesenho.Paint += new System.Windows.Forms.PaintEventHandler(this.pbDesenho_Paint);
-            this.pbDesenho.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pbDesenho_MouseMove);
-            // 
             // lblX
             // 
             this.lblX.AutoSize = true;
@@ -81,6 +70,17 @@
             this.lblY.Size = new System.Drawing.Size(17, 13);
             this.lblY.TabIndex = 2;
             this.lblY.Text = "Y:";
+            // 
+            // pbDesenho
+            // 
+            this.pbDesenho.Image = global::Fish_Bay.Properties.Resources.imagem_fundo_jogo;
+            this.pbDesenho.Location = new System.Drawing.Point(0, -2);
+            this.pbDesenho.Name = "pbDesenho";
+            this.pbDesenho.Size = new System.Drawing.Size(1270, 576);
+            this.pbDesenho.TabIndex = 0;
+            this.pbDesenho.TabStop = false;
+            this.pbDesenho.Paint += new System.Windows.Forms.PaintEventHandler(this.pbDesenho_Paint);
+            this.pbDesenho.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pbDesenho_MouseMove);
             // 
             // Jogo
             // 
