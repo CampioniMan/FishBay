@@ -62,7 +62,7 @@ namespace Fish_Bay
             for (int i = 0; i < peixes.Length; i++)
             {
                 for (int i2 = peixes[i].Coord.Y - 5; i2 <= peixes[i].Coord.Y + 5; i2++)
-                    if (e.Y == i2 && peixes[i].Coord.X > 980 && peixes[i].Coord.X < 1020)
+                    if (e.Y == i2 && peixes[i].Coord.X > 950 && peixes[i].Coord.X < 1050)
                         peixes[i].voltarAoZero();
             }
         }
