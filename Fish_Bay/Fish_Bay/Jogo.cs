@@ -60,6 +60,9 @@ namespace Fish_Bay
                 if (peixes[i].pescou(new Point(908, coordMouse.Y)))
                     peixes[i].voltarAoZero();
             }
+            if(bota != null)
+            if (bota.pescou(new Point(908, coordMouse.Y)))
+                bota.voltarAoZero();
         }
 
         private void pbDesenho_MouseMove(object sender, MouseEventArgs e)
@@ -95,10 +98,9 @@ namespace Fish_Bay
         {
             if (rdn.Next(1, 1001) == 500)
             {
-                if (bota != null && bota.Coord.X > pbDesenho.Size.Width) 
-                    bota.Coord = new Point(-LARGURA_BOTA, rdn.Next(380, 530));
-                else 
+                if(bota == null)
                     bota = new Peixe(new Point(-LARGURA_BOTA, rdn.Next(380, 530)), 1, new Figura(Image.FromFile(DEFAULT_IMAGES + "bota.png")));
+
                 pbDesenho.Invalidate();
             }
         }

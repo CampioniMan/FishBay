@@ -8,3 +8,14 @@ F:\4oSemestreAtivo\Simone\FishBay\Fish_Bay\Fish_Bay\bin\Debug\Fish_Bay.exe
 F:\4oSemestreAtivo\Simone\FishBay\Fish_Bay\Fish_Bay\bin\Debug\Fish_Bay.pdb
 F:\4oSemestreAtivo\Simone\FishBay\Fish_Bay\Fish_Bay\obj\Debug\Fish_Bay.exe
 F:\4oSemestreAtivo\Simone\FishBay\Fish_Bay\Fish_Bay\obj\Debug\Fish_Bay.pdb
+G:\4º SEMESTRE\Fish Bay\Fish_Bay\Fish_Bay\bin\Debug\Fish_Bay.exe.config
+G:\4º SEMESTRE\Fish Bay\Fish_Bay\Fish_Bay\obj\Debug\Fish_Bay.exe
+G:\4º SEMESTRE\Fish Bay\Fish_Bay\Fish_Bay\obj\Debug\Fish_Bay.pdb
+G:\4º SEMESTRE\Fish Bay\Fish_Bay\Fish_Bay\bin\Debug\Fish_Bay.exe
+G:\4º SEMESTRE\Fish Bay\Fish_Bay\Fish_Bay\bin\Debug\Fish_Bay.pdb
+G:\4º SEMESTRE\Fish Bay\Fish_Bay\Fish_Bay\obj\Debug\Fish_Bay.csprojResolveAssemblyReference.cache
+G:\4º SEMESTRE\Fish Bay\Fish_Bay\Fish_Bay\obj\Debug\Fish_Bay.Jogo.resources
+G:\4º SEMESTRE\Fish Bay\Fish_Bay\Fish_Bay\obj\Debug\Fish_Bay.Menu.resources
+G:\4º SEMESTRE\Fish Bay\Fish_Bay\Fish_Bay\obj\Debug\Fish_Bay.Properties.Resources.resources
+G:\4º SEMESTRE\Fish Bay\Fish_Bay\Fish_Bay\obj\Debug\Fish_Bay.Record.resources
+G:\4º SEMESTRE\Fish Bay\Fish_Bay\Fish_Bay\obj\Debug\Fish_Bay.csproj.GenerateResource.Cache
