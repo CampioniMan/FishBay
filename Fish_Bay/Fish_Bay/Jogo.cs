@@ -57,7 +57,7 @@ namespace Fish_Bay
                 peixes[i] = new Peixe(new Point(-LARGURA_PEIXE - rdn.Next(0, 4000), rdn.Next(380, 530)), 1, new Figura(Image.FromFile(DEFAULT_IMAGES[0] + "Peixe" + (i + 1) + ".png")));
 
             for (int i = 0; i < clientes.Length; i++)
-                clientes[i] = new Cliente(new Stress(), false, Image.FromFile(DEFAULT_IMAGES[1] + "NPC" + (11-i) + ".png"), new Point(i*(LARGURA_NPC+2)-500, 215));
+                clientes[i] = new Cliente(new Stress(new Point(i * (LARGURA_NPC + 2) - 500, 215 - ALTURA_NPC - 5), new Point(LARGURA_NPC/2, ALTURA_NPC/2)), false, Image.FromFile(DEFAULT_IMAGES[1] + "NPC" + (11 - i) + ".png"), new Point(i * (LARGURA_NPC + 2) - 500, 215));
 
             fila = new FilaCliente(clientes, new Point(pbDesenho.Size.Width / 4, 0));
             timerSpawn.Start();
@@ -69,6 +69,9 @@ namespace Fish_Bay
                 peixes[i].nadar(rdn.Next(5, 50));
 
             fila.andar();
+            Random r = new Random();
+            for (int i = 0; i < fila.Clientes.Length; i++)
+                fila.Clientes[i].Stress.stressar(r.Next(1, 6));
 
             if (bota != null) bota.nadar(rdn.Next(5, 50));
             pbDesenho.Invalidate();
@@ -76,8 +79,6 @@ namespace Fish_Bay
 
         private void pbDesenho_MouseMove(object sender, MouseEventArgs e)
         {
-            lblX.Text = Convert.ToString(e.X);
-            lblY.Text = Convert.ToString(e.Y);
             coordMouse = new Point(e.X, e.Y);
         }
 
@@ -88,7 +89,11 @@ namespace Fish_Bay
                 peixes[i].Skin.desenhar(g, peixes[i].Coord);
 
             for (int i = 0; i < fila.Clientes.Length; i++)
+            {
                 fila.Clientes[i].Skin.desenhar(g, fila.Clientes[i].Coord);
+                fila.Clientes[i].Stress.coord.X = fila.Clientes[i].Coord.X;
+                fila.Clientes[i].Stress.desenhar(g);
+            }
 
             if (bota != null) bota.Skin.desenhar(g, bota.Coord);
             if(coordMouse.Y > 222)
@@ -115,6 +120,8 @@ namespace Fish_Bay
                     if (peixes[i].Coord.X > pbDesenho.Size.Width)
                     peixes[i].Coord = new Point(-LARGURA_PEIXE - 1000, rdn.Next(380, 530));
             }
+
+
 
             ///////// bota :
             if (rdn.Next(1, 1001) > 900)

@@ -9,11 +9,11 @@ namespace Fish_Bay
 {
     public class Stress
     {
-        private int porcentagem;
+        private double porcentagem;
         private Color cor;
-        private Point coord, tamanhos;
+        public Point coord, tamanhos;
 
-        public int Porcentagem
+        public double Porcentagem
         {
             get
             {
@@ -39,7 +39,8 @@ namespace Fish_Bay
             }
         }
 
-        public Point Tamanhos
+
+        public Point Tamanhos // altura e largura limite do stress
         {
             get
             {
@@ -57,16 +58,29 @@ namespace Fish_Bay
             atualizarCor();
             g.DrawRectangle(new Pen(Color.Black), coord.X, coord.Y, tamanhos.X, tamanhos.Y);
             g.FillRectangle(new SolidBrush(this.cor), coord.X, coord.Y, tamanhos.X, tamanhos.Y);
+            g.DrawString(this.porcentagem+"", new Font("Consolas", 15), new SolidBrush(Color.Black), coord);
         }
 
-        public void atualizarCor()
+        private void atualizarCor()
         {
-            if (this.porcentagem < 25)
+            if (this.porcentagem < 50)
                 this.cor = Color.Green;
-            else if (this.porcentagem < 50)
+            else if (this.porcentagem < 80)
                 this.cor = Color.Yellow;
             else
                 this.cor = Color.Red;
+        }
+
+        public void stressar()
+        {
+            if (this.porcentagem < 100)
+            this.porcentagem += 0.1;
+        }
+
+        public void stressar(int velo)
+        {
+            if (this.porcentagem < 100)
+                this.porcentagem += 0.1*velo;
         }
 
         public Stress(int novaPorcentagem, Point ondeFigura, Point novosTamanhos)
@@ -86,6 +100,10 @@ namespace Fish_Bay
         }
 
         public Stress(int novaPorcentagem, Point Figura) : this(novaPorcentagem, Figura, default(Point))
+        {
+        }
+
+        public Stress(Point Figura, Point Tamanho) : this(0 ,Figura, Tamanho)
         {
         }
     }
