@@ -69,10 +69,10 @@ namespace Fish_Bay
                 this.cor = Color.Red;
         }
 
-        public Stress(int novaPorcentagem, Point Figura, Point novosTamanhos)
+        public Stress(int novaPorcentagem, Point ondeFigura, Point novosTamanhos)
         {
             this.porcentagem = novaPorcentagem;
-            this.coord = Figura;
+            this.coord = ondeFigura;
             this.tamanhos = novosTamanhos;
             atualizarCor();
         }

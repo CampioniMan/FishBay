@@ -49,11 +49,6 @@ namespace Fish_Bay
             pbDesenho.Invalidate();
         }
 
-        private void timer_Tick(object sender, EventArgs e)
-        {
-            
-        }
-
         private void pbDesenho_MouseMove(object sender, MouseEventArgs e)
         {
             lblX.Text = Convert.ToString(e.X);
@@ -87,9 +82,8 @@ namespace Fish_Bay
                 if (bota == null)
                     bota = new Peixe(new Point(-LARGURA_BOTA, rdn.Next(380, 530)), 1, new Figura(Image.FromFile(DEFAULT_IMAGES + "bota.png")));
 
-                if (bota != null && bota.Coord.X > pbDesenho.Size.Width) bota = null;
-
-                pbDesenho.Invalidate();
+                if (bota != null && bota.Coord.X > pbDesenho.Size.Width)
+                    bota = null;
             }
 
             //////// peixe volta ao zero : 
@@ -97,17 +91,12 @@ namespace Fish_Bay
 
             for (int i = 0; i < peixes.Length; i++)
             {
-                if (peixes[i].pescou(new Point(908, coordMouse.Y)))
+                if (peixes[i].pescou(new Point(908, coordMouse.Y), ALTURA_PEIXE))
                     peixes[i].voltarAoZero();
             }
             if (bota != null)
-                if (bota.pescou(new Point(908, coordMouse.Y)))
-                    bota.voltarAoZero();
-        }
-
-        private void timerBota_Tick(object sender, EventArgs e)
-        {
-            
+                if (bota.pescou(new Point(908, coordMouse.Y), ALTURA_BOTA))
+                    bota = null;
         }
 
 

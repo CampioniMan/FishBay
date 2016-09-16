@@ -9,7 +9,7 @@ namespace Fish_Bay
 {
     public class Peixe
     {
-        private const int LARGURA = 56, ALTURA = 22;
+        private const int LARGURA = 56;
         private Point coordAntigo;
         private Point coord;
         private int direcao;
@@ -98,9 +98,11 @@ namespace Fish_Bay
         {
             this.coordAntigo = this.coord;
             this.coord.X = 0;
+            Random rand = new Random();
+            this.coord.Y = rand.Next(380, 530);
         }
 
-        public bool pescou(Point pontoLinha)
+        public bool pescou(Point pontoLinha, int ALTURA)
         {
             return ((pontoLinha.X <= this.coord.X + this.Diferenca.X && 
                 pontoLinha.X + this.Diferenca.X >= this.coord.X) 
@@ -108,7 +110,7 @@ namespace Fish_Bay
                 pontoLinha.Y >= this.coord.Y));
         }
 
-        public void desenharDebug(Graphics g)
+        public void desenharDebug(Graphics g, int ALTURA)
         {
             g.DrawLine(new Pen(Color.Red, 5), this.coord.X - this.Diferenca.X + LARGURA, this.Coord.Y         , this.coordAntigo.X                    + LARGURA, this.coordAntigo.Y + ALTURA);
             g.DrawLine(new Pen(Color.Red, 5), this.coord.X                    + LARGURA, this.Coord.Y         , this.coordAntigo.X + this.Diferenca.X + LARGURA, this.coordAntigo.Y + ALTURA);

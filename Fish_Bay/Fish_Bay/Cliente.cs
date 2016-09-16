@@ -51,11 +51,16 @@ namespace Fish_Bay
                 ehVIP = value;
             }
         }
-        public Cliente(int novoStress, Point novoStressCoordenada, Point novosStressTamanhos, bool seEhVIP, Image novaSkin, Point novaCoordenada)
+
+        public Cliente(Stress novoEstresse, bool seEhVIP, Image novaSkin, Point novaCoordenada)
         {
-            this.stress = new Stress(novoStress, novoStressCoordenada, novosStressTamanhos);
+            this.stress = novoEstresse;
             this.ehVIP = seEhVIP;
             this.skin = new Figura(novaSkin);
+        }
+
+        public Cliente(int novoStress, Point novoStressCoordenada, Point novosStressTamanhos, bool seEhVIP, Image novaSkin, Point novaCoordenada) : this(new Stress(novoStress, novaCoordenada, novosStressTamanhos), seEhVIP, novaSkin, novaCoordenada)
+        {
         }
 
         public Cliente() : this(0, default(Point), default(Point), false, null, default(Point))
