@@ -12,6 +12,7 @@ namespace Fish_Bay
         private bool ehVIP;
         private Stress stress;
         private Figura skin;
+        private Point coord;
 
         public Figura Skin
         {
@@ -23,6 +24,19 @@ namespace Fish_Bay
             set
             {
                 skin = value;
+            }
+        }
+
+        public Point Coord
+        {
+            get
+            {
+                return coord;
+            }
+
+            set
+            {
+                coord = value;
             }
         }
 
@@ -57,6 +71,7 @@ namespace Fish_Bay
             this.stress = novoEstresse;
             this.ehVIP = seEhVIP;
             this.skin = new Figura(novaSkin);
+            this.coord = novaCoordenada;
         }
 
         public Cliente(int novoStress, Point novoStressCoordenada, Point novosStressTamanhos, bool seEhVIP, Image novaSkin, Point novaCoordenada) : this(new Stress(novoStress, novaCoordenada, novosStressTamanhos), seEhVIP, novaSkin, novaCoordenada)
@@ -87,6 +102,11 @@ namespace Fish_Bay
         {
             g.DrawImage(skin.Img, skin.Coord);
             stress.desenhar(g);
+        }
+
+        public void andar()
+        {
+            this.coord.X += 5;
         }
     }
 }
