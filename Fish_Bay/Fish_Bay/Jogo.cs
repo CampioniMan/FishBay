@@ -107,7 +107,5 @@ namespace Fish_Bay
                 if (bota.pescou(new Point(908, coordMouse.Y), ALTURA_BOTA))
                     bota = null;
         }
-
-
     }
 }
