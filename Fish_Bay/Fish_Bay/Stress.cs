@@ -83,6 +83,11 @@ namespace Fish_Bay
                 this.porcentagem += 0.1*velo;
         }
 
+        public bool podeStressar()
+        {
+            return porcentagem >= 100;
+        }
+
         public Stress(int novaPorcentagem, Point ondeFigura, Point novosTamanhos)
         {
             this.porcentagem = novaPorcentagem;

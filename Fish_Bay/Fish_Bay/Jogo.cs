@@ -57,7 +57,7 @@ namespace Fish_Bay
                 peixes[i] = new Peixe(new Point(-LARGURA_PEIXE - rdn.Next(0, 4000), rdn.Next(380, 530)), 1, new Figura(Image.FromFile(DEFAULT_IMAGES[0] + "Peixe" + (i + 1) + ".png")));
 
             for (int i = 0; i < clientes.Length; i++)
-                clientes[i] = new Cliente(new Stress(new Point(i * (LARGURA_NPC + 2) - 500, 215 - ALTURA_NPC - 5), new Point(LARGURA_NPC/2, ALTURA_NPC/2)), false, Image.FromFile(DEFAULT_IMAGES[1] + "NPC" + (11 - i) + ".png"), new Point(i * (LARGURA_NPC + 2) - 500, 215));
+                clientes[i] = new Cliente(new Stress(new Point(i * (LARGURA_NPC + 2) - 500, 215 - ALTURA_NPC - 5), new Point(LARGURA_NPC/2, ALTURA_NPC/2)), false, Image.FromFile(DEFAULT_IMAGES[1] + "NPC" + rdn.Next(2 ,11) + ".png"), new Point(i * (LARGURA_NPC + 2) - 500, 215));
 
             fila = new FilaCliente(clientes, new Point(pbDesenho.Size.Width / 4, 0));
             timerSpawn.Start();
@@ -70,8 +70,13 @@ namespace Fish_Bay
 
             fila.andar();
             Random r = new Random();
+
             for (int i = 0; i < fila.Clientes.Length; i++)
+            {
                 fila.Clientes[i].Stress.stressar(r.Next(1, 6));
+            }
+
+
 
             if (bota != null) bota.nadar(rdn.Next(5, 50));
             pbDesenho.Invalidate();

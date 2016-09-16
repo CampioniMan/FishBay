@@ -42,3 +42,14 @@ G:\segundo semestre\ensino técnico\Sistemas Operacionais\Fish Bay\Fish_Bay\Fish
 G:\segundo semestre\ensino técnico\Sistemas Operacionais\Fish Bay\Fish_Bay\Fish_Bay\obj\Debug\Fish_Bay.Properties.Resources.resources
 G:\segundo semestre\ensino técnico\Sistemas Operacionais\Fish Bay\Fish_Bay\Fish_Bay\obj\Debug\Fish_Bay.Record.resources
 G:\segundo semestre\ensino técnico\Sistemas Operacionais\Fish Bay\Fish_Bay\Fish_Bay\obj\Debug\Fish_Bay.csproj.GenerateResource.Cache
+F:\segundo semestre\ensino técnico\Sistemas Operacionais\Fish Bay\Fish_Bay\Fish_Bay\bin\Debug\Fish_Bay.exe.config
+F:\segundo semestre\ensino técnico\Sistemas Operacionais\Fish Bay\Fish_Bay\Fish_Bay\obj\Debug\Fish_Bay.exe
+F:\segundo semestre\ensino técnico\Sistemas Operacionais\Fish Bay\Fish_Bay\Fish_Bay\obj\Debug\Fish_Bay.pdb
+F:\segundo semestre\ensino técnico\Sistemas Operacionais\Fish Bay\Fish_Bay\Fish_Bay\bin\Debug\Fish_Bay.exe
+F:\segundo semestre\ensino técnico\Sistemas Operacionais\Fish Bay\Fish_Bay\Fish_Bay\bin\Debug\Fish_Bay.pdb
+F:\segundo semestre\ensino técnico\Sistemas Operacionais\Fish Bay\Fish_Bay\Fish_Bay\obj\Debug\Fish_Bay.csprojResolveAssemblyReference.cache
+F:\segundo semestre\ensino técnico\Sistemas Operacionais\Fish Bay\Fish_Bay\Fish_Bay\obj\Debug\Fish_Bay.Jogo.resources
+F:\segundo semestre\ensino técnico\Sistemas Operacionais\Fish Bay\Fish_Bay\Fish_Bay\obj\Debug\Fish_Bay.Menu.resources
+F:\segundo semestre\ensino técnico\Sistemas Operacionais\Fish Bay\Fish_Bay\Fish_Bay\obj\Debug\Fish_Bay.Properties.Resources.resources
+F:\segundo semestre\ensino técnico\Sistemas Operacionais\Fish Bay\Fish_Bay\Fish_Bay\obj\Debug\Fish_Bay.Record.resources
+F:\segundo semestre\ensino técnico\Sistemas Operacionais\Fish Bay\Fish_Bay\Fish_Bay\obj\Debug\Fish_Bay.csproj.GenerateResource.Cache
