@@ -79,7 +79,7 @@ namespace Fish_Bay
             for(int i = 0; i <peixes.Length;i++)
             {
                 if(peixes[i].Pescado)
-                g.DrawImage(Image.FromFile(DEFAULT_IMAGES[0] + "peixe" +(i+1) + ".png"), new Point(755, peixes[i].PosMesa));
+                g.DrawImage(Image.FromFile(DEFAULT_IMAGES[0] + "peixe" +(i+1) + "Pescado.png"), new Point(755, peixes[i].PosMesa));
             }
         }
 
