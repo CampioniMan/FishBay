@@ -12,13 +12,18 @@ namespace Fish_Bay
 {
     public partial class Jogo : Form
     {
-        private const int LARGURA_PEIXE = 56, LARGURA_BOTA = 44, ALTURA_BOTA = 36, ALTURA_PEIXE = 22;
-        private const string DEFAULT_IMAGES = "../../../../imagens/";
+        private const int 
+            LARGURA_PEIXE = 56, 
+            LARGURA_BOTA = 44, 
+            ALTURA_BOTA = 36, 
+            ALTURA_PEIXE = 22;
+        private string[] DEFAULT_IMAGES = new string[3]; // 0-> peixes, 1 -> NPCs, 2 -> Fundo
         private Menu menu;
         private Peixe[] peixes;
         private Peixe bota;
         private Random rdn;
         private Point coordMouse = new Point(0,0);
+
         public Jogo(Menu menuNovo)
         {
             this.menu = menuNovo;
@@ -32,11 +37,15 @@ namespace Fish_Bay
 
         private void Jogo_Load(object sender, EventArgs e)
         {
+            DEFAULT_IMAGES[0] = "../../../../imagens/Peixes/";
+            DEFAULT_IMAGES[1] = "../../../../imagens/NPCs/";
+            DEFAULT_IMAGES[2] = "../../../../imagens/Fundo/";
+
             rdn = new Random();
             peixes = new Peixe[6];
 
             for (int i = 0; i < peixes.Length; i++)
-                peixes[i] = new Peixe(new Point(-LARGURA_PEIXE - rdn.Next(0, 4000), rdn.Next(380, 530)), 1, new Figura(Image.FromFile(DEFAULT_IMAGES + "Peixe" + (i + 1) + ".png")));
+                peixes[i] = new Peixe(new Point(-LARGURA_PEIXE - rdn.Next(0, 4000), rdn.Next(380, 530)), 1, new Figura(Image.FromFile(DEFAULT_IMAGES[0] + "Peixe" + (i + 1) + ".png")));
             
             timerSpawn.Start();
         }
@@ -64,7 +73,7 @@ namespace Fish_Bay
             if (bota != null) bota.Skin.desenhar(g, bota.Coord);
             if(coordMouse.Y > 222)
                 g.DrawLine(new Pen(Color.White,2), new Point(908, 222), new Point(908, coordMouse.Y));
-            g.DrawImage(Image.FromFile(DEFAULT_IMAGES + "pescadoAtualizado.png"), new Point(840, 212));
+            g.DrawImage(Image.FromFile(DEFAULT_IMAGES[1] + "pescador.png"), new Point(840, 212));
         }
 
         private void timerSpawn_Tick(object sender, EventArgs e)
@@ -80,7 +89,7 @@ namespace Fish_Bay
             if (rdn.Next(1, 1001) > 900)
             {
                 if (bota == null)
-                    bota = new Peixe(new Point(-LARGURA_BOTA, rdn.Next(380, 530)), 1, new Figura(Image.FromFile(DEFAULT_IMAGES + "bota.png")));
+                    bota = new Peixe(new Point(-LARGURA_BOTA, rdn.Next(380, 530)), 1, new Figura(Image.FromFile(DEFAULT_IMAGES[0] + "bota.png")));
 
                 if (bota != null && bota.Coord.X > pbDesenho.Size.Width)
                     bota = null;
