@@ -14,6 +14,8 @@ namespace Fish_Bay
         private Point coord;
         private int direcao;
         private Figura skin;
+        private bool pescado;
+        private int posMesa;
 
         public Point Coord
         {
@@ -75,12 +77,40 @@ namespace Fish_Bay
             }
         }
 
+        public bool Pescado
+        {
+            get
+            {
+                return pescado;
+            }
+
+            set
+            {
+                pescado = value;
+            }
+        }
+
+        public int PosMesa
+        {
+            get
+            {
+                return posMesa;
+            }
+
+            set
+            {
+                posMesa = value;
+            }
+        }
+
         public Peixe(Point novaCoordenada, int direcaoAndar, Figura novaSkin)
         {
             this.coord.X = novaCoordenada.X;
             this.coord.Y = novaCoordenada.Y;
             this.direcao = direcaoAndar;
             this.skin = novaSkin;
+            this.pescado = false;
+            this.posMesa = 212;
         }
 
         public void nadar()
@@ -104,6 +134,8 @@ namespace Fish_Bay
 
         public bool pescou(Point pontoLinha, int ALTURA)
         {
+            if (this.pescado)
+                return false;
             return ((pontoLinha.X <= this.coord.X + this.Diferenca.X && 
                 pontoLinha.X + this.Diferenca.X >= this.coord.X) 
                 && (pontoLinha.Y <= this.coord.Y + ALTURA &&

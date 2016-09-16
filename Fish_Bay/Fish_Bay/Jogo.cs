@@ -22,6 +22,7 @@ namespace Fish_Bay
         private Peixe[] peixes;
         private Peixe bota;
         private Random rdn;
+        private int posMesa = 212;
         private Point coordMouse = new Point(0,0);
 
         public Jogo(Menu menuNovo)
@@ -43,7 +44,6 @@ namespace Fish_Bay
 
             rdn = new Random();
             peixes = new Peixe[6];
-
             for (int i = 0; i < peixes.Length; i++)
                 peixes[i] = new Peixe(new Point(-LARGURA_PEIXE - rdn.Next(0, 4000), rdn.Next(380, 530)), 1, new Figura(Image.FromFile(DEFAULT_IMAGES[0] + "Peixe" + (i + 1) + ".png")));
             
@@ -74,6 +74,13 @@ namespace Fish_Bay
             if(coordMouse.Y > 222)
                 g.DrawLine(new Pen(Color.White,2), new Point(908, 222), new Point(908, coordMouse.Y));
             g.DrawImage(Image.FromFile(DEFAULT_IMAGES[1] + "pescador.png"), new Point(840, 212));
+            g.DrawImage(Image.FromFile(DEFAULT_IMAGES[2] + "Fish_Table.png"), new Point(755, 235));
+
+            for(int i = 0; i <peixes.Length;i++)
+            {
+                if(peixes[i].Pescado)
+                g.DrawImage(Image.FromFile(DEFAULT_IMAGES[0] + "peixe" +(i+1) + ".png"), new Point(755, peixes[i].PosMesa));
+            }
         }
 
         private void timerSpawn_Tick(object sender, EventArgs e)
@@ -81,7 +88,8 @@ namespace Fish_Bay
             ///////// peixes :
             for (int i = 0; i < peixes.Length; i++)
             {
-                if (peixes[i].Coord.X > pbDesenho.Size.Width)
+                if (!peixes[i].Pescado)
+                    if (peixes[i].Coord.X > pbDesenho.Size.Width)
                     peixes[i].Coord = new Point(-LARGURA_PEIXE - 1000, rdn.Next(380, 530));
             }
 
@@ -100,8 +108,18 @@ namespace Fish_Bay
 
             for (int i = 0; i < peixes.Length; i++)
             {
-                if (peixes[i].pescou(new Point(908, coordMouse.Y), ALTURA_PEIXE))
-                    peixes[i].voltarAoZero();
+                if (!peixes[i].Pescado)
+                {
+                    if (peixes[i].pescou(new Point(908, coordMouse.Y), ALTURA_PEIXE))
+                    {                       
+                        peixes[i] = new Peixe(new Point(1600, rdn.Next(380, 530)), 1, new Figura(Image.FromFile(DEFAULT_IMAGES[0] + "Peixe" + (i + 1) + ".png"))); ;
+                        peixes[i].PosMesa = posMesa;
+                        peixes[i].Pescado = true;
+                        posMesa = posMesa - 22;
+                    }
+                        
+                }
+                    
             }
             if (bota != null)
                 if (bota.pescou(new Point(908, coordMouse.Y), ALTURA_BOTA))
