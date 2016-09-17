@@ -48,6 +48,7 @@ namespace Fish_Bay
         public void andar()
         {
             for (int i = 0; i < clientes.Length; i++)
+                if(this.clientes[i].PodeAndar)
                 if (this.clientes[i].Coord.X < this.limite.X) this.clientes[i].andar();
                 else this.limite = new Point(this.limite.X - LARGURA_NPC, 0);
         }

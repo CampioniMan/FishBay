@@ -13,6 +13,7 @@ namespace Fish_Bay
         private Stress stress;
         private Figura skin;
         private Point coord;
+        private bool podeAndar;
 
         public Figura Skin
         {
@@ -63,6 +64,19 @@ namespace Fish_Bay
             set
             {
                 ehVIP = value;
+            }
+        }
+
+        public bool PodeAndar
+        {
+            get
+            {
+                return podeAndar;
+            }
+
+            set
+            {
+                podeAndar = value;
             }
         }
 

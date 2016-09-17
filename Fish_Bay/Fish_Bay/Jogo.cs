@@ -20,10 +20,10 @@ namespace Fish_Bay
             ALTURA_PEIXE = 22,
             ALTURA_NPC = 56;
         private string[] DEFAULT_IMAGES = new string[3]; // 0-> peixes, 1 -> NPCs, 2 -> Fundo
-
         private Menu menu;
         private Peixe[] peixes;
         private Peixe bota;
+        Cliente[] clientes;
 
         private FilaCliente fila;
 
@@ -51,13 +51,17 @@ namespace Fish_Bay
             rdn = new Random();
             peixes = new Peixe[6];
 
-            Cliente[] clientes = new Cliente[10];
-
             for (int i = 0; i < peixes.Length; i++)
                 peixes[i] = new Peixe(new Point(-LARGURA_PEIXE - rdn.Next(0, 4000), rdn.Next(380, 530)), 1, new Figura(Image.FromFile(DEFAULT_IMAGES[0] + "Peixe" + (i + 1) + ".png")));
 
+            clientes = new Cliente[10];
+
+
             for (int i = 0; i < clientes.Length; i++)
                 clientes[i] = new Cliente(new Stress(new Point(i * (LARGURA_NPC + 2) - 500, 215 - ALTURA_NPC - 5), new Point(LARGURA_NPC/2, ALTURA_NPC/2)), false, Image.FromFile(DEFAULT_IMAGES[1] + "NPC" + rdn.Next(2 ,11) + ".png"), new Point(i * (LARGURA_NPC + 2) - 500, 215));
+
+            for (int i = 0; i < clientes.Length; i++)
+                clientes[i].PodeAndar = true;
 
             fila = new FilaCliente(clientes, new Point(pbDesenho.Size.Width / 4, 0));
             timerSpawn.Start();
@@ -73,8 +77,37 @@ namespace Fish_Bay
 
             for (int i = 0; i < fila.Clientes.Length; i++)
             {
-                fila.Clientes[i].Stress.stressar(r.Next(1, 6));
+                if (fila.Clientes[i].Stress.podeStressar())
+                    fila.Clientes[i].Stress.stressar(r.Next(1, 6));
+                else
+                {
+                    clientes[i] = new Cliente(new Stress(new Point(i * (LARGURA_NPC + 2) - 500, 215 - ALTURA_NPC - 5), new Point(LARGURA_NPC / 2, ALTURA_NPC / 2)), false, Image.FromFile(DEFAULT_IMAGES[1] + "NPC" + rdn.Next(2, 11) + ".png"), new Point(i * (LARGURA_NPC + 2) - 500, 215));
+                    clientes[i].PodeAndar = false;
+                    bool todosParados = true;
+                    for (int i3 = 0; i3 < clientes.Length; i3++)
+                    {
+                        if (clientes[i3].PodeAndar)
+                        {
+                            todosParados = false;
+                            break;
+                        }
+                            
+                    }
+
+
+                    if (todosParados)
+                        for (int i4 = 0; i4 < clientes.Length; i4++)
+                            clientes[i4].PodeAndar = true;
+
+                    fila = new FilaCliente(clientes, new Point(pbDesenho.Size.Width / 4, 0));
+                }
+
+                
+                
+                    
             }
+
+            
 
 
 

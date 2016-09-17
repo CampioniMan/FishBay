@@ -85,7 +85,7 @@ namespace Fish_Bay
 
         public bool podeStressar()
         {
-            return porcentagem >= 100;
+            return porcentagem < 100;
         }
 
         public Stress(int novaPorcentagem, Point ondeFigura, Point novosTamanhos)
