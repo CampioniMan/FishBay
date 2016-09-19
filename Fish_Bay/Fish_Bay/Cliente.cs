@@ -122,5 +122,10 @@ namespace Fish_Bay
         {
             this.coord.X += 5;
         }
+
+        public void andarInvertido()
+        {
+            this.coord.X =this.coord.X - 5;
+        }
     }
 }

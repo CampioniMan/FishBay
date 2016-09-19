@@ -12,6 +12,8 @@ namespace Fish_Bay
         private Cliente[] clientes;
         private Point limite;
         private const int LARGURA_NPC = 34;
+        private bool primeira = true;
+        private int tam = 9;
 
         public Cliente[] Clientes
         {
@@ -45,12 +47,26 @@ namespace Fish_Bay
             this.Limite = novoLimite;
         }
 
+        public Cliente Primeiro()
+        {
+            tam = tam - 1;
+            return clientes[tam];
+            
+        }
         public void andar()
         {
             for (int i = 0; i < clientes.Length; i++)
                 if(this.clientes[i].PodeAndar)
                 if (this.clientes[i].Coord.X < this.limite.X) this.clientes[i].andar();
                 else this.limite = new Point(this.limite.X - LARGURA_NPC, 0);
+        }
+
+        public bool querPeixe()
+        {
+            for (int i = 0; i < clientes.Length; i++)
+                if (this.clientes[i].Coord.X>=this.limite.X)
+                    return true;
+            return false;
         }
     }
 }
