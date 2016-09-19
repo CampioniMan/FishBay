@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Fish_Bay
 {
@@ -13,7 +14,7 @@ namespace Fish_Bay
         private Point limite;
         private const int LARGURA_NPC = 34;
         private bool primeira = true;
-        private int tam = 9;
+        private int tam ;
 
         public Cliente[] Clientes
         {
@@ -47,9 +48,16 @@ namespace Fish_Bay
             this.Limite = novoLimite;
         }
 
-        public Cliente Primeiro()
+        public FilaCliente(Cliente[] novosClientes, Point novoLimite, int tama)
         {
-            tam = tam - 1;
+            this.Clientes = novosClientes;
+            this.Limite = novoLimite;
+            this.tam = tama;
+        }
+
+        public Cliente Primeiro()
+        {           
+            MessageBox.Show(Convert.ToString(tam));
             return clientes[tam];
             
         }

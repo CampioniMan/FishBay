@@ -27,6 +27,7 @@ namespace Fish_Bay
         private Peixe bota;
         private int qtsMesa = 0;
         private bool prmVez = true;
+        private int tam = 9;
         Cliente[] clientes;
         Cliente ajudante;
 
@@ -68,7 +69,7 @@ namespace Fish_Bay
             for (int i = 0; i < clientes.Length; i++)
                 clientes[i].PodeAndar = true;
 
-            fila = new FilaCliente(clientes, new Point(pbDesenho.Size.Width / 4, 0));
+            fila = new FilaCliente(clientes, new Point(pbDesenho.Size.Width / 4, 0),9);
             timerSpawn.Start();
         }
 
@@ -85,8 +86,6 @@ namespace Fish_Bay
                     ajudante = new Cliente(null, false, Image.FromFile(DEFAULT_IMAGES[1] + "ajudante2.png"), new Point(450, 225));
                     prmVez = false;
                 }
-                    
-                
                 ajudante.andar();
             }
             if(ajudante.Coord.X>=730)
@@ -96,8 +95,6 @@ namespace Fish_Bay
                     ajudante = new Cliente(null, false, Image.FromFile(DEFAULT_IMAGES[1] + "ajudante.png"), new Point(730, 225));
                     prmVez = true;
                 }
-                    
-
                 andandoAoContrario = true;
             }
             if (fila.querPeixe()  && andandoAoContrario && ajudante.Coord.X >450)
@@ -109,6 +106,7 @@ namespace Fish_Bay
             {
                 andandoAoContrario = false;
                 fila.Primeiro().Stress.Porcentagem = 101;
+                tam--;
             }
 
             Random r = new Random();
@@ -137,18 +135,10 @@ namespace Fish_Bay
                         for (int i4 = 0; i4 < clientes.Length; i4++)
                             clientes[i4].PodeAndar = true;
 
-                    fila = new FilaCliente(clientes, new Point(pbDesenho.Size.Width / 4, 0));
+                    fila = new FilaCliente(clientes, new Point(pbDesenho.Size.Width / 4, 0),tam);
                 }
-
-                
-                
-                    
             }
-
             
-
-
-
             if (bota != null) bota.nadar(rdn.Next(5, 50));
             pbDesenho.Invalidate();
         }
@@ -197,9 +187,7 @@ namespace Fish_Bay
                     if (peixes[i].Coord.X > pbDesenho.Size.Width)
                     peixes[i].Coord = new Point(-LARGURA_PEIXE - 1000, rdn.Next(380, 530));
             }
-
-
-
+            
             ///////// bota :
             if (rdn.Next(1, 1001) > 900)
             {
@@ -225,12 +213,9 @@ namespace Fish_Bay
                         qtsMesa++;
                         posMesa = posMesa - 22;
                     }
-                        
-                }
-                    
+                }  
             }
-
-
+            
             if (bota != null)
                 if (bota.pescou(new Point(908, coordMouse.Y), ALTURA_BOTA))
                     bota = null;
