@@ -53,3 +53,6 @@ F:\segundo semestre\ensino técnico\Sistemas Operacionais\Fish Bay\Fish_Bay\Fish
 F:\segundo semestre\ensino técnico\Sistemas Operacionais\Fish Bay\Fish_Bay\Fish_Bay\obj\Debug\Fish_Bay.Properties.Resources.resources
 F:\segundo semestre\ensino técnico\Sistemas Operacionais\Fish Bay\Fish_Bay\Fish_Bay\obj\Debug\Fish_Bay.Record.resources
 F:\segundo semestre\ensino técnico\Sistemas Operacionais\Fish Bay\Fish_Bay\Fish_Bay\obj\Debug\Fish_Bay.csproj.GenerateResource.Cache
+Z:\FishBay\Fish_Bay\Fish_Bay\bin\Debug\Fish_Bay.exe.config
+Z:\FishBay\Fish_Bay\Fish_Bay\obj\Debug\Fish_Bay.exe
+Z:\FishBay\Fish_Bay\Fish_Bay\obj\Debug\Fish_Bay.pdb

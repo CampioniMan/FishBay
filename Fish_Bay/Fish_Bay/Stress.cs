@@ -88,7 +88,7 @@ namespace Fish_Bay
             return porcentagem < 100;
         }
 
-        public Stress(int novaPorcentagem, Point ondeFigura, Point novosTamanhos)
+        public Stress(int novaPorcentagem, Point ondeFigura, Point novosTamanhos) //tamanhos = largura e altura
         {
             this.porcentagem = novaPorcentagem;
             this.coord = ondeFigura;
