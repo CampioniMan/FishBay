@@ -37,7 +37,7 @@ namespace Fish_Bay
         private void pbDesenho_Paint(object sender, PaintEventArgs e)
         {
             Graphics g = e.Graphics;
-            g.DrawImage(Image.FromFile("../../../../Imagens/capa_inicio.png"), new Point(0,0));
+            g.DrawImage(Image.FromFile("../../../../Imagens/Fundo/capa_inicio.png"), new Point(0,0));
             g.DrawString("Fish Bay", new Font("Consolas", 65), new SolidBrush(this.cor), new Point(300 ,40));
         }
 

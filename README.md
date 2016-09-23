@@ -6,3 +6,7 @@ Os desenvolvedores do projeto são: Daniel Campioni, Pedro Pezoa e Régis Gabett
 
 ## História
 Jogo baseado no Club Penguin e Sistemas Operacionais.
+
+## Como jogar?
+Primeiro é necessário [baixar]() o jogo e depois executar o arquivo com a extensão ".exe" que estará disponível.
+O jogo é em multiplayer cooperativo local e um dos jogadores terá de pescar peixes para serem vendidos pelo outro jogador.
