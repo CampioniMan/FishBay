@@ -66,6 +66,7 @@ namespace Fish_Bay
             for (int i = 0; i < clientes.Length; i++)
                 clientes[i].PodeAndar = true;
 
+            Array.Reverse(clientes);
             fila = new FilaCliente(clientes, new Point(pbDesenho.Size.Width / 4, 0),9);
             timerSpawn.Start();
         }
@@ -80,31 +81,32 @@ namespace Fish_Bay
             {
                 if(prmVez)
                 {
-                    ajudante = new Vendedor(Image.FromFile(DEFAULT_IMAGES[1] + "ajudante.png"), new Point(450, 225));
+                    ajudante.Coord = new Point(450, 225);
                     prmVez = false;
                 }
-                ajudante.andar(FilaCliente.NPC_ANDAR_FRENTE, 3);
+                ajudante.Direcao = 1;
+                ajudante.andar();
                 
             }
             if(ajudante.Coord.X >= 730)
             {
                 if (!prmVez)
                 {
-                    ajudante = new Vendedor(Image.FromFile(DEFAULT_IMAGES[1] + "ajudante.png"), new Point(730, 225));
+                    ajudante.Coord = new Point(730, 225);
                     prmVez = true;
                 }
                 andandoAoContrario = true;
             }
             if (fila.querPeixe()  && andandoAoContrario && ajudante.Coord.X >450)
             {
-                ajudante.andar(FilaCliente.NPC_ANDAR_TRAS, 3);
+                ajudante.Direcao = -1;
+                ajudante.andar();
             }
 
             if(ajudante.Coord.X <=450 && andandoAoContrario)
             {
                 andandoAoContrario = false;
-                fila.Primeiro.Stress.Porcentagem = 101;
-                tam--;
+                fila.sairPrimeiro();
             }
 
             Random r = new Random();
