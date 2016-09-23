@@ -28,7 +28,7 @@ namespace Fish_Bay
 
         private FilaCliente fila;
 
-        private Random rdn;
+        private Random rand;
         private int posMesa = 212;
         private Point coordMouse = new Point(0,0);
 
@@ -45,18 +45,17 @@ namespace Fish_Bay
 
         private void Jogo_Load(object sender, EventArgs e)
         {
-            rdn = new Random();
+            rand = new Random();
             peixes = new Peixe[6];
-            clientes = new Cliente[10];
+            clientes = new Cliente[FilaCliente.MAXIMO_FILA];
 
             for (int i = 0; i < peixes.Length; i++)
-                peixes[i] = new Peixe(new Point(-LARGURA_PEIXE - rdn.Next(0, 4000), rdn.Next(380, 530)), 1, new Figura(Image.FromFile(DEFAULT_IMAGES[0] + "Peixe" + (i + 1) + ".png")));
+                peixes[i] = new Peixe(new Point(-LARGURA_PEIXE - rand.Next(0, 4000), rand.Next(380, 530)), 1, new Figura(Image.FromFile(DEFAULT_IMAGES[0] + "Peixe" + (i + 1) + ".png")));
 
             for (int i = 0; i < clientes.Length; i++)
-                clientes[i] = new Cliente(new Stress(new Point(i * (FilaCliente.LARGURA_NPC + 2) - 500, 215 - FilaCliente.ALTURA_NPC - 5), new Point(FilaCliente.LARGURA_NPC /2, FilaCliente.ALTURA_NPC /2)), false, Image.FromFile(DEFAULT_IMAGES[1] + "NPC" + rdn.Next(2 ,11) + ".png"), new Point(i * (FilaCliente.LARGURA_NPC + 2) - 500, 215));
+                clientes[i] = new Cliente(new Stress(new Point(-i * (FilaCliente.LARGURA_NPC + 2), 215 - FilaCliente.ALTURA_NPC - 5), new Point(FilaCliente.LARGURA_NPC /2, FilaCliente.ALTURA_NPC /2)), false, Image.FromFile(DEFAULT_IMAGES[1] + "NPC" + rand.Next(2 ,11) + ".png"), new Point(-i * (FilaCliente.LARGURA_NPC + 2), 215));
             ajudante = new Vendedor(Image.FromFile(DEFAULT_IMAGES[1] + "ajudante.png"),new Point(450,225));
-
-            Array.Reverse(clientes); // invertendo o array
+            
             fila = new FilaCliente(clientes, new Point(pbDesenho.Size.Width / 4, 0));
             timerSpawn.Start();
         }
@@ -64,7 +63,7 @@ namespace Fish_Bay
         public void atualizaCoordPeixe()
         {
             for (int i = 0; i < peixes.Length; i++)
-                peixes[i].nadar(rdn.Next(5, 50));
+                peixes[i].nadar(rand.Next(5, 50));
 
             fila.andar();
 
@@ -101,21 +100,18 @@ namespace Fish_Bay
                 fila.sairPrimeiro();
             }
 
-            Random r = new Random();
-
             for (int i = 0; i < fila.TamanhoFila; i++)
             {
-                fila.Clientes[i].Stress.stressar(r.Next(1, 2));
+                fila.Clientes[i].Stress.stressar(rand.Next(1, 2));
 
                 if (!fila.Clientes[i].Stress.PodeStressar)
                 {
                     fila.sair(i);
-                    fila.entrarRandomico();
                 }
             }
             
             if (bota != null)
-                bota.nadar(rdn.Next(5, 50));
+                bota.nadar(rand.Next(5, 50));
             pbDesenho.Invalidate();
         }
 
@@ -139,7 +135,8 @@ namespace Fish_Bay
 
             ajudante.Skin.desenhar(g, ajudante.Coord);
 
-            if (bota != null) bota.Skin.desenhar(g, bota.Coord);
+            if (bota != null)
+                bota.Skin.desenhar(g, bota.Coord);
             if(coordMouse.Y > 222)
                 g.DrawLine(new Pen(Color.White,2), new Point(908, 222), new Point(908, coordMouse.Y));
 
@@ -149,7 +146,7 @@ namespace Fish_Bay
             for(int i = 0; i <peixes.Length;i++)
             {
                 if(peixes[i].Pescado)
-                g.DrawImage(Image.FromFile(DEFAULT_IMAGES[0] + "peixe" +(i+1) + "Pescado.png"), new Point(755, peixes[i].PosMesa));
+                    g.DrawImage(Image.FromFile(DEFAULT_IMAGES[0] + "peixe" +(i+1) + "Pescado.png"), new Point(755, peixes[i].PosMesa));
             }
 
         }
@@ -161,14 +158,14 @@ namespace Fish_Bay
             {
                 if (!peixes[i].Pescado)
                     if (peixes[i].Coord.X > pbDesenho.Size.Width)
-                    peixes[i].Coord = new Point(-LARGURA_PEIXE - 1000, rdn.Next(380, 530));
+                    peixes[i].Coord = new Point(-LARGURA_PEIXE - 1000, rand.Next(380, 530));
             }
             
             ///////// bota :
-            if (rdn.Next(1, 1001) > 900)
+            if (rand.Next(1, 1001) > 900)
             {
                 if (bota == null)
-                    bota = new Peixe(new Point(-LARGURA_BOTA, rdn.Next(380, 530)), 1, new Figura(Image.FromFile(DEFAULT_IMAGES[0] + "bota.png")));
+                    bota = new Peixe(new Point(-LARGURA_BOTA, rand.Next(380, 530)), 1, new Figura(Image.FromFile(DEFAULT_IMAGES[0] + "bota.png")));
 
                 if (bota != null && bota.Coord.X > pbDesenho.Size.Width)
                     bota = null;
@@ -183,7 +180,7 @@ namespace Fish_Bay
                 {
                     if (peixes[i].pescou(new Point(908, coordMouse.Y), ALTURA_PEIXE))
                     {                       
-                        peixes[i] = new Peixe(new Point(1600, rdn.Next(380, 530)), 1, new Figura(Image.FromFile(DEFAULT_IMAGES[0] + "Peixe" + (i + 1) + ".png"))); ;
+                        peixes[i] = new Peixe(new Point(1600, rand.Next(380, 530)), 1, new Figura(Image.FromFile(DEFAULT_IMAGES[0] + "Peixe" + (i + 1) + ".png"))); ;
                         peixes[i].PosMesa = posMesa;
                         peixes[i].Pescado = true;
                         qtsMesa++;
@@ -195,6 +192,12 @@ namespace Fish_Bay
             if (bota != null)
                 if (bota.pescou(new Point(908, coordMouse.Y), ALTURA_BOTA))
                     bota = null;
+
+            ///////// Adicionando pessoas na fila aleatoriamente
+            if (rand.Next(1, 1000) < 400 && rand.Next(1, 1000) > 950)
+            {
+                fila.entrarRandomico();
+            }
         }
     }
 }

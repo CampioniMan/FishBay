@@ -86,10 +86,8 @@ namespace Fish_Bay
         public void andar()
         {
             for (int i = 0; i < this.TamanhoFila; i++)
-                if (this.clientes[i].PodeAndar(this.limite.X))
+                if (this.clientes[i].PodeAndar(this.limiteParaIndice(i)))
                     this.clientes[i].andar(NPC_ANDAR_FRENTE);
-                else
-                    this.limite = new Point(this.limite.X - LARGURA_NPC, 0);
         }
 
         public bool queremPeixe()
@@ -115,7 +113,14 @@ namespace Fish_Bay
 
         protected void retirarUltimo()
         {
-            this.clientes[this.tamanhoUtil--] = null;
+            try
+            {
+                this.clientes[this.tamanhoUtil--] = null;
+            }
+            catch (Exception ex)
+            {
+
+            }
         }
 
         // faz o PRIMEIRO NPC sair da fila de espera porque ganhou um peixe
@@ -127,12 +132,17 @@ namespace Fish_Bay
         // entra um personagem randômico na fila
         public void entrarRandomico()
         {
-            if (MAXIMO_FILA >= this.TamanhoFila)//fila cheia
+            if (MAXIMO_FILA <= this.TamanhoFila)//fila cheia
                 return;
 
             Random rand = new Random();
-            this.clientes[this.tamanhoUtil++] = new Cliente(new Stress(new Point(-500, 215 - ALTURA_NPC - 5), new Point(LARGURA_NPC / 2, ALTURA_NPC / 2)), 
-                                                         false, Image.FromFile(Jogo.DEFAULT_IMAGES[0] + "NPC" + rand.Next(2, 11) + ".png"), new Point(-500, 215));
+            this.clientes[this.tamanhoUtil++] = new Cliente(new Stress(new Point(-this.tamanhoUtil*(LARGURA_NPC+2), 215 - ALTURA_NPC - 5), new Point(LARGURA_NPC / 2, ALTURA_NPC / 2)), 
+                                                         false, Image.FromFile(Jogo.DEFAULT_IMAGES[1] + "NPC" + rand.Next(2, 11) + ".png"), new Point(-this.tamanhoUtil * (LARGURA_NPC + 2), 215));
+        }
+
+        public int limiteParaIndice(int index)
+        {
+            return this.limite.X - (LARGURA_NPC + 2)*index;
         }
 
         public FilaCliente(Cliente[] novosClientes, Point novoLimite)

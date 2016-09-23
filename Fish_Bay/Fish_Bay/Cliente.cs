@@ -13,7 +13,7 @@ namespace Fish_Bay
         private Stress stress;
         private Figura skin;
         private Point coord;
-        private bool podeAndar, querPeixe;
+        private bool querPeixe;
 
         public Figura Skin
         {
