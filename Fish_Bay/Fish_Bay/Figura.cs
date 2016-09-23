@@ -75,31 +75,15 @@ namespace Fish_Bay
 
         public static Image RotateImage(Image img, float rotationAngle)
         {
-            //create an empty Bitmap image
-            Bitmap bmp = new Bitmap(img.Width, img.Height);
+            var bmp = new Bitmap(img);
 
-            //turn the Bitmap into a Graphics object
-            Graphics gfx = Graphics.FromImage(bmp);
+            using (Graphics gfx = Graphics.FromImage(bmp))
+            {
+                gfx.Clear(Color.Transparent);
+                gfx.DrawImage(img, 0, 0, img.Width, img.Height);
+            }
 
-            //now we set the rotation point to the center of our image
-            gfx.TranslateTransform((float)bmp.Width / 2, (float)bmp.Height / 2);
-
-            //now rotate the image
-            gfx.RotateTransform(rotationAngle);
-
-            gfx.TranslateTransform(-(float)bmp.Width / 2, -(float)bmp.Height / 2);
-
-            //set the InterpolationMode to HighQualityBicubic so to ensure a high
-            //quality image once it is transformed to the specified size
-            gfx.InterpolationMode = InterpolationMode.HighQualityBicubic;
-
-            //now draw our new image onto the graphics object
-            gfx.DrawImage(img, new Point(0, 0));
-
-            //dispose of our Graphics object
-            gfx.Dispose();
-
-            //return the image
+            bmp.RotateFlip(RotateFlipType.Rotate270FlipNone);
             return bmp;
         }
     }
