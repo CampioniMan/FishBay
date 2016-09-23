@@ -110,7 +110,7 @@ namespace Fish_Bay
             }
 
             if (this.peixePescando[0] != null)
-                g.DrawImage(Figura.RotateImage(this.peixePescando[0].Skin.Img, -90), vara);
+                g.DrawImage(Figura.RotateImage(this.peixePescando[0].Skin.Img), vara);
         }
 
         public void verSePescouAlgumPeixe(Point vara)
@@ -172,11 +172,9 @@ namespace Fish_Bay
             return aux;
         }
         /// ////////////////
-        public void voltarANadarPeixeNoIndice(int index)
+        public void voltarANadarPeixeNoIndice()
         {
-            if (index < 0 || index >= this.QtosPeixesPescados)
-                return;
-            
+            if (this.qtosPeixesPescados > 0)
             adicionarNadando(removerPescado());
         }
 
@@ -190,7 +188,7 @@ namespace Fish_Bay
         {
             Peixe aux = peixesPescados[this.QtosPeixesPescados - 1];
             peixesPescados[this.QtosPeixesPescados - 1] = null;
-            this.qtosPeixesPescados++;
+            this.qtosPeixesPescados--;
             return aux;
         }
 

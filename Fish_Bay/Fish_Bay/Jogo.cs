@@ -77,6 +77,7 @@ namespace Fish_Bay
             {
                 ajudante.AndandoAoContrario = true;
                 //ajudante.podeAndar = true;
+                TodosOsPeixes.voltarANadarPeixeNoIndice();
             }
             if (fila.queremPeixe()  && ajudante.AndandoAoContrario && ajudante.Coord.X > 450)
             {

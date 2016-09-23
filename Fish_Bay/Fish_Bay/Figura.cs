@@ -73,7 +73,7 @@ namespace Fish_Bay
             g.DrawImage(img, ondeDesenhar.X, ondeDesenhar.Y, -cxImage, cyImage);
         }
 
-        public static Image RotateImage(Image img, float rotationAngle)
+        public static Image RotateImage(Image img)
         {
             var bmp = new Bitmap(img);
 
