@@ -14,7 +14,7 @@ namespace Fish_Bay
         private Point coord;
         private int direcao;
         private Figura skin;
-        private bool pescado;
+        private bool pescado, nadando, pescando;
         private int posMesa;
 
         public Point Coord
@@ -86,7 +86,39 @@ namespace Fish_Bay
 
             set
             {
+                nadando = !value;
+                pescando = !value;
                 pescado = value;
+            }
+        }
+
+        public bool Pescando
+        {
+            get
+            {
+                return pescando;
+            }
+
+            set
+            {
+                nadando = !value;
+                pescando = value;
+                pescado = !value;
+            }
+        }
+
+        public bool Nadando
+        {
+            get
+            {
+                return nadando;
+            }
+
+            set
+            {
+                nadando = value;
+                pescando = !value;
+                pescado = !value;
             }
         }
 

@@ -22,7 +22,7 @@ namespace Fish_Bay
         private Peixe[] peixes;
         private Peixe bota;
         private int qtsMesa = 0;
-        private bool prmVez = true;
+        private ControladorPeixe TodosOsPeixes;
         Cliente[] clientes;
         Vendedor ajudante;
 
@@ -55,36 +55,26 @@ namespace Fish_Bay
             for (int i = 0; i < clientes.Length; i++)
                 clientes[i] = new Cliente(new Stress(new Point(-i * (FilaCliente.LARGURA_NPC + 2), 215 - FilaCliente.ALTURA_NPC - 5), new Point(FilaCliente.LARGURA_NPC /2, FilaCliente.ALTURA_NPC /2)), false, Image.FromFile(DEFAULT_IMAGES[1] + "NPC" + rand.Next(2 ,11) + ".png"), new Point(-i * (FilaCliente.LARGURA_NPC + 2), 215));
             ajudante = new Vendedor(Image.FromFile(DEFAULT_IMAGES[1] + "ajudante.png"),new Point(450,225));
-            
+
+            TodosOsPeixes = new ControladorPeixe(peixes, new Point(755, 212));
             fila = new FilaCliente(clientes, new Point(pbDesenho.Size.Width / 4, 0));
             timerSpawn.Start();
         }
 
-        public void atualizaCoordPeixe()
+        public void atualizaFilasEAjudante()
         {
-            for (int i = 0; i < peixes.Length; i++)
-                peixes[i].nadar(rand.Next(5, 50));
+            TodosOsPeixes.nadem(rand.Next(5, 50));
 
             fila.andar();
 
             if(!fila.EstaVazia && ajudante.Coord.X < 730 && !ajudante.AndandoAoContrario)
             {
-                if(prmVez)
-                {
-                    ajudante.Coord = new Point(450, 225);
-                    prmVez = false;
-                }
                 ajudante.AndandoAoContrario = false;
                 ajudante.andar();
                 
             }
             if(ajudante.Coord.X >= 730)
             {
-                //if (!prmVez)
-                //{
-                //    ajudante.Coord = new Point(730, 225);
-                //    prmVez = true;
-                //}
                 ajudante.AndandoAoContrario = true;
                 //ajudante.podeAndar = true;
             }
@@ -117,14 +107,13 @@ namespace Fish_Bay
 
         private void pbDesenho_MouseMove(object sender, MouseEventArgs e)
         {
-            coordMouse = new Point(e.X, e.Y);
+            coordMouse = new Point(908, e.Y);
         }
 
         private void pbDesenho_Paint(object sender, PaintEventArgs e)
         {
             Graphics g = e.Graphics;
-            for (int i = 0; i < peixes.Length; i++)
-                peixes[i].Skin.desenhar(g, peixes[i].Coord);
+            TodosOsPeixes.desenharTodos(g, coordMouse);
             
             for (int i = 0; i < fila.TamanhoFila; i++)
             {
@@ -142,23 +131,17 @@ namespace Fish_Bay
 
             g.DrawImage(Image.FromFile(DEFAULT_IMAGES[1] + "pescador.png"), new Point(840, 212));
             g.DrawImage(Image.FromFile(DEFAULT_IMAGES[2] + "Fish_Table.png"), new Point(755, 235));
-
-            for(int i = 0; i <peixes.Length;i++)
-            {
-                if(peixes[i].Pescado)
-                    g.DrawImage(Image.FromFile(DEFAULT_IMAGES[0] + "peixe" +(i+1) + "Pescado.png"), new Point(755, peixes[i].PosMesa));
-            }
-
         }
 
         private void timerSpawn_Tick(object sender, EventArgs e)
         {
             ///////// peixes :
-            for (int i = 0; i < peixes.Length; i++)
+            TodosOsPeixes.verSePescouAlgumPeixe(coordMouse);
+            for (int i = 0; i < TodosOsPeixes.Peixes.Length; i++)
             {
-                if (!peixes[i].Pescado)
-                    if (peixes[i].Coord.X > pbDesenho.Size.Width)
-                    peixes[i].Coord = new Point(-LARGURA_PEIXE - 1000, rand.Next(380, 530));
+                if (TodosOsPeixes.Peixes[i] != null)
+                if (TodosOsPeixes.Peixes[i].Coord.X > pbDesenho.Size.Width)
+                        TodosOsPeixes.Peixes[i].Coord = new Point(-LARGURA_PEIXE - 1000, rand.Next(380, 530));
             }
             
             ///////// bota :
@@ -172,22 +155,8 @@ namespace Fish_Bay
             }
 
             //////// peixe volta ao zero : 
-            atualizaCoordPeixe();
-
-            for (int i = 0; i < peixes.Length; i++)
-            {
-                if (!peixes[i].Pescado)
-                {
-                    if (peixes[i].pescou(new Point(908, coordMouse.Y), ALTURA_PEIXE))
-                    {                       
-                        peixes[i] = new Peixe(new Point(1600, rand.Next(380, 530)), 1, new Figura(Image.FromFile(DEFAULT_IMAGES[0] + "Peixe" + (i + 1) + ".png"))); ;
-                        peixes[i].PosMesa = posMesa;
-                        peixes[i].Pescado = true;
-                        qtsMesa++;
-                        posMesa = posMesa - 22;
-                    }
-                }  
-            }
+            atualizaFilasEAjudante();
+            
             
             if (bota != null)
                 if (bota.pescou(new Point(908, coordMouse.Y), ALTURA_BOTA))
