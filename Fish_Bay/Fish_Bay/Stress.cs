@@ -53,6 +53,14 @@ namespace Fish_Bay
             }
         }
 
+        public bool PodeStressar
+        {
+            get
+            {
+                return porcentagem < 100;
+            }
+        }
+
         public void desenhar(Graphics g)
         {
             atualizarCor();
@@ -73,19 +81,13 @@ namespace Fish_Bay
 
         public void stressar()
         {
-            if (this.porcentagem < 100)
-            this.porcentagem += 0.1;
+            stressar(1);
         }
 
         public void stressar(int velo)
         {
-            if (this.porcentagem < 100)
+            if (this.PodeStressar)
                 this.porcentagem += 0.1*velo;
-        }
-
-        public bool podeStressar()
-        {
-            return porcentagem < 100;
         }
 
         public Stress(int novaPorcentagem, Point ondeFigura, Point novosTamanhos) //tamanhos = largura e altura

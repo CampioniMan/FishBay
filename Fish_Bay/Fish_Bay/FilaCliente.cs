@@ -10,7 +10,11 @@ namespace Fish_Bay
 {
     class FilaCliente
     {
-        private const int LARGURA_NPC = 34, MAXIMO_FILA = 10, ALTURA_NPC = 56;
+        public const int LARGURA_NPC = 34, 
+            MAXIMO_FILA = 10, 
+            ALTURA_NPC = 56,
+            NPC_ANDAR_FRENTE = 1,
+            NPC_ANDAR_TRAS = -1;
 
         private Cliente[] clientes;
         private Point limite;
@@ -77,14 +81,14 @@ namespace Fish_Bay
         {
             for (int i = 0; i < clientes.Length; i++)
                 if(this.clientes[i].PodeAndar)
-                if (this.clientes[i].Coord.X < this.limite.X) this.clientes[i].andar();
+                if (this.clientes[i].Coord.X < this.limite.X) this.clientes[i].andar(NPC_ANDAR_FRENTE);
                 else this.limite = new Point(this.limite.X - LARGURA_NPC, 0);
         }
 
         public bool querPeixe()
         {
             for (int i = 0; i < clientes.Length; i++)
-                if (this.clientes[i].Coord.X>=this.limite.X)
+                if (this.clientes[i].QuerPeixe)
                     return true;
             return false;
         }

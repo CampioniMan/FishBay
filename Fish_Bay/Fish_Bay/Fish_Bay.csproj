@@ -71,6 +71,7 @@
       <DependentUpon>Record.cs</DependentUpon>
     </Compile>
     <Compile Include="Stress.cs" />
+    <Compile Include="Vendedor.cs" />
     <EmbeddedResource Include="Jogo.resx">
       <DependentUpon>Jogo.cs</DependentUpon>
     </EmbeddedResource>

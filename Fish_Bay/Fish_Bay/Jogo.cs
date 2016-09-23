@@ -12,13 +12,11 @@ namespace Fish_Bay
 {
     public partial class Jogo : Form
     {
-        private const int
+        const int
             LARGURA_PEIXE = 56,
             LARGURA_BOTA = 44,
-            LARGURA_NPC = 34,
             ALTURA_BOTA = 36,
-            ALTURA_PEIXE = 22,
-            ALTURA_NPC = 56;
+            ALTURA_PEIXE = 22;
         private string[] DEFAULT_IMAGES = new string[3]; // 0-> peixes, 1 -> NPCs, 2 -> Fundo
         private int posAj = 450;
         private bool andandoAoContrario = false;
@@ -29,7 +27,7 @@ namespace Fish_Bay
         private bool prmVez = true;
         private int tam = 9;
         Cliente[] clientes;
-        Cliente ajudante;
+        Vendedor ajudante;
 
         private FilaCliente fila;
 
@@ -62,8 +60,8 @@ namespace Fish_Bay
                 peixes[i] = new Peixe(new Point(-LARGURA_PEIXE - rdn.Next(0, 4000), rdn.Next(380, 530)), 1, new Figura(Image.FromFile(DEFAULT_IMAGES[0] + "Peixe" + (i + 1) + ".png")));
 
             for (int i = 0; i < clientes.Length; i++)
-                clientes[i] = new Cliente(new Stress(new Point(i * (LARGURA_NPC + 2) - 500, 215 - ALTURA_NPC - 5), new Point(LARGURA_NPC/2, ALTURA_NPC/2)), false, Image.FromFile(DEFAULT_IMAGES[1] + "NPC" + rdn.Next(2 ,11) + ".png"), new Point(i * (LARGURA_NPC + 2) - 500, 215));
-            ajudante = new Cliente(null,false, Image.FromFile(DEFAULT_IMAGES[1] + "ajudante.png"),new Point(450,225));
+                clientes[i] = new Cliente(new Stress(new Point(i * (FilaCliente.LARGURA_NPC + 2) - 500, 215 - FilaCliente.ALTURA_NPC - 5), new Point(FilaCliente.LARGURA_NPC /2, FilaCliente.ALTURA_NPC /2)), false, Image.FromFile(DEFAULT_IMAGES[1] + "NPC" + rdn.Next(2 ,11) + ".png"), new Point(i * (FilaCliente.LARGURA_NPC + 2) - 500, 215));
+            ajudante = new Vendedor(Image.FromFile(DEFAULT_IMAGES[1] + "ajudante.png"),new Point(450,225));
 
             for (int i = 0; i < clientes.Length; i++)
                 clientes[i].PodeAndar = true;
@@ -82,23 +80,24 @@ namespace Fish_Bay
             {
                 if(prmVez)
                 {
-                    ajudante = new Cliente(null, false, Image.FromFile(DEFAULT_IMAGES[1] + "ajudante2.png"), new Point(450, 225));
+                    ajudante = new Vendedor(Image.FromFile(DEFAULT_IMAGES[1] + "ajudante.png"), new Point(450, 225));
                     prmVez = false;
                 }
-                ajudante.andar();
+                ajudante.andar(FilaCliente.NPC_ANDAR_FRENTE, 3);
+                
             }
-            if(ajudante.Coord.X>=730)
+            if(ajudante.Coord.X >= 730)
             {
                 if (!prmVez)
                 {
-                    ajudante = new Cliente(null, false, Image.FromFile(DEFAULT_IMAGES[1] + "ajudante.png"), new Point(730, 225));
+                    ajudante = new Vendedor(Image.FromFile(DEFAULT_IMAGES[1] + "ajudante.png"), new Point(730, 225));
                     prmVez = true;
                 }
                 andandoAoContrario = true;
             }
             if (fila.querPeixe()  && andandoAoContrario && ajudante.Coord.X >450)
             {
-                ajudante.andarInvertido();
+                ajudante.andar(FilaCliente.NPC_ANDAR_TRAS, 3);
             }
 
             if(ajudante.Coord.X <=450 && andandoAoContrario)
@@ -112,33 +111,17 @@ namespace Fish_Bay
 
             for (int i = 0; i < fila.Clientes.Length; i++)
             {
-                if (fila.Clientes[i].Stress.podeStressar())
-                    fila.Clientes[i].Stress.stressar(r.Next(1, 2));
-                else
+                fila.Clientes[i].Stress.stressar(r.Next(1, 2));
+
+                if (!fila.Clientes[i].Stress.PodeStressar)
                 {
-                    clientes[i] = new Cliente(new Stress(new Point(i * (LARGURA_NPC + 2) - 500, 215 - ALTURA_NPC - 5), new Point(LARGURA_NPC / 2, ALTURA_NPC / 2)), false, Image.FromFile(DEFAULT_IMAGES[1] + "NPC" + rdn.Next(2, 11) + ".png"), new Point(i * (LARGURA_NPC + 2) - 500, 215));
-                    clientes[i].PodeAndar = false;
-                    bool todosParados = true;
-                    for (int i3 = 0; i3 < clientes.Length; i3++)
-                    {
-                        if (clientes[i3].PodeAndar)
-                        {
-                            todosParados = false;
-                            break;
-                        }
-                            
-                    }
-
-
-                    if (todosParados)
-                        for (int i4 = 0; i4 < clientes.Length; i4++)
-                            clientes[i4].PodeAndar = true;
-
-                    fila = new FilaCliente(clientes, new Point(pbDesenho.Size.Width / 4, 0),tam);
+                    fila.sair(i);
+                    fila.entrarRandomico();
                 }
             }
             
-            if (bota != null) bota.nadar(rdn.Next(5, 50));
+            if (bota != null)
+                bota.nadar(rdn.Next(5, 50));
             pbDesenho.Invalidate();
         }
 

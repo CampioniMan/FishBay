@@ -56,3 +56,14 @@ F:\segundo semestre\ensino técnico\Sistemas Operacionais\Fish Bay\Fish_Bay\Fish
 Z:\FishBay\Fish_Bay\Fish_Bay\bin\Debug\Fish_Bay.exe.config
 Z:\FishBay\Fish_Bay\Fish_Bay\obj\Debug\Fish_Bay.exe
 Z:\FishBay\Fish_Bay\Fish_Bay\obj\Debug\Fish_Bay.pdb
+C:\wamp64\www\FishBay\Fish_Bay\Fish_Bay\bin\Debug\Fish_Bay.exe.config
+C:\wamp64\www\FishBay\Fish_Bay\Fish_Bay\obj\Debug\Fish_Bay.exe
+C:\wamp64\www\FishBay\Fish_Bay\Fish_Bay\obj\Debug\Fish_Bay.pdb
+C:\wamp64\www\FishBay\Fish_Bay\Fish_Bay\bin\Debug\Fish_Bay.exe
+C:\wamp64\www\FishBay\Fish_Bay\Fish_Bay\bin\Debug\Fish_Bay.pdb
+C:\wamp64\www\FishBay\Fish_Bay\Fish_Bay\obj\Debug\Fish_Bay.csprojResolveAssemblyReference.cache
+C:\wamp64\www\FishBay\Fish_Bay\Fish_Bay\obj\Debug\Fish_Bay.Jogo.resources
+C:\wamp64\www\FishBay\Fish_Bay\Fish_Bay\obj\Debug\Fish_Bay.Menu.resources
+C:\wamp64\www\FishBay\Fish_Bay\Fish_Bay\obj\Debug\Fish_Bay.Properties.Resources.resources
+C:\wamp64\www\FishBay\Fish_Bay\Fish_Bay\obj\Debug\Fish_Bay.Record.resources
+C:\wamp64\www\FishBay\Fish_Bay\Fish_Bay\obj\Debug\Fish_Bay.csproj.GenerateResource.Cache

@@ -13,7 +13,7 @@ namespace Fish_Bay
         private Stress stress;
         private Figura skin;
         private Point coord;
-        private bool podeAndar;
+        private bool podeAndar, querPeixe;
 
         public Figura Skin
         {
@@ -80,12 +80,26 @@ namespace Fish_Bay
             }
         }
 
+        public bool QuerPeixe
+        {
+            get
+            {
+                return querPeixe;
+            }
+
+            set
+            {
+                querPeixe = value;
+            }
+        }
+
         public Cliente(Stress novoEstresse, bool seEhVIP, Image novaSkin, Point novaCoordenada)
         {
             this.stress = novoEstresse;
             this.ehVIP = seEhVIP;
             this.skin = new Figura(novaSkin);
             this.coord = novaCoordenada;
+            querPeixe = true;
         }
 
         public Cliente(int novoStress, Point novoStressCoordenada, Point novosStressTamanhos, bool seEhVIP, Image novaSkin, Point novaCoordenada) : this(new Stress(novoStress, novaCoordenada, novosStressTamanhos), seEhVIP, novaSkin, novaCoordenada)
@@ -108,24 +122,30 @@ namespace Fish_Bay
         {
         }
 
-        public Cliente(Figura novaSkin) : this(0, default(Point), default(Point), false, novaSkin.Img, novaSkin.Coord)
+        public Cliente(Figura novaSkin) : this(0, default(Point), default(Point), false, novaSkin.Img, default(Point))
         {
         }
 
         public void desenhar(Graphics g)
         {
-            g.DrawImage(skin.Img, skin.Coord);
+            g.DrawImage(skin.Img, coord);
             stress.desenhar(g);
         }
 
-        public void andar()
+        /* direcao= 1 ou direcao= -1 para o player andar para frente ou para trás */
+        public void andar(int direcao)
         {
-            this.coord.X += 5;
+            andar(direcao, 1);
         }
 
-        public void andarInvertido()
+        /* è possível juntar as duas variáveis, mas assim é melhor para o entendimento inicial da função */
+        public void andar(int direcao, int velocidade)
         {
-            this.coord.X =this.coord.X - 5;
+            this.coord.X += 5 * direcao * velocidade;
+            if (direcao >= 0)
+                this.Skin.Invertido = false;
+            else
+                this.Skin.Invertido = true;
         }
     }
 }

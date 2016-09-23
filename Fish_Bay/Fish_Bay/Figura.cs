@@ -9,21 +9,8 @@ namespace Fish_Bay
 {
     public class Figura
     {
-        private Point coord;
         private Image img;
-
-        public Point Coord
-        {
-            get
-            {
-                return coord;
-            }
-
-            set
-            {
-                coord = value;
-            }
-        }
+        private bool ehInvertido;
 
         public Image Img
         {
@@ -38,32 +25,51 @@ namespace Fish_Bay
             }
         }
 
-        public Figura(Image novaFigura, Point novaCoordenada)
+        public bool Invertido
         {
-            this.coord = novaCoordenada;
+            get
+            {
+                return ehInvertido;
+            }
+
+            set
+            {
+                ehInvertido = value;
+            }
+        }
+
+        public Figura(Image novaFigura, bool novoEhInverso)
+        {
             this.img = novaFigura;
+            this.ehInvertido = novoEhInverso;
         }
 
-        public Figura() : this(null , default(Point))
+        public Figura(Image novaFigura) : this(novaFigura, false)
         {
         }
 
-        public Figura(Image novaFigura) : this(novaFigura, default(Point))
+        public Figura(bool novoEhInverso) : this(null, novoEhInverso)
         {
         }
 
-        public Figura(Point novaCoordenada) : this(null, novaCoordenada)
+        public Figura() : this(null , false)
         {
-        }
-
-        public void desenhar(Graphics g)
-        {
-            g.DrawImage(this.img, this.coord);
         }
 
         public void desenhar(Graphics g, Point desenhar)
         {
-            g.DrawImage(this.img, desenhar);
+            if (!ehInvertido)
+                g.DrawImage(this.img, desenhar);
+            else
+                desenharReflexo(g, desenhar);
+        }
+
+        protected void desenharReflexo(Graphics g, Point ondeDesenhar)
+        {
+            int cxImage = img.Width;
+            int cyImage = img.Height;
+            
+            g.DrawImage(img, ondeDesenhar.X, ondeDesenhar.Y, -cxImage, cyImage);
         }
 
     }
