@@ -12,20 +12,17 @@ namespace Fish_Bay
 {
     public partial class Jogo : Form
     {
-        const int
+        public const int
             LARGURA_PEIXE = 56,
             LARGURA_BOTA = 44,
             ALTURA_BOTA = 36,
             ALTURA_PEIXE = 22;
-        private string[] DEFAULT_IMAGES = new string[3]; // 0-> peixes, 1 -> NPCs, 2 -> Fundo
-        private int posAj = 450;
-        private bool andandoAoContrario = false;
+        public static readonly string[] DEFAULT_IMAGES = { "../../../../imagens/Peixes/", "../../../../imagens/NPCs/", "../../../../imagens/Fundo/" };
         private Menu menu;
         private Peixe[] peixes;
         private Peixe bota;
         private int qtsMesa = 0;
         private bool prmVez = true;
-        private int tam = 9;
         Cliente[] clientes;
         Vendedor ajudante;
 
@@ -48,10 +45,6 @@ namespace Fish_Bay
 
         private void Jogo_Load(object sender, EventArgs e)
         {
-            DEFAULT_IMAGES[0] = "../../../../imagens/Peixes/";
-            DEFAULT_IMAGES[1] = "../../../../imagens/NPCs/";
-            DEFAULT_IMAGES[2] = "../../../../imagens/Fundo/";
-
             rdn = new Random();
             peixes = new Peixe[6];
             clientes = new Cliente[10];
@@ -63,11 +56,8 @@ namespace Fish_Bay
                 clientes[i] = new Cliente(new Stress(new Point(i * (FilaCliente.LARGURA_NPC + 2) - 500, 215 - FilaCliente.ALTURA_NPC - 5), new Point(FilaCliente.LARGURA_NPC /2, FilaCliente.ALTURA_NPC /2)), false, Image.FromFile(DEFAULT_IMAGES[1] + "NPC" + rdn.Next(2 ,11) + ".png"), new Point(i * (FilaCliente.LARGURA_NPC + 2) - 500, 215));
             ajudante = new Vendedor(Image.FromFile(DEFAULT_IMAGES[1] + "ajudante.png"),new Point(450,225));
 
-            for (int i = 0; i < clientes.Length; i++)
-                clientes[i].PodeAndar = true;
-
-            Array.Reverse(clientes);
-            fila = new FilaCliente(clientes, new Point(pbDesenho.Size.Width / 4, 0),9);
+            Array.Reverse(clientes); // invertendo o array
+            fila = new FilaCliente(clientes, new Point(pbDesenho.Size.Width / 4, 0));
             timerSpawn.Start();
         }
 
@@ -77,41 +67,43 @@ namespace Fish_Bay
                 peixes[i].nadar(rdn.Next(5, 50));
 
             fila.andar();
-            if(fila.querPeixe() && ajudante.Coord.X < 730 && !andandoAoContrario)
+
+            if(!fila.EstaVazia && ajudante.Coord.X < 730 && !ajudante.AndandoAoContrario)
             {
                 if(prmVez)
                 {
                     ajudante.Coord = new Point(450, 225);
                     prmVez = false;
                 }
-                ajudante.Direcao = 1;
+                ajudante.AndandoAoContrario = false;
                 ajudante.andar();
                 
             }
             if(ajudante.Coord.X >= 730)
             {
-                if (!prmVez)
-                {
-                    ajudante.Coord = new Point(730, 225);
-                    prmVez = true;
-                }
-                andandoAoContrario = true;
+                //if (!prmVez)
+                //{
+                //    ajudante.Coord = new Point(730, 225);
+                //    prmVez = true;
+                //}
+                ajudante.AndandoAoContrario = true;
+                //ajudante.podeAndar = true;
             }
-            if (fila.querPeixe()  && andandoAoContrario && ajudante.Coord.X >450)
+            if (fila.queremPeixe()  && ajudante.AndandoAoContrario && ajudante.Coord.X > 450)
             {
-                ajudante.Direcao = -1;
+                ajudante.AndandoAoContrario = true;
                 ajudante.andar();
             }
 
-            if(ajudante.Coord.X <=450 && andandoAoContrario)
+            if(ajudante.Coord.X <= 450 && ajudante.AndandoAoContrario)
             {
-                andandoAoContrario = false;
+                ajudante.AndandoAoContrario = false;
                 fila.sairPrimeiro();
             }
 
             Random r = new Random();
 
-            for (int i = 0; i < fila.Clientes.Length; i++)
+            for (int i = 0; i < fila.TamanhoFila; i++)
             {
                 fila.Clientes[i].Stress.stressar(r.Next(1, 2));
 
@@ -137,8 +129,8 @@ namespace Fish_Bay
             Graphics g = e.Graphics;
             for (int i = 0; i < peixes.Length; i++)
                 peixes[i].Skin.desenhar(g, peixes[i].Coord);
-
-            for (int i = 0; i < fila.Clientes.Length; i++)
+            
+            for (int i = 0; i < fila.TamanhoFila; i++)
             {
                 fila.Clientes[i].Skin.desenhar(g, fila.Clientes[i].Coord);
                 fila.Clientes[i].Stress.coord.X = fila.Clientes[i].Coord.X;

@@ -60,6 +60,10 @@ namespace Fish_Bay
             {
                 return !podeAndar;
             }
+            set
+            {
+                podeAndar = !value;
+            }
         }
 
         public int Direcao
@@ -72,6 +76,21 @@ namespace Fish_Bay
             set
             {
                 direcao = value;
+            }
+        }
+
+        public bool AndandoAoContrario
+        {
+            get
+            {
+                return (direcao == -1);
+            }
+            set
+            {
+                if (value)
+                    direcao = -1;
+                else
+                    direcao = 1;
             }
         }
 

@@ -11,15 +11,14 @@ namespace Fish_Bay
     class FilaCliente
     {
         public const int LARGURA_NPC = 34, 
-            MAXIMO_FILA = 10, 
+            MAXIMO_FILA = 9, 
             ALTURA_NPC = 56,
             NPC_ANDAR_FRENTE = 1,
             NPC_ANDAR_TRAS = -1;
 
         private Cliente[] clientes;
         private Point limite;
-        private bool primeira = true;
-        private int tam ;
+        private int tamanhoUtil;
 
         public Cliente[] Clientes
         {
@@ -34,11 +33,19 @@ namespace Fish_Bay
             }
         }
 
+        public bool EstaVazia
+        {
+            get
+            {
+                return tamanhoUtil == 0;
+            }
+        }
+
         public int TamanhoFila
         {
             get
             {
-                return clientes.Length;
+                return tamanhoUtil;
             }
         }
 
@@ -46,7 +53,7 @@ namespace Fish_Bay
         {
             get
             {
-                return clientes[tam];
+                return clientes[0];
             }
         }
 
@@ -63,31 +70,31 @@ namespace Fish_Bay
             }
         }
 
-        public FilaCliente(Cliente[] novosClientes, Point novoLimite)
+        public int PrimeiroEspacoVazio
         {
-            this.Clientes = novosClientes;
-            this.Limite = novoLimite;
-        }
-
-        // este construtor deverá sumir
-        public FilaCliente(Cliente[] novosClientes, Point novoLimite, int tama)
-        {
-            this.Clientes = novosClientes;
-            this.Limite = novoLimite;
-            this.tam = tama;
+            get
+            {
+                for (int i = 0; i > TamanhoFila; i++)
+                {
+                    if (clientes[i] == null)
+                        return i;
+                }
+                return MAXIMO_FILA + 1;
+            }
         }
 
         public void andar()
         {
-            for (int i = 0; i < clientes.Length; i++)
-                if(this.clientes[i].PodeAndar)
-                if (this.clientes[i].Coord.X < this.limite.X) this.clientes[i].andar(NPC_ANDAR_FRENTE);
-                else this.limite = new Point(this.limite.X - LARGURA_NPC, 0);
+            for (int i = 0; i < this.TamanhoFila; i++)
+                if (this.clientes[i].PodeAndar(this.limite.X))
+                    this.clientes[i].andar(NPC_ANDAR_FRENTE);
+                else
+                    this.limite = new Point(this.limite.X - LARGURA_NPC, 0);
         }
 
-        public bool querPeixe()
+        public bool queremPeixe()
         {
-            for (int i = 0; i < clientes.Length; i++)
+            for (int i = 0; i < this.TamanhoFila; i++)
                 if (this.clientes[i].QuerPeixe)
                     return true;
             return false;
@@ -96,12 +103,19 @@ namespace Fish_Bay
         // faz o NPC sair da fila de espera por motivos adversos
         public void sair(int indice)
         {
-            for (int i = 0; i < tam-1; i++)
+            if (indice > MAXIMO_FILA) // indice inválido
+                return;
+
+            for (int i = indice; i < clientes.Length - 1; i++)
             {
                 clientes[i] = clientes[i + 1];
             }
-            tam--;
+            retirarUltimo();
+        }
 
+        protected void retirarUltimo()
+        {
+            this.clientes[this.tamanhoUtil--] = null;
         }
 
         // faz o PRIMEIRO NPC sair da fila de espera porque ganhou um peixe
@@ -117,19 +131,15 @@ namespace Fish_Bay
                 return;
 
             Random rand = new Random();
-            clientes[acharPrimeiroVazio()] = new Cliente(new Stress(new Point(-500, 215 - ALTURA_NPC - 5), new Point(LARGURA_NPC / 2, ALTURA_NPC / 2)), 
-                                                         false, Image.FromFile("../../../../imagens/NPCs/" + "NPC" + rand.Next(2, 11) + ".png"), new Point(-500, 215));
+            this.clientes[this.tamanhoUtil++] = new Cliente(new Stress(new Point(-500, 215 - ALTURA_NPC - 5), new Point(LARGURA_NPC / 2, ALTURA_NPC / 2)), 
+                                                         false, Image.FromFile(Jogo.DEFAULT_IMAGES[0] + "NPC" + rand.Next(2, 11) + ".png"), new Point(-500, 215));
         }
 
-        // apenas esta classe irá utilizar-se dessa função
-        protected int acharPrimeiroVazio()
+        public FilaCliente(Cliente[] novosClientes, Point novoLimite)
         {
-            for (int i = 0; i > TamanhoFila; i++)
-            {
-                if (clientes[i] == null)
-                    return i;
-            }
-            return MAXIMO_FILA;
+            this.clientes = novosClientes;
+            this.limite = novoLimite;
+            this.tamanhoUtil = this.PrimeiroEspacoVazio-1;
         }
     }
 }

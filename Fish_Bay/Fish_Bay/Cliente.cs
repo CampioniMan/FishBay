@@ -67,19 +67,6 @@ namespace Fish_Bay
             }
         }
 
-        public bool PodeAndar
-        {
-            get
-            {
-                return podeAndar;
-            }
-
-            set
-            {
-                podeAndar = value;
-            }
-        }
-
         public bool QuerPeixe
         {
             get
@@ -91,6 +78,33 @@ namespace Fish_Bay
             {
                 querPeixe = value;
             }
+        }
+
+        public void desenhar(Graphics g)
+        {
+            g.DrawImage(skin.Img, coord);
+            stress.desenhar(g);
+        }
+
+        /* direcao= 1 ou direcao= -1 para o player andar para frente ou para trás */
+        public void andar(int direcao)
+        {
+            andar(direcao, 1);
+        }
+
+        /* É possível juntar as duas variáveis, mas assim é melhor para o entendimento inicial da função */
+        public void andar(int direcao, int velocidade)
+        {
+            this.coord.X += 5 * direcao * velocidade;
+            if (direcao >= 0)
+                this.Skin.Invertido = false;
+            else
+                this.Skin.Invertido = true;
+        }
+        
+        public bool PodeAndar(int limiteX)
+        {
+            return this.coord.X < limiteX;
         }
 
         public Cliente(Stress novoEstresse, bool seEhVIP, Image novaSkin, Point novaCoordenada)
@@ -124,28 +138,6 @@ namespace Fish_Bay
 
         public Cliente(Figura novaSkin) : this(0, default(Point), default(Point), false, novaSkin.Img, default(Point))
         {
-        }
-
-        public void desenhar(Graphics g)
-        {
-            g.DrawImage(skin.Img, coord);
-            stress.desenhar(g);
-        }
-
-        /* direcao= 1 ou direcao= -1 para o player andar para frente ou para trás */
-        public void andar(int direcao)
-        {
-            andar(direcao, 1);
-        }
-
-        /* è possível juntar as duas variáveis, mas assim é melhor para o entendimento inicial da função */
-        public void andar(int direcao, int velocidade)
-        {
-            this.coord.X += 5 * direcao * velocidade;
-            if (direcao >= 0)
-                this.Skin.Invertido = false;
-            else
-                this.Skin.Invertido = true;
         }
     }
 }
