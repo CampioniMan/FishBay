@@ -108,6 +108,10 @@ namespace Fish_Bay
         private void pbDesenho_MouseMove(object sender, MouseEventArgs e)
         {
             coordMouse = new Point(908, e.Y);
+            if (e.Y <= 222)
+            {
+                TodosOsPeixes.verSeDaPraBotarNaMesa();
+            }
         }
 
         private void pbDesenho_Paint(object sender, PaintEventArgs e)

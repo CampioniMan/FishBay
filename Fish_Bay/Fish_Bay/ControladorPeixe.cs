@@ -11,16 +11,8 @@ namespace Fish_Bay
     {
         public const int LIMITE_PEIXES = 6;
         private Peixe[] peixes, peixesPescados, peixePescando;
-        private int qtosPeixesNadando;
+        private int qtosPeixesNadando, qtosPeixesPescando, qtosPeixesPescados;
         private Point posicaoMinima;
-
-        public int QtosPeixesPescados
-        {
-            get
-            {
-                return LIMITE_PEIXES - qtosPeixesNadando;
-            }
-        }
 
         public Peixe[] Peixes
         {
@@ -74,6 +66,32 @@ namespace Fish_Bay
             }
         }
 
+        public int QtosPeixesPescados
+        {
+            get
+            {
+                return qtosPeixesPescados;
+            }
+
+            set
+            {
+                qtosPeixesPescados = value;
+            }
+        }
+
+        public int QtosPeixesPescando
+        {
+            get
+            {
+                return qtosPeixesPescando;
+            }
+
+            set
+            {
+                qtosPeixesPescando = value;
+            }
+        }
+
         public void nadem(int randomico)
         {
             for (int i = 0; i < qtosPeixesNadando; i++)
@@ -112,12 +130,19 @@ namespace Fish_Bay
             if (index < 0 || index >= this.qtosPeixesNadando)
                 return;
 
-            this.adicionarPescado(this.removerNadando(index));
+            this.adicionarPescando(this.removerNadando(index));
+        }
+
+        public void verSeDaPraBotarNaMesa()
+        {
+            if (this.peixePescando[0] != null)
+                this.adicionarPescado(this.removerPescando());
         }
 
         private void adicionarPescado(Peixe peixe)
         {
-            this.peixesPescados[this.QtosPeixesPescados - 1] = peixe;
+            this.peixesPescados[this.QtosPeixesPescados] = peixe;
+            this.qtosPeixesPescados++;
         }
 
         private Peixe removerNadando(int index)
@@ -134,13 +159,16 @@ namespace Fish_Bay
 
         private void adicionarPescando(Peixe outro)
         {
+            outro.Pescado = true;
             this.peixePescando[0] = outro;
+            this.qtosPeixesPescando++;
         }
 
         private Peixe removerPescando()
         {
             Peixe aux = this.peixePescando[0];
             this.peixePescando[0] = null;
+            this.qtosPeixesPescando--;
             return aux;
         }
         /// ////////////////
@@ -162,6 +190,7 @@ namespace Fish_Bay
         {
             Peixe aux = peixesPescados[this.QtosPeixesPescados - 1];
             peixesPescados[this.QtosPeixesPescados - 1] = null;
+            this.qtosPeixesPescados++;
             return aux;
         }
 
