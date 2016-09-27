@@ -66,7 +66,6 @@ namespace Fish_Bay
             atualizarCor();
             g.DrawRectangle(new Pen(Color.Black), coord.X, coord.Y, tamanhos.X, tamanhos.Y);
             g.FillRectangle(new SolidBrush(this.cor), coord.X, coord.Y, tamanhos.X, tamanhos.Y);
-            g.DrawString(this.porcentagem+"", new Font("Consolas", 15), new SolidBrush(Color.Black), coord);
         }
 
         private void atualizarCor()

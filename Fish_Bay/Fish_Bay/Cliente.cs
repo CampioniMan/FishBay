@@ -9,11 +9,10 @@ namespace Fish_Bay
 {
     public class Cliente
     {
-        private bool ehVIP;
+        private bool ehVIP, querPeixe;
         private Stress stress;
         private Figura skin;
         private Point coord;
-        private bool querPeixe;
 
         public Figura Skin
         {

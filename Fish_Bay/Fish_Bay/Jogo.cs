@@ -18,19 +18,21 @@ namespace Fish_Bay
             ALTURA_BOTA = 36,
             ALTURA_PEIXE = 22;
         public static readonly string[] DEFAULT_IMAGES = { "../../../../imagens/Peixes/", "../../../../imagens/NPCs/", "../../../../imagens/Fundo/" };
+
         private Menu menu;
         private Peixe[] peixes;
         private Peixe bota;
-        private int qtsMesa = 0;
         private ControladorPeixe TodosOsPeixes;
-        Cliente[] clientes;
-        Vendedor ajudante;
+
+        private Cliente[] clientes;
+        private Vendedor ajudante;
 
         private FilaCliente fila;
 
         private Random rand;
-        private int posMesa = 212;
         private Point coordMouse = new Point(0,0);
+
+        private bool taComPeixe = false;
 
         public Jogo(Menu menuNovo)
         {
@@ -67,38 +69,24 @@ namespace Fish_Bay
 
             fila.andar();
 
-            if(!fila.EstaVazia && ajudante.Coord.X < 730 && !ajudante.AndandoAoContrario)
+            if (ajudante.Coord.X >= 730 && TodosOsPeixes.QtosPeixesPescados > 0 && !taComPeixe)
             {
-                ajudante.AndandoAoContrario = false;
-                ajudante.andar();
-                
-            }
-            if(ajudante.Coord.X >= 730)
-            {
-                ajudante.AndandoAoContrario = true;
-                //ajudante.podeAndar = true;
+                taComPeixe = true;
                 TodosOsPeixes.voltarANadarPeixeNoIndice();
             }
-            if (fila.queremPeixe()  && ajudante.AndandoAoContrario && ajudante.Coord.X > 450)
-            {
-                ajudante.AndandoAoContrario = true;
-                ajudante.andar();
-            }
 
-            if(ajudante.Coord.X <= 450 && ajudante.AndandoAoContrario)
+            if (ajudante.Coord.X <= 450 && ajudante.AndandoAoContrario && taComPeixe)
             {
-                ajudante.AndandoAoContrario = false;
+                taComPeixe = false;
                 fila.sairPrimeiro();
             }
 
             for (int i = 0; i < fila.TamanhoFila; i++)
             {
-                fila.Clientes[i].Stress.stressar(rand.Next(1, 2));
+                fila.Clientes[i].Stress.stressar(rand.Next(1, 6));
 
                 if (!fila.Clientes[i].Stress.PodeStressar)
-                {
                     fila.sair(i);
-                }
             }
             
             if (bota != null)
@@ -110,9 +98,7 @@ namespace Fish_Bay
         {
             coordMouse = new Point(908, e.Y);
             if (e.Y <= 222)
-            {
                 TodosOsPeixes.verSeDaPraBotarNaMesa();
-            }
         }
 
         private void pbDesenho_Paint(object sender, PaintEventArgs e)
@@ -144,9 +130,8 @@ namespace Fish_Bay
             TodosOsPeixes.verSePescouAlgumPeixe(coordMouse);
             for (int i = 0; i < TodosOsPeixes.Peixes.Length; i++)
             {
-                if (TodosOsPeixes.Peixes[i] != null)
-                if (TodosOsPeixes.Peixes[i].Coord.X > pbDesenho.Size.Width)
-                        TodosOsPeixes.Peixes[i].Coord = new Point(-LARGURA_PEIXE - 1000, rand.Next(380, 530));
+                if (TodosOsPeixes.Peixes[i] != null && TodosOsPeixes.Peixes[i].Coord.X > pbDesenho.Size.Width)
+                    TodosOsPeixes.Peixes[i].Coord = new Point(-LARGURA_PEIXE - 1000, rand.Next(380, 530));
             }
             
             ///////// bota :
@@ -161,17 +146,24 @@ namespace Fish_Bay
 
             //////// peixe volta ao zero : 
             atualizaFilasEAjudante();
-            
-            
             if (bota != null)
                 if (bota.pescou(new Point(908, coordMouse.Y), ALTURA_BOTA))
                     bota = null;
 
             ///////// Adicionando pessoas na fila aleatoriamente
             if (rand.Next(1, 1000) < 400 && rand.Next(1, 1000) > 950)
-            {
                 fila.entrarRandomico();
-            }
+        }
+
+        private void Jogo_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar.ToString().ToUpper().Equals("A"))
+                ajudante.AndandoAoContrario = true;
+            
+            else if (e.KeyChar.ToString().ToUpper().Equals("D"))
+                ajudante.AndandoAoContrario = false;
+            
+            ajudante.andar(3);
         }
     }
 }

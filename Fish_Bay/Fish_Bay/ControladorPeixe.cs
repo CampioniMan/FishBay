@@ -10,6 +10,7 @@ namespace Fish_Bay
     public class ControladorPeixe
     {
         public const int LIMITE_PEIXES = 6;
+        ////// vetores de peixes geral, peixes na mesa e peixes nadando, respectivamente
         private Peixe[] peixes, peixesPescados, peixePescando;
         private int qtosPeixesNadando, qtosPeixesPescando, qtosPeixesPescados;
         private Point posicaoMinima;
@@ -101,13 +102,10 @@ namespace Fish_Bay
         public void desenharTodos(Graphics g, Point vara)
         {
             for (int i = 0; i < qtosPeixesNadando; i++)
-            {
                 peixes[i].Skin.desenhar(g, peixes[i].Coord);
-            }
+            
             for (int ind = 0; ind < QtosPeixesPescados; ind++)
-            {
                 peixesPescados[ind].Skin.desenhar(g, new Point(this.posicaoMinima.X, ondeDesenharPilhaNoIndice(ind)));
-            }
 
             if (this.peixePescando[0] != null)
                 g.DrawImage(Figura.RotateImage(this.peixePescando[0].Skin.Img), vara);
@@ -149,9 +147,8 @@ namespace Fish_Bay
         {
             Peixe auxiliar = this.peixes[index];
             for (int i = index; i < this.qtosPeixesNadando-1; i++)
-            {
                 this.peixes[i] = this.peixes[i+1];
-            }
+            
             this.peixes[--this.qtosPeixesNadando] = null;
 
             return auxiliar;

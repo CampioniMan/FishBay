@@ -30,8 +30,6 @@
         {
             this.components = new System.ComponentModel.Container();
             this.timerSpawn = new System.Windows.Forms.Timer(this.components);
-            this.lblX = new System.Windows.Forms.Label();
-            this.lblY = new System.Windows.Forms.Label();
             this.pbDesenho = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pbDesenho)).BeginInit();
             this.SuspendLayout();
@@ -40,24 +38,6 @@
             // 
             this.timerSpawn.Enabled = true;
             this.timerSpawn.Tick += new System.EventHandler(this.timerSpawn_Tick);
-            // 
-            // lblX
-            // 
-            this.lblX.AutoSize = true;
-            this.lblX.Location = new System.Drawing.Point(727, 13);
-            this.lblX.Name = "lblX";
-            this.lblX.Size = new System.Drawing.Size(20, 13);
-            this.lblX.TabIndex = 1;
-            this.lblX.Text = "X: ";
-            // 
-            // lblY
-            // 
-            this.lblY.AutoSize = true;
-            this.lblY.Location = new System.Drawing.Point(797, 13);
-            this.lblY.Name = "lblY";
-            this.lblY.Size = new System.Drawing.Size(17, 13);
-            this.lblY.TabIndex = 2;
-            this.lblY.Text = "Y:";
             // 
             // pbDesenho
             // 
@@ -75,8 +55,6 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1268, 567);
-            this.Controls.Add(this.lblY);
-            this.Controls.Add(this.lblX);
             this.Controls.Add(this.pbDesenho);
             this.MaximumSize = new System.Drawing.Size(1284, 605);
             this.MinimumSize = new System.Drawing.Size(1284, 605);
@@ -84,16 +62,14 @@
             this.Text = "Fish Bay - Jogo";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Jogo_FormClosed);
             this.Load += new System.EventHandler(this.Jogo_Load);
+            this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Jogo_KeyPress);
             ((System.ComponentModel.ISupportInitialize)(this.pbDesenho)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
         private System.Windows.Forms.Timer timerSpawn;
-        private System.Windows.Forms.Label lblX;
-        private System.Windows.Forms.Label lblY;
         private System.Windows.Forms.PictureBox pbDesenho;
     }
 }
