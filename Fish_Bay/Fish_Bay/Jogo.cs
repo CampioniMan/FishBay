@@ -73,12 +73,14 @@ namespace Fish_Bay
             {
                 taComPeixe = true;
                 TodosOsPeixes.voltarANadarPeixeNoIndice();
+                ajudante.Skin.Img = Image.FromFile(DEFAULT_IMAGES[1] + "ajudantepeixe.png");
             }
 
             if (ajudante.Coord.X <= 450 && ajudante.AndandoAoContrario && taComPeixe)
             {
                 taComPeixe = false;
                 fila.sairPrimeiro();
+                ajudante.Skin.Img = Image.FromFile(DEFAULT_IMAGES[1] + "ajudante.png");
             }
 
             for (int i = 0; i < fila.TamanhoFila; i++)
@@ -162,8 +164,17 @@ namespace Fish_Bay
             
             else if (e.KeyChar.ToString().ToUpper().Equals("D"))
                 ajudante.AndandoAoContrario = false;
-            
-            ajudante.andar(3);
+            if (ajudante.Coord.X >= 450)
+                ajudante.andar(3);
+            else
+                ajudante.Coord = new Point(450,225);
+
+            if (ajudante.Coord.X <= 750)
+            {
+                ajudante.andar(3);
+            }
+            else
+                ajudante.Coord = new Point(750, 225);
         }
     }
 }

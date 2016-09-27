@@ -94,6 +94,19 @@ namespace Fish_Bay
             }
         }
 
+        public Point Coord1
+        {
+            get
+            {
+                return coord;
+            }
+
+            set
+            {
+                coord = value;
+            }
+        }
+
         public Vendedor(Image novaSkin, Point novaCoordenada, int novaDirecao)
         {
             this.skin = new Figura(novaSkin);
