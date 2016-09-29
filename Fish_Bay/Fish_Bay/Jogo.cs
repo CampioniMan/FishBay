@@ -16,7 +16,8 @@ namespace Fish_Bay
             LARGURA_PEIXE = 56,
             LARGURA_BOTA = 44,
             ALTURA_BOTA = 36,
-            ALTURA_PEIXE = 22;
+            ALTURA_PEIXE = 22,
+            VELOCIDADE_AJUDANTE = 3;
         public static readonly string[] DEFAULT_IMAGES = { "../../../../imagens/Peixes/", "../../../../imagens/NPCs/", "../../../../imagens/Fundo/" };
         public static readonly Point PONTO_FIXO_VARA = new Point(908, 222);
 
@@ -33,9 +34,12 @@ namespace Fish_Bay
         private Random rand;
         private Point coordMouse = new Point(0,0);
 
-        public Jogo(Menu menuNovo)
+        private string nomeJogador;
+
+        public Jogo(Menu menuNovo, string nomeJog)
         {
             this.menu = menuNovo;
+            this.nomeJogador = nomeJog;
             InitializeComponent();
         }
 
@@ -158,14 +162,14 @@ namespace Fish_Bay
             }
 
             ///////// Adicionando pessoas na fila aleatoriamente
-            if (rand.Next(1, 1000) < 400 && rand.Next(1, 1000) > 950)
+            if (rand.Next(1, 1000) < 200 && rand.Next(1, 1000) > 500)
                 fila.entrarRandomico();
 
-            if (lblQtosClien.Text.Equals("0"))
+            if (lblQtosClien.Text.Equals("5"))
             {
                 timerSpawn.Stop();
-                MessageBox.Show("Game Over");
-                this.Close();
+                GameOver gv = new GameOver(nomeJogador, lblQtosPont.Text, this);
+                gv.Show();
             }
         }
 
@@ -177,17 +181,9 @@ namespace Fish_Bay
             else if (e.KeyChar.ToString().ToUpper().Equals("D"))
                 ajudante.AndandoAoContrario = false;
 
-            if (ajudante.Coord.X >= 450)
-                ajudante.andar(3);
-
-            else
-                ajudante.Coord = new Point(450,225);
-
-            if (ajudante.Coord.X <= 750)
-                ajudante.andar(3);
-            
-            else
-                ajudante.Coord = new Point(750, 225);
+            if (ajudante.Coord.X >= 450 && ajudante.Coord.X <= 750)
+                ajudante.andar(VELOCIDADE_AJUDANTE);
+            //else
         }
     }
 }

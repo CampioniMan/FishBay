@@ -48,6 +48,12 @@
   <ItemGroup>
     <Compile Include="Cliente.cs" />
     <Compile Include="FilaCliente.cs" />
+    <Compile Include="GameOver.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GameOver.Designer.cs">
+      <DependentUpon>GameOver.cs</DependentUpon>
+    </Compile>
     <Compile Include="Jogo.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -73,6 +79,9 @@
     </Compile>
     <Compile Include="Stress.cs" />
     <Compile Include="Vendedor.cs" />
+    <EmbeddedResource Include="GameOver.resx">
+      <DependentUpon>GameOver.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Jogo.resx">
       <DependentUpon>Jogo.cs</DependentUpon>
     </EmbeddedResource>

@@ -63,7 +63,7 @@ namespace Fish_Bay
 
         private void btnInicio_Click(object sender, EventArgs e)
         {
-            Jogo jogo = new Jogo(this);
+            Jogo jogo = new Jogo(this, txtNomeJog.Text);
             jogo.Show();
             this.Hide();
         }
