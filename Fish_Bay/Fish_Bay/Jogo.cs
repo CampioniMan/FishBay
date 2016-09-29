@@ -78,6 +78,7 @@ namespace Fish_Bay
             {
                 ajudante.TemPeixe = false;
                 fila.sairPrimeiro();
+                lblQtosPont.Text = (Convert.ToInt32(lblQtosPont.Text) + 10) + "";
                 ajudante.Skin.Img = Image.FromFile(DEFAULT_IMAGES[1] + "ajudante.png");
             }
 
@@ -86,7 +87,10 @@ namespace Fish_Bay
                 fila.Clientes[i].StressarCliente(rand.Next(1, 6));//Stress.stressar(rand.Next(1, 6));
 
                 if (!fila.Clientes[i].Stress.PodeStressar)
+                {
                     fila.sair(i);
+                    lblQtosClien.Text = (Convert.ToInt32(lblQtosClien.Text) - 1) + "";
+                }
             }
             
             if (bota != null)
@@ -156,6 +160,13 @@ namespace Fish_Bay
             ///////// Adicionando pessoas na fila aleatoriamente
             if (rand.Next(1, 1000) < 400 && rand.Next(1, 1000) > 950)
                 fila.entrarRandomico();
+
+            if (lblQtosClien.Text.Equals("0"))
+            {
+                timerSpawn.Stop();
+                MessageBox.Show("Game Over");
+                this.Close();
+            }
         }
 
         private void Jogo_KeyPress(object sender, KeyPressEventArgs e)

@@ -73,6 +73,26 @@ namespace Fish_Bay.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Icon_Clien {
+            get {
+                object obj = ResourceManager.GetObject("Icon_Clien", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Icon_Pont {
+            get {
+                object obj = ResourceManager.GetObject("Icon_Pont", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap imagem_fundo_jogo {
             get {
                 object obj = ResourceManager.GetObject("imagem_fundo_jogo", resourceCulture);
