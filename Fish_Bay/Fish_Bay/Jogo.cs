@@ -83,7 +83,7 @@ namespace Fish_Bay
 
             for (int i = 0; i < fila.TamanhoFila; i++)
             {
-                fila.Clientes[i].Stress.stressar(rand.Next(1, 6));
+                fila.Clientes[i].StressarCliente(rand.Next(1, 6));//Stress.stressar(rand.Next(1, 6));
 
                 if (!fila.Clientes[i].Stress.PodeStressar)
                     fila.sair(i);
@@ -108,9 +108,8 @@ namespace Fish_Bay
             
             for (int i = 0; i < fila.TamanhoFila; i++)
             {
-                fila.Clientes[i].Skin.desenhar(g, fila.Clientes[i].Coord);
+                fila.Clientes[i].Draw(g);
                 fila.Clientes[i].Stress.coord.X = fila.Clientes[i].Coord.X;
-                fila.Clientes[i].Stress.desenhar(g);
             }
 
             ajudante.Skin.desenhar(g, ajudante.Coord);
