@@ -101,10 +101,10 @@ namespace Fish_Bay
         // faz o NPC sair da fila de espera por motivos adversos
         public void sair(int indice)
         {
-            if (indice > MAXIMO_FILA) // indice inválido
+            if (indice > MAXIMO_FILA || indice < 0) // indice inválido
                 return;
 
-            for (int i = indice; i < clientes.Length - 1; i++)
+            for (int i = indice; i < this.tamanhoUtil - 1; i++)
             {
                 clientes[i] = clientes[i + 1];
             }
@@ -113,14 +113,8 @@ namespace Fish_Bay
 
         protected void retirarUltimo()
         {
-            try
-            {
-                this.clientes[this.tamanhoUtil--] = null;
-            }
-            catch (Exception ex)
-            {
-
-            }
+            if (this.tamanhoUtil > 0)
+                this.clientes[this.tamanhoUtil-- - 1] = null;
         }
 
         // faz o PRIMEIRO NPC sair da fila de espera porque ganhou um peixe

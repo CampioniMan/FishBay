@@ -143,7 +143,7 @@ namespace Fish_Bay
         */
         public void pescarPeixeNoIndice(int index)
         {
-            if (index < 0 || index >= this.qtosPeixesNadando)
+            if (index < 0 || index >= this.qtosPeixesNadando || this.peixePescando[0] != null)
                 return;
 
             this.adicionarPescando(this.PegarOQueEstaNadando(index));
