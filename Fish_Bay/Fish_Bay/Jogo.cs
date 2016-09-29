@@ -128,10 +128,9 @@ namespace Fish_Bay
             ///////// peixes :
             TodosOsPeixes.verSePescouAlgumPeixe(coordMouse);
             for (int i = 0; i < TodosOsPeixes.Peixes.Length; i++)
-            {
                 if (TodosOsPeixes.Peixes[i] != null && TodosOsPeixes.Peixes[i].Coord.X > pbDesenho.Size.Width)
                     TodosOsPeixes.Peixes[i].Coord = new Point(-LARGURA_PEIXE - 1000, rand.Next(380, 530));
-            }
+            
             
             ///////// bota :
             if (rand.Next(1, 1001) > 900)
@@ -146,8 +145,13 @@ namespace Fish_Bay
             //////// peixe volta ao zero : 
             atualizaFilasEAjudante();
             if (bota != null)
+            {
                 if (bota.pescou(new Point(908, coordMouse.Y), ALTURA_BOTA))
+                {
+                    TodosOsPeixes.limparMesa();
                     bota = null;
+                }
+            }
 
             ///////// Adicionando pessoas na fila aleatoriamente
             if (rand.Next(1, 1000) < 400 && rand.Next(1, 1000) > 950)
@@ -158,18 +162,19 @@ namespace Fish_Bay
         {
             if (e.KeyChar.ToString().ToUpper().Equals("A"))
                 ajudante.AndandoAoContrario = true;
-            
+
             else if (e.KeyChar.ToString().ToUpper().Equals("D"))
                 ajudante.AndandoAoContrario = false;
+
             if (ajudante.Coord.X >= 450)
                 ajudante.andar(3);
+
             else
                 ajudante.Coord = new Point(450,225);
 
             if (ajudante.Coord.X <= 750)
-            {
                 ajudante.andar(3);
-            }
+            
             else
                 ajudante.Coord = new Point(750, 225);
         }

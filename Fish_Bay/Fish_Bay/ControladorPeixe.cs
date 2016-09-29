@@ -10,7 +10,6 @@ namespace Fish_Bay
     public class ControladorPeixe
     {
         public const int LIMITE_PEIXES = 6;
-        ////// vetores de peixes geral, peixes na mesa e peixes nadando, respectivamente
         private Peixe[] peixes, peixesPescados, peixePescando;
         private int qtosPeixesNadando, qtosPeixesPescando, qtosPeixesPescados;
         private Point posicaoMinima;
@@ -213,6 +212,12 @@ namespace Fish_Bay
         private int ondeDesenharPilhaNoIndice(int index)
         {
             return (this.posicaoMinima.Y) - (Jogo.ALTURA_PEIXE+1) * index;
+        }
+
+        public void limparMesa()
+        {
+            for (int i = QtosPeixesPescados; i > 0; i--)
+                this.removerPescado();
         }
 
         public ControladorPeixe(Peixe[] novosPeixes, Point novaPosicaoMinima)
