@@ -93,12 +93,22 @@ namespace Fish_Bay
             }
         }
 
+        /**
+        * Faz os peixes nadarem em uma proporção parecida
+        *   param randomico -> número randômico aí
+        */
         public void nadem(int randomico)
         {
+            Random rand = new Random();
             for (int i = 0; i < qtosPeixesNadando; i++)
-                peixes[i].nadar(randomico);
+                peixes[i].nadar(randomico+rand.Next(1, 3));
         }
 
+        /**
+        * Desenha todos os peixes dos 3 vetores
+        *   param g -> Gráfico para desenho
+        *   param vara -> Coordenada da vara para desenhar o peixe pescado
+        */
         public void desenharTodos(Graphics g, Point vara)
         {
             for (int i = 0; i < qtosPeixesNadando; i++)
@@ -111,6 +121,10 @@ namespace Fish_Bay
                 g.DrawImage(Figura.RotateImage(this.peixePescando[0].Skin.Img), vara);
         }
 
+        /**
+        * Verifica se há a possibilidade de pescar algum peixe
+        *   param vara -> Coordenada da vara para ver se "está" em algum peixe
+        */
         public void verSePescouAlgumPeixe(Point vara)
         {
             for (int i = 0; i < this.qtosPeixesNadando; i++)
@@ -123,62 +137,69 @@ namespace Fish_Bay
             }
         }
 
+        /**
+        * Remove o peixe do vetor de "nadando" e adiciona um igual no "pescaNdo"
+        *   param index -> ìndice do peixe que irá para a vara
+        */
         public void pescarPeixeNoIndice(int index)
         {
             if (index < 0 || index >= this.qtosPeixesNadando)
                 return;
 
-            this.adicionarPescando(this.removerNadando(index));
+            this.adicionarPescando(this.PegarOQueEstaNadando(index));
         }
 
+        /**
+        * Remove do vetor de "pescaNdo" e adiciona em "pescado"(quando vai botar na mesa)
+        * 
+        */
         public void verSeDaPraBotarNaMesa()
         {
             if (this.peixePescando[0] != null)
                 this.adicionarPescado(this.removerPescando());
         }
 
+        /**
+        * Adiciona um novo peixe ao vetor de "pescado"
+        *   param peixe -> O peixe a ser pescado
+        */
         private void adicionarPescado(Peixe peixe)
         {
-            this.peixesPescados[this.QtosPeixesPescados] = peixe;
-            this.qtosPeixesPescados++;
+            if (peixe != null)
+            {
+                this.peixesPescados[this.QtosPeixesPescados] = peixe.clone();
+                this.qtosPeixesPescados++;
+            }
         }
 
-        private Peixe removerNadando(int index)
+        private Peixe PegarOQueEstaNadando(int index)
         {
-            Peixe auxiliar = this.peixes[index];
-            for (int i = index; i < this.qtosPeixesNadando-1; i++)
-                this.peixes[i] = this.peixes[i+1];
-            
-            this.peixes[--this.qtosPeixesNadando] = null;
-
-            return auxiliar;
+            return this.peixes[index].clone();
         }
 
         private void adicionarPescando(Peixe outro)
         {
             outro.Pescado = true;
-            this.peixePescando[0] = outro;
+            this.peixePescando[0] = outro.clone();
             this.qtosPeixesPescando++;
         }
 
         private Peixe removerPescando()
         {
-            Peixe aux = this.peixePescando[0];
-            this.peixePescando[0] = null;
-            this.qtosPeixesPescando--;
-            return aux;
-        }
-        /// ////////////////
-        public void voltarANadarPeixeNoIndice()
-        {
-            if (this.qtosPeixesPescados > 0)
-            adicionarNadando(removerPescado());
+            if (this.qtosPeixesPescados < 6)
+            {
+                Peixe aux = this.peixePescando[0].clone();
+                this.peixePescando[0] = null;
+                this.qtosPeixesPescando--;
+                return aux;
+            }
+            return null;
         }
 
-        private void adicionarNadando(Peixe v)
+        public void voltarANadarPeixe()
         {
-            Random rand = new Random();
-            peixes[this.qtosPeixesNadando++] = new Peixe(new Point(-Jogo.LARGURA_PEIXE - rand.Next(0, 4000), rand.Next(380, 530)), 1, v.Skin);
+            if (this.qtosPeixesPescados > 0)
+                removerPescado();
         }
 
         private Peixe removerPescado()

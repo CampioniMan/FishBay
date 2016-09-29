@@ -1,0 +1,11 @@
+Z:\FishBay\Fish_Bay\Fish_Bay\bin\Debug\Fish_Bay.exe.config
+Z:\FishBay\Fish_Bay\Fish_Bay\bin\Debug\Fish_Bay.exe
+Z:\FishBay\Fish_Bay\Fish_Bay\bin\Debug\Fish_Bay.pdb
+Z:\FishBay\Fish_Bay\Fish_Bay\obj\Debug\Fish_Bay.csprojResolveAssemblyReference.cache
+Z:\FishBay\Fish_Bay\Fish_Bay\obj\Debug\Fish_Bay.Jogo.resources
+Z:\FishBay\Fish_Bay\Fish_Bay\obj\Debug\Fish_Bay.Menu.resources
+Z:\FishBay\Fish_Bay\Fish_Bay\obj\Debug\Fish_Bay.Properties.Resources.resources
+Z:\FishBay\Fish_Bay\Fish_Bay\obj\Debug\Fish_Bay.Record.resources
+Z:\FishBay\Fish_Bay\Fish_Bay\obj\Debug\Fish_Bay.csproj.GenerateResource.Cache
+Z:\FishBay\Fish_Bay\Fish_Bay\obj\Debug\Fish_Bay.exe
+Z:\FishBay\Fish_Bay\Fish_Bay\obj\Debug\Fish_Bay.pdb

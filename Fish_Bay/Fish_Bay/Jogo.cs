@@ -72,7 +72,7 @@ namespace Fish_Bay
             if (ajudante.Coord.X >= 730 && TodosOsPeixes.QtosPeixesPescados > 0 && !taComPeixe)
             {
                 taComPeixe = true;
-                TodosOsPeixes.voltarANadarPeixeNoIndice();
+                TodosOsPeixes.voltarANadarPeixe();
                 ajudante.Skin.Img = Image.FromFile(DEFAULT_IMAGES[1] + "ajudantepeixe.png");
             }
 
@@ -106,7 +106,7 @@ namespace Fish_Bay
         private void pbDesenho_Paint(object sender, PaintEventArgs e)
         {
             Graphics g = e.Graphics;
-            TodosOsPeixes.desenharTodos(g, coordMouse);
+            TodosOsPeixes.desenharTodos(g, (coordMouse.Y > 222)?coordMouse:new Point(908, 222));
             
             for (int i = 0; i < fila.TamanhoFila; i++)
             {

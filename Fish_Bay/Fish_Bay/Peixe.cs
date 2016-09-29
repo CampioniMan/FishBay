@@ -145,6 +145,16 @@ namespace Fish_Bay
             this.posMesa = 212;
         }
 
+        public Peixe(Peixe clonado)
+        {
+            this.coord.X = clonado.Coord.X;
+            this.coord.Y = clonado.Coord.Y;
+            this.direcao = clonado.direcao;
+            this.skin = clonado.Skin;
+            this.pescado = clonado.Pescado;
+            this.posMesa = clonado.PosMesa;
+        }
+
         public void nadar()
         {
             this.coordAntigo = this.coord;
@@ -181,6 +191,11 @@ namespace Fish_Bay
             g.DrawLine(new Pen(Color.Red, 5), this.coord.X - this.Diferenca.X + LARGURA, this.Coord.Y + ALTURA, this.coordAntigo.X                    + LARGURA, this.coordAntigo.Y);
             g.DrawLine(new Pen(Color.Red, 5), this.coord.X                    + LARGURA, this.Coord.Y + ALTURA, this.coordAntigo.X + this.Diferenca.X + LARGURA, this.coordAntigo.Y);
             
+        }
+
+        public Peixe clone()
+        {
+            return new Peixe(this);
         }
     }
 }
