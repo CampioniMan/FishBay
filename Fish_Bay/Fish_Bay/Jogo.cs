@@ -18,6 +18,7 @@ namespace Fish_Bay
             ALTURA_BOTA = 36,
             ALTURA_PEIXE = 22;
         public static readonly string[] DEFAULT_IMAGES = { "../../../../imagens/Peixes/", "../../../../imagens/NPCs/", "../../../../imagens/Fundo/" };
+        public static readonly Point PONTO_FIXO_VARA = new Point(908, 222);
 
         private Menu menu;
         private Peixe[] peixes;
@@ -31,8 +32,6 @@ namespace Fish_Bay
 
         private Random rand;
         private Point coordMouse = new Point(0,0);
-
-        private bool taComPeixe = false;
 
         public Jogo(Menu menuNovo)
         {
@@ -66,19 +65,18 @@ namespace Fish_Bay
         public void atualizaFilasEAjudante()
         {
             TodosOsPeixes.nadem(rand.Next(5, 50));
-
             fila.andar();
 
-            if (ajudante.Coord.X >= 730 && TodosOsPeixes.QtosPeixesPescados > 0 && !taComPeixe)
+            if (ajudante.Coord.X >= 730 && TodosOsPeixes.QtosPeixesPescados > 0 && !ajudante.TemPeixe)
             {
-                taComPeixe = true;
+                ajudante.TemPeixe = true;
                 TodosOsPeixes.voltarANadarPeixe();
                 ajudante.Skin.Img = Image.FromFile(DEFAULT_IMAGES[1] + "ajudantepeixe.png");
             }
 
-            if (ajudante.Coord.X <= 450 && ajudante.AndandoAoContrario && taComPeixe)
+            if (ajudante.Coord.X <= 450 && ajudante.AndandoAoContrario && ajudante.TemPeixe)
             {
-                taComPeixe = false;
+                ajudante.TemPeixe = false;
                 fila.sairPrimeiro();
                 ajudante.Skin.Img = Image.FromFile(DEFAULT_IMAGES[1] + "ajudante.png");
             }
@@ -106,7 +104,7 @@ namespace Fish_Bay
         private void pbDesenho_Paint(object sender, PaintEventArgs e)
         {
             Graphics g = e.Graphics;
-            TodosOsPeixes.desenharTodos(g, (coordMouse.Y > 222)?coordMouse:new Point(908, 222));
+            TodosOsPeixes.desenharTodos(g, (coordMouse.Y > 222)?(coordMouse):(PONTO_FIXO_VARA));
             
             for (int i = 0; i < fila.TamanhoFila; i++)
             {

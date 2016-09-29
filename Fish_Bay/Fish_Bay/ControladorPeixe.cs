@@ -166,15 +166,15 @@ namespace Fish_Bay
         private void adicionarPescado(Peixe peixe)
         {
             if (peixe != null)
-            {
-                this.peixesPescados[this.QtosPeixesPescados] = peixe.clone();
-                this.qtosPeixesPescados++;
-            }
+                this.peixesPescados[this.QtosPeixesPescados++] = peixe.clone();
         }
 
         private Peixe PegarOQueEstaNadando(int index)
         {
-            return this.peixes[index].clone();
+            Peixe aux = this.peixes[index].clone();
+            Random rand = new Random();
+            this.peixes[index] = new Peixe(new Point(-Jogo.LARGURA_PEIXE - rand.Next(2000, 4000), rand.Next(380, 530)), 1, this.peixes[index].Skin);
+            return aux;
         }
 
         private void adicionarPescando(Peixe outro)

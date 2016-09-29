@@ -14,6 +14,7 @@ namespace Fish_Bay
         private Point coord;
         private bool podeAndar;
         private int direcao;
+        private bool temPeixe;
 
         public Figura Skin
         {
@@ -104,6 +105,19 @@ namespace Fish_Bay
             set
             {
                 coord = value;
+            }
+        }
+
+        public bool TemPeixe
+        {
+            get
+            {
+                return temPeixe;
+            }
+
+            set
+            {
+                temPeixe = value;
             }
         }
 
