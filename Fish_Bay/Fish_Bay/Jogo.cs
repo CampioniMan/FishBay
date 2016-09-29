@@ -35,6 +35,7 @@ namespace Fish_Bay
         private Point coordMouse = new Point(0,0);
 
         private string nomeJogador;
+        private bool podeReiniciar;
 
         public Jogo(Menu menuNovo, string nomeJog)
         {
@@ -45,7 +46,10 @@ namespace Fish_Bay
 
         private void Jogo_FormClosed(object sender, FormClosedEventArgs e)
         {
-            this.menu.Show();
+            if (podeReiniciar)
+                this.menu.reiniciar();
+            else
+                this.menu.Show();
         }
 
         private void Jogo_Load(object sender, EventArgs e)
@@ -165,7 +169,7 @@ namespace Fish_Bay
             if (rand.Next(1, 1000) < 200 && rand.Next(1, 1000) > 500)
                 fila.entrarRandomico();
 
-            if (lblQtosClien.Text.Equals("5"))
+            if (lblQtosClien.Text.Equals("8"))
             {
                 timerSpawn.Stop();
                 GameOver gv = new GameOver(nomeJogador, lblQtosPont.Text, this);
@@ -176,14 +180,34 @@ namespace Fish_Bay
         private void Jogo_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (e.KeyChar.ToString().ToUpper().Equals("A"))
+            {
                 ajudante.AndandoAoContrario = true;
+                this.verificaPosicao();
+            }
 
             else if (e.KeyChar.ToString().ToUpper().Equals("D"))
+            {
                 ajudante.AndandoAoContrario = false;
+                this.verificaPosicao();
+            }
+        }
 
-            if (ajudante.Coord.X >= 450 && ajudante.Coord.X <= 750)
+        private void verificaPosicao()
+        {
+            if (ajudante.Coord.X >= 450)
                 ajudante.andar(VELOCIDADE_AJUDANTE);
-            //else
+            else
+                ajudante.Coord = new Point(450, 225);
+
+            if (ajudante.Coord.X <= 750)
+                ajudante.andar(VELOCIDADE_AJUDANTE);
+            else
+                ajudante.Coord = new Point(750, 225);
+        }
+
+        public void setReiniciar(bool novoRein)
+        {
+            this.podeReiniciar = novoRein;
         }
     }
 }

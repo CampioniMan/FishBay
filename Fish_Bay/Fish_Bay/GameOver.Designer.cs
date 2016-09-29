@@ -91,14 +91,18 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(395, 262);
+            this.ClientSize = new System.Drawing.Size(394, 169);
             this.Controls.Add(this.lblPontos);
             this.Controls.Add(this.lblJogador);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnSair);
             this.Controls.Add(this.btnReiniciar);
+            this.MaximumSize = new System.Drawing.Size(410, 207);
+            this.MinimizeBox = false;
+            this.MinimumSize = new System.Drawing.Size(410, 207);
             this.Name = "GameOver";
             this.Text = "GameOver";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.GameOver_FormClosed);
             this.Load += new System.EventHandler(this.GameOver_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

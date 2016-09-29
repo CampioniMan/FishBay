@@ -63,6 +63,11 @@ namespace Fish_Bay
 
         private void btnInicio_Click(object sender, EventArgs e)
         {
+            this.reiniciar();
+        }
+
+        public void reiniciar()
+        {
             Jogo jogo = new Jogo(this, txtNomeJog.Text);
             jogo.Show();
             this.Hide();

@@ -7,6 +7,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Data.SqlClient;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Data.SqlClient;
+using System.Data;
+using System.Configuration;
 
 namespace Fish_Bay
 {
@@ -32,12 +39,46 @@ namespace Fish_Bay
         private void btnReiniciar_Click(object sender, EventArgs e)
         {
             this.Close();
+            jog.setReiniciar(true);
             jog.Close();
         }
 
         private void btnSair_Click(object sender, EventArgs e)
         {
             this.Close();
+            jog.setReiniciar(false);
+            jog.Close();
+        }
+
+        private void adicionarRecord()
+        {
+            try
+            {
+                string query = "insert into Recordes values(@nome, @pontos)";
+                SqlCommand sqlCom = new SqlCommand(query, this.getConexao());
+
+                sqlCom.Parameters.AddWithValue("@nome", this.nomeJog);
+                sqlCom.Parameters.AddWithValue("@pontos", this.pontos);
+                sqlCom.ExecuteNonQuery();
+
+                MessageBox.Show("Recorde Cadastrado");
+            }
+            catch (Exception ex){ MessageBox.Show(ex.Message); }
+        }
+
+        private SqlConnection getConexao()
+        {
+            string strConnection = ConfigurationManager.ConnectionStrings["Conn"].ConnectionString;
+            SqlConnection sqlConnection = new SqlConnection(strConnection);
+
+            if (sqlConnection.State == ConnectionState.Closed) sqlConnection.Open();
+
+            return sqlConnection;
+        }
+
+        private void GameOver_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            this.adicionarRecord();
         }
     }
 }
