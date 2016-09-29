@@ -122,7 +122,7 @@ namespace Fish_Bay
         }
 
         /**
-        * Verifica se há a possibilidade de pescar algum peixe
+        * Verifica se há a possibilidade de pescar algum peixe, caso tenha ele é pescado
         *   param vara -> Coordenada da vara para ver se "está" em algum peixe
         */
         public void verSePescouAlgumPeixe(Point vara)
