@@ -34,13 +34,19 @@ namespace Fish_Bay
         private Random rand;
         private Point coordMouse = new Point(0,0);
 
-        private string nomeJogador;
+        private string nomeJogador, nomeAju;
         private bool podeReiniciar;
 
         public Jogo(Menu menuNovo, string nomeJog)
         {
             this.menu = menuNovo;
             this.nomeJogador = nomeJog;
+
+            if (this.nomeJogador.ToUpper().Equals("PAPAI NOEL"))
+                this.nomeAju = "Papai";
+            else
+                this.nomeAju = "ajudante";
+
             InitializeComponent();
         }
 
@@ -63,7 +69,8 @@ namespace Fish_Bay
 
             for (int i = 0; i < clientes.Length; i++)
                 clientes[i] = new Cliente(new Stress(new Point(-i * (FilaCliente.LARGURA_NPC + 2), 215 - FilaCliente.ALTURA_NPC - 5), new Point(FilaCliente.LARGURA_NPC /2, FilaCliente.ALTURA_NPC /2)), false, Image.FromFile(DEFAULT_IMAGES[1] + "NPC" + rand.Next(2 ,11) + ".png"), new Point(-i * (FilaCliente.LARGURA_NPC + 2), 215));
-            ajudante = new Vendedor(Image.FromFile(DEFAULT_IMAGES[1] + "ajudante.png"),new Point(450,225));
+            
+            ajudante = new Vendedor(Image.FromFile(DEFAULT_IMAGES[1] + nomeAju + ".png"),new Point(450,215));
 
             TodosOsPeixes = new ControladorPeixe(peixes, new Point(755, 212));
             fila = new FilaCliente(clientes, new Point(pbDesenho.Size.Width / 4, 0));
@@ -79,7 +86,7 @@ namespace Fish_Bay
             {
                 ajudante.TemPeixe = true;
                 TodosOsPeixes.voltarANadarPeixe();
-                ajudante.Skin.Img = Image.FromFile(DEFAULT_IMAGES[1] + "ajudantepeixe.png");
+                ajudante.Skin.Img = Image.FromFile(DEFAULT_IMAGES[1] + nomeAju + "peixe.png");
             }
 
             if (ajudante.Coord.X <= 450 && ajudante.AndandoAoContrario && ajudante.TemPeixe)
@@ -87,7 +94,7 @@ namespace Fish_Bay
                 ajudante.TemPeixe = false;
                 fila.sairPrimeiro();
                 lblQtosPont.Text = (Convert.ToInt32(lblQtosPont.Text) + 10) + "";
-                ajudante.Skin.Img = Image.FromFile(DEFAULT_IMAGES[1] + "ajudante.png");
+                ajudante.Skin.Img = Image.FromFile(DEFAULT_IMAGES[1] + nomeAju + ".png");
             }
 
             for (int i = 0; i < fila.TamanhoFila; i++)
@@ -197,12 +204,12 @@ namespace Fish_Bay
             if (ajudante.Coord.X >= 450)
                 ajudante.andar(VELOCIDADE_AJUDANTE);
             else
-                ajudante.Coord = new Point(450, 225);
+                ajudante.Coord = new Point(450, 215);
 
             if (ajudante.Coord.X <= 750)
                 ajudante.andar(VELOCIDADE_AJUDANTE);
             else
-                ajudante.Coord = new Point(750, 225);
+                ajudante.Coord = new Point(750, 215);
         }
 
         public void setReiniciar(bool novoRein)
