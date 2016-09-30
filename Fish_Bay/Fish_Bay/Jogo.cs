@@ -31,7 +31,7 @@ namespace Fish_Bay
 
         private string nomeJogador, nomeAju;
         private bool podeReiniciar;
-
+        private int pont;
         public Jogo(Menu menuNovo, string nomeJog)
         {
             this.menu = menuNovo;
@@ -78,10 +78,12 @@ namespace Fish_Bay
             TodosOsPeixes.nadem(rand.Next(5, 50));
             fila.andar();
 
+
             if (ajudante.Coord.X >= 730 && TodosOsPeixes.QtosPeixesPescados > 0 && !ajudante.TemPeixe)
             {
                 ajudante.TemPeixe = true;
                 Peixe aux = TodosOsPeixes.voltarANadarPeixe();
+                pont = aux.DarPontos();
                 if (aux.Dourado)
                 {
                     aux.TransformaAlimento = aux.transformaSushiDourado;
@@ -95,7 +97,8 @@ namespace Fish_Bay
             {
                 ajudante.TemPeixe = false;
                 fila.sairPrimeiro();
-                lblQtosPont.Text = (Convert.ToInt32(lblQtosPont.Text) + 10) + "";
+                
+                lblQtosPont.Text = (Convert.ToInt32(lblQtosPont.Text) + pont) + "";
                 ajudante.Skin.Img = Image.FromFile(DEFAULT_IMAGES[1] + nomeAju + ".png");
             }
 
@@ -154,7 +157,7 @@ namespace Fish_Bay
 
 
             ///////// bota :
-            if (rand.Next(1, 1001) > 900)
+            if (rand.Next(1, 1001) > 993)
             {
                 if (bota == null)
                     bota = new Peixe(new Point(-ControladorPeixe.LARGURA_BOTA, rand.Next(380, 530)), 1, new Figura(Image.FromFile(DEFAULT_IMAGES[0] + "bota.png")), false);

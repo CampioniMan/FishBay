@@ -229,6 +229,19 @@ namespace Fish_Bay
             this.pescado = clonado.Pescado;
             this.posMesa = clonado.PosMesa;
             this.dourado = clonado.Dourado;
+
+            if (this.dourado)
+            {
+                desenhar = desenharDourado;
+                darPontos = darPontosDourado;
+                transformaAlimento = transformaSushiDourado;
+            }
+            else
+            {
+                desenhar = desenharNormal;
+                darPontos = darPontosNormal;
+                transformaAlimento = transformaSushiNormal;
+            }
         }
 
         public int darPontosNormal()
