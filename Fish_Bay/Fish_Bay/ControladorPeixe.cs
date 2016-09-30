@@ -9,6 +9,7 @@ namespace Fish_Bay
 {
     public class ControladorPeixe
     {
+        // constantes
         public const int 
             LIMITE_PEIXES = 7,
             LARGURA_PEIXE = 56,
@@ -17,11 +18,18 @@ namespace Fish_Bay
             ALTURA_PEIXE = 22,
             LARGURA_DOURADO = 26,
             ALTURA_DOURADO = 14;
+
+        // vetores de peixes
         private Peixe[] peixes, peixesPescados, peixePescando;
         private Peixe bota,botaPescada;
+
+        // quantidades
         private int qtosPeixesNadando, qtosPeixesPescando, qtosPeixesPescados;
+
+        // posição do primeiro(debaixo) peixe da fila
         private Point posicaoMinima;
 
+        // Propriedade do vetor de peixesNadando
         public Peixe[] Peixes
         {
             get
@@ -35,6 +43,7 @@ namespace Fish_Bay
             }
         }
 
+        // Propriedade do vetor de peixesPescados
         public Peixe[] PeixesPescados
         {
             get
@@ -48,19 +57,7 @@ namespace Fish_Bay
             }
         }
 
-        public int QtosPeixesNadando
-        {
-            get
-            {
-                return qtosPeixesNadando;
-            }
-
-            set
-            {
-                qtosPeixesNadando = value;
-            }
-        }
-
+        // Propriedade do vetor de peixesPescando
         public Peixe[] PeixePescando
         {
             get
@@ -74,6 +71,21 @@ namespace Fish_Bay
             }
         }
 
+        // Propriedade de quantos peixes estão sendo utilizados e nadando
+        public int QtosPeixesNadando
+        {
+            get
+            {
+                return qtosPeixesNadando;
+            }
+
+            set
+            {
+                qtosPeixesNadando = value;
+            }
+        }
+
+        // Propriedade de quantos peixes estão sendo utilizados e pescados
         public int QtosPeixesPescados
         {
             get
@@ -87,6 +99,7 @@ namespace Fish_Bay
             }
         }
 
+        // Propriedade de quantos peixes estão sendo utilizados e pescando
         public int QtosPeixesPescando
         {
             get
@@ -100,20 +113,8 @@ namespace Fish_Bay
             }
         }
 
+        // Propriedade referente à bota
         public Peixe Bota
-        {
-            get
-            {
-                return bota;
-            }
-
-            set
-            {
-                bota = value;
-            }
-        }
-
-        public Peixe Bota1
         {
             get
             {
@@ -144,12 +145,15 @@ namespace Fish_Bay
         */
         public void desenharTodos(Graphics g, Point vara)
         {
+            // desenhando os peixes que estão nadando
             for (int i = 0; i < qtosPeixesNadando; i++)
                 peixes[i].Skin.desenhar(g, peixes[i].Coord);
             
+            // desenhando os peixes que esntão na mesa
             for (int ind = 0; ind < QtosPeixesPescados; ind++)
                 peixesPescados[ind].Skin.desenhar(g, new Point(this.posicaoMinima.X, ondeDesenharPilhaNoIndice(ind)));
 
+            // desenhando o peixe que está na vara
             if (this.peixePescando[0] != null)
                 g.DrawImage(Figura.RotateImage(this.peixePescando[0].Skin.Img), vara);
             
@@ -177,6 +181,7 @@ namespace Fish_Bay
         */
         public void pescarPeixeNoIndice(int index)
         {
+            // vendo se o index está no vetor
             if (index < 0 || index >= this.qtosPeixesNadando || this.peixePescando[0] != null)
                 return;
 
@@ -203,6 +208,10 @@ namespace Fish_Bay
                 this.peixesPescados[this.QtosPeixesPescados++] = peixe.clone();
         }
 
+        /**
+        * Reseta o peixe pêgo e retorna um clone dele
+        *   param - index -> Contém o índice do peixe no vetor de peixesNadando
+        */
         private Peixe PegarOQueEstaNadando(int index)
         {
             Peixe aux = this.peixes[index].clone();
@@ -211,6 +220,10 @@ namespace Fish_Bay
             return aux;
         }
 
+        /**
+        * adiciona um peixe à mesa
+        *   param outro -> Contém o peixe a ser adicionado
+        */
         private void adicionarPescando(Peixe outro)
         {
             outro.Pescado = true;
@@ -218,6 +231,10 @@ namespace Fish_Bay
             this.qtosPeixesPescando++;
         }
 
+        /**
+        * Remove o peixe que está na vara
+        *   
+        */
         private Peixe removerPescando()
         {
             if (this.qtosPeixesPescados < 6)
@@ -230,13 +247,21 @@ namespace Fish_Bay
             return null;
         }
 
-        public Peixe voltarANadarPeixe()
+        /**
+        * Retira o peixe do topo da mesa
+        *   
+        */
+        public Peixe tirarDaMesaPeixeDoTopo()
         {
             if (this.qtosPeixesPescados > 0)
                 return removerPescado();
-            return null;
+            return null; // nunca cairá aqui
         }
 
+        /**
+        * Remove o peixe do vetor de pescados
+        *   Normalmente utilizado quando o vendedor pega um peixe
+        */
         private Peixe removerPescado()
         {
             Peixe aux = peixesPescados[this.QtosPeixesPescados - 1];
@@ -245,17 +270,30 @@ namespace Fish_Bay
             return aux;
         }
 
+        /**
+        * Função que retorna o lugar onde será desenhado um tal peixe
+        *   param index -> Contém o índice do peixe que será desenhado
+        */
         private int ondeDesenharPilhaNoIndice(int index)
         {
             return (this.posicaoMinima.Y) - (ALTURA_PEIXE+1) * index;
         }
 
+        /**
+        * Limpa o vetor de pescados
+        *   
+        */
         public void limparMesa()
         {
             for (int i = QtosPeixesPescados; i > 0; i--)
                 this.removerPescado();
         }
 
+        /**
+        * Construtor único da classe
+        *   param novosPeixes -> Vetor de peixes que contém os peixes possíveis
+        *   param novaPosicaoMinima -> Contém a posição mínima de um peixe pescado
+        */
         public ControladorPeixe(Peixe[] novosPeixes, Point novaPosicaoMinima)
         {
             this.peixes = novosPeixes;

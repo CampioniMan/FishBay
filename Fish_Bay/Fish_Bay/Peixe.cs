@@ -9,21 +9,36 @@ namespace Fish_Bay
 {
     public class Peixe
     {
+        // constantes
         private const int LARGURA = ControladorPeixe.LARGURA_PEIXE;
+
+        // coordenada anterior do peixe
         private Point coordAntigo;
+
+        // coordenada atual do peixe
         private Point coord;
+
+        // direcao do peixe(nunca alteramos)
         private int direcao;
+
+        // Skin do peixe
         private Figura skin;
+
+        // estado atual do peixe
         private bool pescado, nadando, pescando;
-        private int posMesa;
+        
+        // quanda se o peixe é dourado ou não
         private bool dourado;
 
+        // tipo de função para desenhar
         public delegate void TipoDesenhar(Graphics g);
         private TipoDesenhar desenhar;
 
+        // tipo de função para dar pontos equivalentes à raridade do peixe
         public delegate int TipoDarPontos();
         private TipoDarPontos darPontos;
 
+        // tipo de Imagem que será retornada quando o peixe é pêgo na mesa pelo vendedor
         public delegate Image TipoSushi(string nomeAju);
         private TipoSushi transformaAlimento;
 
@@ -132,19 +147,6 @@ namespace Fish_Bay
             }
         }
 
-        public int PosMesa
-        {
-            get
-            {
-                return posMesa;
-            }
-
-            set
-            {
-                posMesa = value;
-            }
-        }
-
         public TipoDesenhar Desenhar
         {
             get
@@ -196,7 +198,7 @@ namespace Fish_Bay
                 transformaAlimento = value;
             }
         }
-
+        
         public Peixe(Point novaCoordenada, int direcaoAndar, Figura novaSkin, bool ehDourado)
         {
             this.coord.X = novaCoordenada.X;
@@ -204,8 +206,9 @@ namespace Fish_Bay
             this.direcao = direcaoAndar;
             this.skin = novaSkin;
             this.pescado = false;
-            this.posMesa = 212;
             this.dourado = ehDourado;
+
+            // verificando quais funções serão utilizadas(para peixes dourados ou não)
             if (ehDourado)
             {
                 desenhar = desenharDourado;
@@ -227,7 +230,6 @@ namespace Fish_Bay
             this.direcao = clonado.direcao;
             this.skin = clonado.Skin;
             this.pescado = clonado.Pescado;
-            this.posMesa = clonado.PosMesa;
             this.dourado = clonado.Dourado;
 
             if (this.dourado)
