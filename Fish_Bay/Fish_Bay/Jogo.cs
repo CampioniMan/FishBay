@@ -56,11 +56,12 @@ namespace Fish_Bay
         private void Jogo_Load(object sender, EventArgs e)
         {
             rand = new Random();
-            peixes = new Peixe[6];
+            peixes = new Peixe[7];
             clientes = new Cliente[FilaCliente.MAXIMO_FILA];
 
-            for (int i = 0; i < peixes.Length; i++)
-                peixes[i] = new Peixe(new Point(-ControladorPeixe.LARGURA_PEIXE - rand.Next(0, 4000), rand.Next(380, 530)), 1, new Figura(Image.FromFile(DEFAULT_IMAGES[0] + "Peixe" + (i + 1) + ".png")));
+            for (int i = 0; i < peixes.Length-1; i++)
+                peixes[i] = new Peixe(new Point(-ControladorPeixe.LARGURA_PEIXE - rand.Next(0, 4000), rand.Next(380, 530)), 1, new Figura(Image.FromFile(DEFAULT_IMAGES[0] + "Peixe" + (i + 1) + ".png")), false);
+            peixes[6] = new Peixe(new Point(-ControladorPeixe.LARGURA_PEIXE - rand.Next(000, 00001), rand.Next(380, 530)), 1, new Figura(Image.FromFile(DEFAULT_IMAGES[0] + "PeixeEsp.png")), true);
 
             for (int i = 0; i < clientes.Length; i++)
                 clientes[i] = new Cliente(new Stress(new Point(-i * (FilaCliente.LARGURA_NPC + 2), 215 - FilaCliente.ALTURA_NPC - 5), new Point(FilaCliente.LARGURA_NPC /2, FilaCliente.ALTURA_NPC /2)), false, Image.FromFile(DEFAULT_IMAGES[1] + "NPC" + rand.Next(2 ,11) + ".png"), new Point(-i * (FilaCliente.LARGURA_NPC + 2), 215));
@@ -80,8 +81,14 @@ namespace Fish_Bay
             if (ajudante.Coord.X >= 730 && TodosOsPeixes.QtosPeixesPescados > 0 && !ajudante.TemPeixe)
             {
                 ajudante.TemPeixe = true;
-                TodosOsPeixes.voltarANadarPeixe();
-                ajudante.Skin.Img = Image.FromFile(DEFAULT_IMAGES[1] + nomeAju + "peixe.png");
+                Peixe aux = TodosOsPeixes.voltarANadarPeixe();
+                if (aux.Dourado)
+                {
+                    aux.TransformaAlimento = aux.transformaSushiDourado;
+                }
+                else
+                    aux.TransformaAlimento = aux.transformaSushiNormal;
+                ajudante.Skin.Img = aux.TransformaAlimento(nomeAju);
             }
 
             if (ajudante.Coord.X <= 450 && ajudante.AndandoAoContrario && ajudante.TemPeixe)
@@ -144,13 +151,13 @@ namespace Fish_Bay
             for (int i = 0; i < TodosOsPeixes.Peixes.Length; i++)
                 if (TodosOsPeixes.Peixes[i] != null && TodosOsPeixes.Peixes[i].Coord.X > pbDesenho.Size.Width)
                     TodosOsPeixes.Peixes[i].Coord = new Point(-ControladorPeixe.LARGURA_PEIXE - 1000, rand.Next(380, 530));
-            
-            
+
+
             ///////// bota :
             if (rand.Next(1, 1001) > 900)
             {
                 if (bota == null)
-                    bota = new Peixe(new Point(-ControladorPeixe.LARGURA_BOTA, rand.Next(380, 530)), 1, new Figura(Image.FromFile(DEFAULT_IMAGES[0] + "bota.png")));
+                    bota = new Peixe(new Point(-ControladorPeixe.LARGURA_BOTA, rand.Next(380, 530)), 1, new Figura(Image.FromFile(DEFAULT_IMAGES[0] + "bota.png")), false);
 
                 if (bota != null && bota.Coord.X > pbDesenho.Size.Width)
                     bota = null;

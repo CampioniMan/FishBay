@@ -10,12 +10,15 @@ namespace Fish_Bay
     public class ControladorPeixe
     {
         public const int 
-            LIMITE_PEIXES = 6,
+            LIMITE_PEIXES = 7,
             LARGURA_PEIXE = 56,
             LARGURA_BOTA = 44,
             ALTURA_BOTA = 36,
-            ALTURA_PEIXE = 22;
+            ALTURA_PEIXE = 22,
+            LARGURA_DOURADO = 26,
+            ALTURA_DOURADO = 14;
         private Peixe[] peixes, peixesPescados, peixePescando;
+        private Peixe bota,botaPescada;
         private int qtosPeixesNadando, qtosPeixesPescando, qtosPeixesPescados;
         private Point posicaoMinima;
 
@@ -97,6 +100,32 @@ namespace Fish_Bay
             }
         }
 
+        public Peixe Bota
+        {
+            get
+            {
+                return bota;
+            }
+
+            set
+            {
+                bota = value;
+            }
+        }
+
+        public Peixe Bota1
+        {
+            get
+            {
+                return bota;
+            }
+
+            set
+            {
+                bota = value;
+            }
+        }
+
         /**
         * Faz os peixes nadarem em uma proporção parecida
         *   param randomico -> número randômico aí
@@ -123,6 +152,7 @@ namespace Fish_Bay
 
             if (this.peixePescando[0] != null)
                 g.DrawImage(Figura.RotateImage(this.peixePescando[0].Skin.Img), vara);
+            
         }
 
         /**
@@ -177,7 +207,7 @@ namespace Fish_Bay
         {
             Peixe aux = this.peixes[index].clone();
             Random rand = new Random();
-            this.peixes[index] = new Peixe(new Point(-LARGURA_PEIXE - rand.Next(2000, 4000), rand.Next(380, 530)), 1, this.peixes[index].Skin);
+            this.peixes[index] = new Peixe(new Point(-LARGURA_PEIXE - rand.Next(2000, 4000), rand.Next(380, 530)), 1, this.peixes[index].Skin, aux.Dourado);
             return aux;
         }
 
@@ -200,10 +230,11 @@ namespace Fish_Bay
             return null;
         }
 
-        public void voltarANadarPeixe()
+        public Peixe voltarANadarPeixe()
         {
             if (this.qtosPeixesPescados > 0)
-                removerPescado();
+                return removerPescado();
+            return null;
         }
 
         private Peixe removerPescado()

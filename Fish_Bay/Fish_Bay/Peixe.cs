@@ -16,6 +16,16 @@ namespace Fish_Bay
         private Figura skin;
         private bool pescado, nadando, pescando;
         private int posMesa;
+        private bool dourado;
+
+        public delegate void TipoDesenhar(Graphics g);
+        private TipoDesenhar desenhar;
+
+        public delegate int TipoDarPontos();
+        private TipoDarPontos darPontos;
+
+        public delegate Image TipoSushi(string nomeAju);
+        private TipoSushi transformaAlimento;
 
         public Point Coord
         {
@@ -135,7 +145,59 @@ namespace Fish_Bay
             }
         }
 
-        public Peixe(Point novaCoordenada, int direcaoAndar, Figura novaSkin)
+        public TipoDesenhar Desenhar
+        {
+            get
+            {
+                return desenhar;
+            }
+
+            set
+            {
+                desenhar = value;
+            }
+        }
+
+        public bool Dourado
+        {
+            get
+            {
+                return dourado;
+            }
+
+            set
+            {
+                dourado = value;
+            }
+        }
+
+        public TipoDarPontos DarPontos
+        {
+            get
+            {
+                return darPontos;
+            }
+
+            set
+            {
+                darPontos = value;
+            }
+        }
+
+        public TipoSushi TransformaAlimento
+        {
+            get
+            {
+                return transformaAlimento;
+            }
+
+            set
+            {
+                transformaAlimento = value;
+            }
+        }
+
+        public Peixe(Point novaCoordenada, int direcaoAndar, Figura novaSkin, bool ehDourado)
         {
             this.coord.X = novaCoordenada.X;
             this.coord.Y = novaCoordenada.Y;
@@ -143,6 +205,19 @@ namespace Fish_Bay
             this.skin = novaSkin;
             this.pescado = false;
             this.posMesa = 212;
+            this.dourado = ehDourado;
+            if (ehDourado)
+            {
+                desenhar = desenharDourado;
+                darPontos = darPontosDourado;
+                transformaAlimento = transformaSushiDourado;
+            }
+            else
+            {
+                desenhar = desenharNormal;
+                darPontos = darPontosNormal;
+                transformaAlimento = transformaSushiNormal;
+            }
         }
 
         public Peixe(Peixe clonado)
@@ -153,6 +228,27 @@ namespace Fish_Bay
             this.skin = clonado.Skin;
             this.pescado = clonado.Pescado;
             this.posMesa = clonado.PosMesa;
+            this.dourado = clonado.Dourado;
+        }
+
+        public int darPontosNormal()
+        {
+            return 10;
+        }
+
+        public int darPontosDourado()
+        {
+            return 100;
+        }
+
+        public Image transformaSushiNormal(string nomeAju)
+        {
+            return Image.FromFile(Jogo.DEFAULT_IMAGES[1] + nomeAju + "peixe.png");
+        }
+
+        public Image transformaSushiDourado(string nomeAju)
+        {
+            return Image.FromFile(Jogo.DEFAULT_IMAGES[1] + nomeAju + "peixedourado.png");
         }
 
         public void nadar()
@@ -184,18 +280,20 @@ namespace Fish_Bay
                 pontoLinha.Y >= this.coord.Y));
         }
 
-        public void desenharDebug(Graphics g, int ALTURA)
-        {
-            g.DrawLine(new Pen(Color.Red, 5), this.coord.X - this.Diferenca.X + LARGURA, this.Coord.Y         , this.coordAntigo.X                    + LARGURA, this.coordAntigo.Y + ALTURA);
-            g.DrawLine(new Pen(Color.Red, 5), this.coord.X                    + LARGURA, this.Coord.Y         , this.coordAntigo.X + this.Diferenca.X + LARGURA, this.coordAntigo.Y + ALTURA);
-            g.DrawLine(new Pen(Color.Red, 5), this.coord.X - this.Diferenca.X + LARGURA, this.Coord.Y + ALTURA, this.coordAntigo.X                    + LARGURA, this.coordAntigo.Y);
-            g.DrawLine(new Pen(Color.Red, 5), this.coord.X                    + LARGURA, this.Coord.Y + ALTURA, this.coordAntigo.X + this.Diferenca.X + LARGURA, this.coordAntigo.Y);
-            
-        }
 
         public Peixe clone()
         {
             return new Peixe(this);
+        }
+
+        private void desenharNormal(Graphics g)
+        {
+            Skin.desenhar(g, coord);
+        }
+
+        private void desenharDourado(Graphics g)
+        {
+            g.DrawImage(Figura.RotateImage(Skin.Img), coord);
         }
     }
 }
