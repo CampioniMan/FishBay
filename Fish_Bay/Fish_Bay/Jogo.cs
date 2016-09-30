@@ -12,12 +12,7 @@ namespace Fish_Bay
 {
     public partial class Jogo : Form
     {
-        public const int
-            LARGURA_PEIXE = 56,
-            LARGURA_BOTA = 44,
-            ALTURA_BOTA = 36,
-            ALTURA_PEIXE = 22,
-            VELOCIDADE_AJUDANTE = 3;
+        public const int VELOCIDADE_AJUDANTE = 3;
         public static readonly string[] DEFAULT_IMAGES = { "../../../../imagens/Peixes/", "../../../../imagens/NPCs/", "../../../../imagens/Fundo/" };
         public static readonly Point PONTO_FIXO_VARA = new Point(908, 222);
 
@@ -65,7 +60,7 @@ namespace Fish_Bay
             clientes = new Cliente[FilaCliente.MAXIMO_FILA];
 
             for (int i = 0; i < peixes.Length; i++)
-                peixes[i] = new Peixe(new Point(-LARGURA_PEIXE - rand.Next(0, 4000), rand.Next(380, 530)), 1, new Figura(Image.FromFile(DEFAULT_IMAGES[0] + "Peixe" + (i + 1) + ".png")));
+                peixes[i] = new Peixe(new Point(-ControladorPeixe.LARGURA_PEIXE - rand.Next(0, 4000), rand.Next(380, 530)), 1, new Figura(Image.FromFile(DEFAULT_IMAGES[0] + "Peixe" + (i + 1) + ".png")));
 
             for (int i = 0; i < clientes.Length; i++)
                 clientes[i] = new Cliente(new Stress(new Point(-i * (FilaCliente.LARGURA_NPC + 2), 215 - FilaCliente.ALTURA_NPC - 5), new Point(FilaCliente.LARGURA_NPC /2, FilaCliente.ALTURA_NPC /2)), false, Image.FromFile(DEFAULT_IMAGES[1] + "NPC" + rand.Next(2 ,11) + ".png"), new Point(-i * (FilaCliente.LARGURA_NPC + 2), 215));
@@ -148,14 +143,14 @@ namespace Fish_Bay
             TodosOsPeixes.verSePescouAlgumPeixe(coordMouse);
             for (int i = 0; i < TodosOsPeixes.Peixes.Length; i++)
                 if (TodosOsPeixes.Peixes[i] != null && TodosOsPeixes.Peixes[i].Coord.X > pbDesenho.Size.Width)
-                    TodosOsPeixes.Peixes[i].Coord = new Point(-LARGURA_PEIXE - 1000, rand.Next(380, 530));
+                    TodosOsPeixes.Peixes[i].Coord = new Point(-ControladorPeixe.LARGURA_PEIXE - 1000, rand.Next(380, 530));
             
             
             ///////// bota :
             if (rand.Next(1, 1001) > 900)
             {
                 if (bota == null)
-                    bota = new Peixe(new Point(-LARGURA_BOTA, rand.Next(380, 530)), 1, new Figura(Image.FromFile(DEFAULT_IMAGES[0] + "bota.png")));
+                    bota = new Peixe(new Point(-ControladorPeixe.LARGURA_BOTA, rand.Next(380, 530)), 1, new Figura(Image.FromFile(DEFAULT_IMAGES[0] + "bota.png")));
 
                 if (bota != null && bota.Coord.X > pbDesenho.Size.Width)
                     bota = null;
@@ -165,7 +160,7 @@ namespace Fish_Bay
             atualizaFilasEAjudante();
             if (bota != null)
             {
-                if (bota.pescou(new Point(908, coordMouse.Y), ALTURA_BOTA))
+                if (bota.pescou(new Point(908, coordMouse.Y), ControladorPeixe.ALTURA_BOTA))
                 {
                     TodosOsPeixes.limparMesa();
                     bota = null;
@@ -176,7 +171,7 @@ namespace Fish_Bay
             if (rand.Next(1, 1000) < 200 && rand.Next(1, 1000) > 500)
                 fila.entrarRandomico();
 
-            if (lblQtosClien.Text.Equals("8"))
+            if (lblQtosClien.Text.Equals("0"))
             {
                 timerSpawn.Stop();
                 GameOver gv = new GameOver(nomeJogador, lblQtosPont.Text, this);

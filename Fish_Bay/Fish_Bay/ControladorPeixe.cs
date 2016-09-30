@@ -9,7 +9,12 @@ namespace Fish_Bay
 {
     public class ControladorPeixe
     {
-        public const int LIMITE_PEIXES = 6;
+        public const int 
+            LIMITE_PEIXES = 6,
+            LARGURA_PEIXE = 56,
+            LARGURA_BOTA = 44,
+            ALTURA_BOTA = 36,
+            ALTURA_PEIXE = 22;
         private Peixe[] peixes, peixesPescados, peixePescando;
         private int qtosPeixesNadando, qtosPeixesPescando, qtosPeixesPescados;
         private Point posicaoMinima;
@@ -130,7 +135,7 @@ namespace Fish_Bay
             {
                 if (!this.peixes[i].Pescado)
                 {
-                    if (this.peixes[i].pescou(vara, Jogo.ALTURA_PEIXE))
+                    if (this.peixes[i].pescou(vara, ALTURA_PEIXE))
                         this.pescarPeixeNoIndice(i);
                 }
             }
@@ -172,7 +177,7 @@ namespace Fish_Bay
         {
             Peixe aux = this.peixes[index].clone();
             Random rand = new Random();
-            this.peixes[index] = new Peixe(new Point(-Jogo.LARGURA_PEIXE - rand.Next(2000, 4000), rand.Next(380, 530)), 1, this.peixes[index].Skin);
+            this.peixes[index] = new Peixe(new Point(-LARGURA_PEIXE - rand.Next(2000, 4000), rand.Next(380, 530)), 1, this.peixes[index].Skin);
             return aux;
         }
 
@@ -211,7 +216,7 @@ namespace Fish_Bay
 
         private int ondeDesenharPilhaNoIndice(int index)
         {
-            return (this.posicaoMinima.Y) - (Jogo.ALTURA_PEIXE+1) * index;
+            return (this.posicaoMinima.Y) - (ALTURA_PEIXE+1) * index;
         }
 
         public void limparMesa()

@@ -45,6 +45,7 @@ namespace Fish_Bay
 
         private void btnSair_Click(object sender, EventArgs e)
         {
+            //Application.Exit(); // Hardcore
             this.Close();
             jog.setReiniciar(false);
             jog.Close();

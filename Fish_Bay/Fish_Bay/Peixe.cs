@@ -9,7 +9,7 @@ namespace Fish_Bay
 {
     public class Peixe
     {
-        private const int LARGURA = 56;
+        private const int LARGURA = ControladorPeixe.LARGURA_PEIXE;
         private Point coordAntigo;
         private Point coord;
         private int direcao;

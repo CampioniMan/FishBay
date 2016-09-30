@@ -51,7 +51,7 @@
             this.pbIcon_Clien.Image = global::Fish_Bay.Properties.Resources.Icon_Clien;
             this.pbIcon_Clien.Location = new System.Drawing.Point(12, 12);
             this.pbIcon_Clien.Name = "pbIcon_Clien";
-            this.pbIcon_Clien.Size = new System.Drawing.Size(72, 32);
+            this.pbIcon_Clien.Size = new System.Drawing.Size(106, 32);
             this.pbIcon_Clien.TabIndex = 1;
             this.pbIcon_Clien.TabStop = false;
             // 
@@ -71,7 +71,7 @@
             this.lblQtosClien.AutoSize = true;
             this.lblQtosClien.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.lblQtosClien.Font = new System.Drawing.Font("Consolas", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblQtosClien.Location = new System.Drawing.Point(50, 16);
+            this.lblQtosClien.Location = new System.Drawing.Point(96, 16);
             this.lblQtosClien.Name = "lblQtosClien";
             this.lblQtosClien.Size = new System.Drawing.Size(22, 24);
             this.lblQtosClien.TabIndex = 2;
@@ -82,7 +82,7 @@
             this.lblQtosPont.AutoSize = true;
             this.lblQtosPont.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.lblQtosPont.Font = new System.Drawing.Font("Consolas", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblQtosPont.Location = new System.Drawing.Point(152, 16);
+            this.lblQtosPont.Location = new System.Drawing.Point(96, 50);
             this.lblQtosPont.Name = "lblQtosPont";
             this.lblQtosPont.Size = new System.Drawing.Size(22, 24);
             this.lblQtosPont.TabIndex = 4;
@@ -92,7 +92,7 @@
             // 
             this.pbIcon_Pont.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.pbIcon_Pont.Image = global::Fish_Bay.Properties.Resources.Icon_Pont;
-            this.pbIcon_Pont.Location = new System.Drawing.Point(90, 16);
+            this.pbIcon_Pont.Location = new System.Drawing.Point(12, 50);
             this.pbIcon_Pont.Name = "pbIcon_Pont";
             this.pbIcon_Pont.Size = new System.Drawing.Size(85, 24);
             this.pbIcon_Pont.TabIndex = 3;
@@ -102,7 +102,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1268, 567);
+            this.ClientSize = new System.Drawing.Size(1268, 566);
             this.Controls.Add(this.lblQtosPont);
             this.Controls.Add(this.pbIcon_Pont);
             this.Controls.Add(this.lblQtosClien);
