@@ -280,6 +280,7 @@
             this.Controls.Add(this.label1);
             this.Name = "Record";
             this.Text = "record";
+            this.Load += new System.EventHandler(this.frmRecordes_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
