@@ -8,11 +8,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Data.SqlClient;
-using System.Data;
 using System.Configuration;
 
 namespace Fish_Bay
@@ -64,7 +59,11 @@ namespace Fish_Bay
 
                 MessageBox.Show("Recorde Cadastrado");
             }
-            catch (Exception ex){ MessageBox.Show(ex.Message); }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Desculpe-nos, mas houve um erro de conexão com o servidor.\n" +
+                                "                  Tente novamente mais tarde.", "Erro de conexão");
+            }
         }
 
         private SqlConnection getConexao()
