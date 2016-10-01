@@ -76,15 +76,15 @@ namespace Fish_Bay
 
             // criando os peixes
             for (int i = 0; i < peixes.Length-1; i++)
-                peixes[i] = new Peixe(new Point(-ControladorPeixe.LARGURA_PEIXE - rand.Next(0, 4000), rand.Next(380, 530)), 1, new Figura(Image.FromFile(DEFAULT_IMAGES[0] + "Peixe" + (i + 1) + ".png")), false);
+                peixes[i] = new Peixe(new Point(-ControladorPeixe.LARGURA_PEIXE - rand.Next(1500, 4000), rand.Next(380, 530)), 1, new Figura(Image.FromFile(DEFAULT_IMAGES[0] + "Peixe" + (i + 1) + ".png")), false);
 
 
-                peixes[6] = new Peixe(new Point(-ControladorPeixe.LARGURA_PEIXE - rand.Next(0, 9000), rand.Next(380, 530)), 1, new Figura(Image.FromFile(DEFAULT_IMAGES[0] + "PeixeEsp.png")), true);
+                peixes[6] = new Peixe(new Point(-ControladorPeixe.LARGURA_PEIXE - rand.Next(1500, 9000), rand.Next(380, 530)), 1, new Figura(Image.FromFile(DEFAULT_IMAGES[0] + "PeixeEsp.png")), true);
             
 
             // criando os clientes iniciais
             for (int i = 0; i < clientes.Length; i++)
-                clientes[i] = new Cliente(new Stress(new Point(-i * (FilaCliente.LARGURA_NPC + 2), 215 - FilaCliente.ALTURA_NPC - 5), new Point(FilaCliente.LARGURA_NPC /2, FilaCliente.ALTURA_NPC /2)), false, Image.FromFile(DEFAULT_IMAGES[1] + "NPC" + rand.Next(2 ,11) + ".png"), new Point(-i * (FilaCliente.LARGURA_NPC + 2), 215));
+                clientes[i] = new Cliente(new Stress(new Point(-i * (FilaCliente.LARGURA_NPC + 2), 215 - FilaCliente.ALTURA_NPC - 5), new Point(FilaCliente.LARGURA_NPC /2, FilaCliente.ALTURA_NPC /2)), (rand.Next(0, 100) > 65) ? true : false, Image.FromFile(DEFAULT_IMAGES[1] + "NPC" + rand.Next(2 ,11) + ".png"), new Point(-i * (FilaCliente.LARGURA_NPC + 2), 215));
             
             // Criando o vendedor
             ajudante = new Vendedor(Image.FromFile(DEFAULT_IMAGES[1] + nomeAju + ".png"),new Point(450,215));

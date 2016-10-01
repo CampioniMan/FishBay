@@ -217,9 +217,9 @@ namespace Fish_Bay
             Peixe aux = this.peixes[index].clone();
             Random rand = new Random();
             if(index ==6)
-                this.peixes[index] = new Peixe(new Point(-LARGURA_PEIXE - rand.Next(500, 9000), rand.Next(380, 530)), 1, this.peixes[index].Skin, aux.Dourado);
+                this.peixes[index] = new Peixe(new Point(-LARGURA_PEIXE - rand.Next(1500, 9000), rand.Next(380, 530)), 1, this.peixes[index].Skin, aux.Dourado);
             else
-            this.peixes[index] = new Peixe(new Point(-LARGURA_PEIXE - rand.Next(500, 3500), rand.Next(380, 530)), 1, this.peixes[index].Skin, aux.Dourado);
+            this.peixes[index] = new Peixe(new Point(-LARGURA_PEIXE - rand.Next(1500, 3500), rand.Next(380, 530)), 1, this.peixes[index].Skin, aux.Dourado);
             return aux;
         }
 

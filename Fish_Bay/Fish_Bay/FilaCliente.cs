@@ -131,7 +131,7 @@ namespace Fish_Bay
 
             Random rand = new Random();
             this.clientes[this.tamanhoUtil++] = new Cliente(new Stress(new Point(-this.tamanhoUtil*(LARGURA_NPC+2), 215 - ALTURA_NPC - 5), new Point(LARGURA_NPC / 2, ALTURA_NPC / 2)), 
-                                                (rand.Next(0, 100) > 0)?true:false, Image.FromFile(Jogo.DEFAULT_IMAGES[1] + "NPC" + rand.Next(2, 11) + ".png"), new Point(-this.tamanhoUtil * (LARGURA_NPC + 2), 215));
+                                                (rand.Next(0, 100) >65 )?true:false, Image.FromFile(Jogo.DEFAULT_IMAGES[1] + "NPC" + rand.Next(2, 11) + ".png"), new Point(-this.tamanhoUtil * (LARGURA_NPC + 2), 215));
         }
 
         public int limiteParaIndice(int index)
