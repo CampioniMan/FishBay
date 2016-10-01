@@ -77,7 +77,10 @@ namespace Fish_Bay
             // criando os peixes
             for (int i = 0; i < peixes.Length-1; i++)
                 peixes[i] = new Peixe(new Point(-ControladorPeixe.LARGURA_PEIXE - rand.Next(0, 4000), rand.Next(380, 530)), 1, new Figura(Image.FromFile(DEFAULT_IMAGES[0] + "Peixe" + (i + 1) + ".png")), false);
-            peixes[6] = new Peixe(new Point(-ControladorPeixe.LARGURA_PEIXE - rand.Next(000, 00001), rand.Next(380, 530)), 1, new Figura(Image.FromFile(DEFAULT_IMAGES[0] + "PeixeEsp.png")), true);
+
+
+                peixes[6] = new Peixe(new Point(-ControladorPeixe.LARGURA_PEIXE - rand.Next(0, 9000), rand.Next(380, 530)), 1, new Figura(Image.FromFile(DEFAULT_IMAGES[0] + "PeixeEsp.png")), true);
+            
 
             // criando os clientes iniciais
             for (int i = 0; i < clientes.Length; i++)
@@ -185,11 +188,14 @@ namespace Fish_Bay
             TodosOsPeixes.verSePescouAlgumPeixe(coordMouse);
             for (int i = 0; i < TodosOsPeixes.Peixes.Length; i++)
                 if (TodosOsPeixes.Peixes[i] != null && TodosOsPeixes.Peixes[i].Coord.X > pbDesenho.Size.Width)
-                    TodosOsPeixes.Peixes[i].Coord = new Point(-ControladorPeixe.LARGURA_PEIXE - 1000, rand.Next(380, 530));
+                    if(i != 6)
+                    TodosOsPeixes.Peixes[i].Coord = new Point(-ControladorPeixe.LARGURA_PEIXE - rand.Next(500,3500), rand.Next(380, 530));
+                    else
+                        TodosOsPeixes.Peixes[i].Coord = new Point(-ControladorPeixe.LARGURA_PEIXE - rand.Next(500,9000), rand.Next(380, 530));
 
 
             // calcular posições da bota
-            if (rand.Next(1, 1001) > 993)
+            if (rand.Next(1, 1001) > 950)
             {
                 if (bota == null)
                     bota = new Peixe(new Point(-ControladorPeixe.LARGURA_BOTA, rand.Next(380, 530)), 1, new Figura(Image.FromFile(DEFAULT_IMAGES[0] + "bota.png")), false);
