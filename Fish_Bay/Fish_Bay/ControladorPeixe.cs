@@ -155,7 +155,7 @@ namespace Fish_Bay
 
             // desenhando o peixe que está na vara
             if (this.peixePescando[0] != null)
-                g.DrawImage(Figura.RotateImage(this.peixePescando[0].Skin.Img), vara);
+                g.DrawImage(Figura.RotateImage(this.peixePescando[0].Skin.Img), new Point(vara.X - 12,vara.Y));
             
         }
 
@@ -169,7 +169,9 @@ namespace Fish_Bay
             {
                 if (!this.peixes[i].Pescado)
                 {
-                    if (this.peixes[i].pescou(vara, ALTURA_PEIXE))
+                    if (this.peixes[i].pescou(new Point(vara.X-10,vara.Y+12), ALTURA_PEIXE) || this.peixes[i].pescou(new Point(vara.X - 10, vara.Y + 11), ALTURA_PEIXE) || this.peixes[i].pescou(new Point(vara.X - 10, vara.Y + 10), ALTURA_PEIXE)
+                        || this.peixes[i].pescou(new Point(vara.X - 10, vara.Y + 9), ALTURA_PEIXE) || this.peixes[i].pescou(new Point(vara.X - 10, vara.Y + 8), ALTURA_PEIXE) || this.peixes[i].pescou(new Point(vara.X - 10, vara.Y + 7), ALTURA_PEIXE)
+                        || this.peixes[i].pescou(new Point(vara.X - 10, vara.Y + 6), ALTURA_PEIXE) || this.peixes[i].pescou(new Point(vara.X - 10, vara.Y + 5), ALTURA_PEIXE) || this.peixes[i].pescou(new Point(vara.X - 10, vara.Y + 4), ALTURA_PEIXE))
                         this.pescarPeixeNoIndice(i);
                 }
             }

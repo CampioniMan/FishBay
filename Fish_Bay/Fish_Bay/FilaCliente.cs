@@ -118,9 +118,26 @@ namespace Fish_Bay
         }
 
         // faz o PRIMEIRO NPC sair da fila de espera porque ganhou um peixe
-        public void sairPrimeiro()
+        public void sairIndice(int ind)
         {
-            this.sair(0);
+            
+            this.sair(ind);
+        }
+
+        public int vaiSair()
+        {
+            int indice = 0;
+            for (int i = 0; i < this.tamanhoUtil - 1; i++)
+            {
+                if (clientes[i].EhVIP && !this.clientes[i].PodeAndar(this.limiteParaIndice(i)))
+                {
+                    indice = i;
+                    break;
+                }
+
+
+            }
+            return indice;
         }
 
         // entra um personagem randômico na fila
