@@ -108,7 +108,10 @@ namespace Fish_Bay
             {
                 ajudante.TemPeixe = true;
                 Peixe aux = TodosOsPeixes.tirarDaMesaPeixeDoTopo();
-                pont = aux.DarPontos();
+                if (fila.Primeiro.EhVIP)
+                    pont = aux.DarPontosVipado();
+                else
+                    pont = aux.DarPontos();
                 ajudante.Skin.Img = aux.TransformaAlimento(nomeAju);
             }
 

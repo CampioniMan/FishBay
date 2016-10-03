@@ -38,6 +38,9 @@ namespace Fish_Bay
         public delegate int TipoDarPontos();
         private TipoDarPontos darPontos;
 
+        public delegate int TipoDarPontosVipado();
+        private TipoDarPontosVipado darPontosVipado;
+
         // tipo de Imagem que será retornada quando o peixe é pêgo na mesa pelo vendedor
         public delegate Image TipoSushi(string nomeAju);
         private TipoSushi transformaAlimento;
@@ -198,7 +201,20 @@ namespace Fish_Bay
                 transformaAlimento = value;
             }
         }
-        
+
+        public TipoDarPontosVipado DarPontosVipado
+        {
+            get
+            {
+                return darPontosVipado;
+            }
+
+            set
+            {
+                darPontosVipado = value;
+            }
+        }
+
         public Peixe(Point novaCoordenada, int direcaoAndar, Figura novaSkin, bool ehDourado)
         {
             this.coord.X = novaCoordenada.X;
@@ -213,12 +229,14 @@ namespace Fish_Bay
             {
                 desenhar = desenharDourado;
                 darPontos = darPontosDourado;
+                darPontosVipado = darPontosDouradoVipado;
                 transformaAlimento = transformaSushiDourado;
             }
             else
             {
                 desenhar = desenharNormal;
                 darPontos = darPontosNormal;
+                darPontosVipado = darPontosNormalVipado;
                 transformaAlimento = transformaSushiNormal;
             }
         }
@@ -235,6 +253,7 @@ namespace Fish_Bay
             if (this.dourado)
             {
                 desenhar = desenharDourado;
+                darPontosVipado = darPontosDouradoVipado;
                 darPontos = darPontosDourado;
                 transformaAlimento = transformaSushiDourado;
             }
@@ -242,6 +261,7 @@ namespace Fish_Bay
             {
                 desenhar = desenharNormal;
                 darPontos = darPontosNormal;
+                darPontosVipado = darPontosNormalVipado;
                 transformaAlimento = transformaSushiNormal;
             }
         }
@@ -255,6 +275,17 @@ namespace Fish_Bay
         {
             return 100;
         }
+
+        public int darPontosNormalVipado()
+        {
+            return 20;
+        }
+        public int darPontosDouradoVipado()
+        {
+            return 200;
+        }
+
+
 
         public Image transformaSushiNormal(string nomeAju)
         {
