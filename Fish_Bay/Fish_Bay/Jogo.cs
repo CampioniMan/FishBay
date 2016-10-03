@@ -265,6 +265,13 @@ namespace Fish_Bay
                 ajudante.Coord = new Point(750, 215);
         }
 
+        private void pbDesenho_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+                if (TodosOsPeixes.PeixePescando[0] != null)
+                    TodosOsPeixes.removerPescando();
+        }
+
         public void setReiniciar(bool novoRein)
         {
             // mudando a variável responsável pelo controle da reinicialização

@@ -64,6 +64,7 @@
             this.pbDesenho.TabIndex = 0;
             this.pbDesenho.TabStop = false;
             this.pbDesenho.Paint += new System.Windows.Forms.PaintEventHandler(this.pbDesenho_Paint);
+            this.pbDesenho.MouseClick += new System.Windows.Forms.MouseEventHandler(this.pbDesenho_MouseClick);
             this.pbDesenho.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pbDesenho_MouseMove);
             // 
             // lblQtosClien
@@ -102,7 +103,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1268, 566);
+            this.ClientSize = new System.Drawing.Size(1268, 567);
             this.Controls.Add(this.lblQtosPont);
             this.Controls.Add(this.pbIcon_Pont);
             this.Controls.Add(this.lblQtosClien);

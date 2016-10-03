@@ -238,7 +238,7 @@ namespace Fish_Bay
         * Remove o peixe que está na vara
         *   
         */
-        private Peixe removerPescando()
+        public Peixe removerPescando()
         {
             if (this.qtosPeixesPescados < 6)
             {
