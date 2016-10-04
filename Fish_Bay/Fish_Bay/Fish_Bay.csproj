@@ -63,6 +63,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Cliente.cs" />
+    <Compile Include="ComoJogar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ComoJogar.Designer.cs">
+      <DependentUpon>ComoJogar.cs</DependentUpon>
+    </Compile>
     <Compile Include="Conexao.cs" />
     <Compile Include="FilaCliente.cs" />
     <Compile Include="GameOver.cs">
@@ -96,6 +102,9 @@
     </Compile>
     <Compile Include="Stress.cs" />
     <Compile Include="Vendedor.cs" />
+    <EmbeddedResource Include="ComoJogar.resx">
+      <DependentUpon>ComoJogar.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GameOver.resx">
       <DependentUpon>GameOver.cs</DependentUpon>
     </EmbeddedResource>

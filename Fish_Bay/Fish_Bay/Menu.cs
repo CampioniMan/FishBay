@@ -72,5 +72,11 @@ namespace Fish_Bay
             jogo.Show();
             this.Hide();
         }
+
+        private void btnComoJogar_Click(object sender, EventArgs e)
+        {
+            ComoJogar comoJogar = new ComoJogar();
+            comoJogar.Show();
+        }
     }
 }

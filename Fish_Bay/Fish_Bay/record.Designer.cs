@@ -279,6 +279,7 @@
             this.Controls.Add(this.lblNome1);
             this.Controls.Add(this.label1);
             this.Name = "Record";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "record";
             this.Load += new System.EventHandler(this.frmRecordes_Load);
             this.ResumeLayout(false);

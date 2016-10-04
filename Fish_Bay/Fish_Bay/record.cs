@@ -29,7 +29,6 @@ namespace Fish_Bay
                 reader.Read();
                 string record = reader[0].ToString();
                 string nome = reader[1].ToString();
-                MessageBox.Show(nome);
                 lblNome1.Text = nome;
                 lblRec1.Text = record;
 
@@ -93,7 +92,7 @@ namespace Fish_Bay
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Desculpe-nos, mas houve um erro de conexão com o servidor.\n"+
+                MessageBox.Show("Houve um erro de conexão com o servidor.\n"+
                                 "                  Tente novamente mais tarde.", "Erro de conexão");
                 this.Close();
             }

@@ -35,6 +35,7 @@
             this.pbDesenho = new System.Windows.Forms.PictureBox();
             this.txtNomeJog = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.btnComoJogar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pbDesenho)).BeginInit();
             this.SuspendLayout();
             // 
@@ -42,7 +43,7 @@
             // 
             this.btnInicio.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnInicio.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnInicio.Location = new System.Drawing.Point(754, 117);
+            this.btnInicio.Location = new System.Drawing.Point(754, 103);
             this.btnInicio.Name = "btnInicio";
             this.btnInicio.Size = new System.Drawing.Size(186, 58);
             this.btnInicio.TabIndex = 1;
@@ -54,7 +55,7 @@
             // 
             this.btnRecordes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRecordes.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRecordes.Location = new System.Drawing.Point(754, 192);
+            this.btnRecordes.Location = new System.Drawing.Point(754, 178);
             this.btnRecordes.Name = "btnRecordes";
             this.btnRecordes.Size = new System.Drawing.Size(186, 58);
             this.btnRecordes.TabIndex = 2;
@@ -101,11 +102,24 @@
             this.label1.TabIndex = 4;
             this.label1.Text = "Nome do Pescador:";
             // 
+            // btnComoJogar
+            // 
+            this.btnComoJogar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnComoJogar.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnComoJogar.Location = new System.Drawing.Point(754, 252);
+            this.btnComoJogar.Name = "btnComoJogar";
+            this.btnComoJogar.Size = new System.Drawing.Size(186, 58);
+            this.btnComoJogar.TabIndex = 5;
+            this.btnComoJogar.Text = "COMO JOGAR";
+            this.btnComoJogar.UseVisualStyleBackColor = true;
+            this.btnComoJogar.Click += new System.EventHandler(this.btnComoJogar_Click);
+            // 
             // Menu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1004, 633);
+            this.Controls.Add(this.btnComoJogar);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtNomeJog);
             this.Controls.Add(this.btnRecordes);
@@ -114,6 +128,7 @@
             this.MaximumSize = new System.Drawing.Size(1020, 671);
             this.MinimumSize = new System.Drawing.Size(1020, 671);
             this.Name = "Menu";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Fish Bay - Menu";
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pbDesenho)).EndInit();
@@ -130,6 +145,7 @@
         private System.Windows.Forms.Timer timer;
         private System.Windows.Forms.TextBox txtNomeJog;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button btnComoJogar;
     }
 }
 

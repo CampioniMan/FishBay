@@ -112,6 +112,7 @@
             this.MaximumSize = new System.Drawing.Size(1284, 605);
             this.MinimumSize = new System.Drawing.Size(1284, 605);
             this.Name = "Jogo";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Fish Bay - Jogo";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Jogo_FormClosed);
             this.Load += new System.EventHandler(this.Jogo_Load);
