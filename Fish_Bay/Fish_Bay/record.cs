@@ -90,7 +90,7 @@ namespace Fish_Bay
 
                 cnn.Close();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 MessageBox.Show("Houve um erro de conexão com o servidor.\n"+
                                 "                  Tente novamente mais tarde.", "Erro de conexão");
