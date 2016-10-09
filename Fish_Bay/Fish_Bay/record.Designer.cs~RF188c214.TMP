@@ -255,23 +255,15 @@
             // 
             // cbxOrdenacao
             // 
-            this.cbxOrdenacao.AutoCompleteCustomSource.AddRange(new string[] {
-            "Dinheiro adquirido",
-            "Peixes Vendidos",
-            "Dinheiro/Peixes"});
-            this.cbxOrdenacao.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
-            this.cbxOrdenacao.DisplayMember = "0";
+            this.cbxOrdenacao.DisplayMember = "1";
             this.cbxOrdenacao.Items.AddRange(new object[] {
             "Dinheiro adquirido",
-            "Peixes vendidos",
+            "Peixes pescados",
             "Dinheiro/Peixes"});
             this.cbxOrdenacao.Location = new System.Drawing.Point(120, 34);
             this.cbxOrdenacao.Name = "cbxOrdenacao";
             this.cbxOrdenacao.Size = new System.Drawing.Size(146, 21);
             this.cbxOrdenacao.TabIndex = 43;
-            this.cbxOrdenacao.Text = "Dinheiro adquirido";
-            this.cbxOrdenacao.ValueMember = "0";
-            this.cbxOrdenacao.SelectedIndexChanged += new System.EventHandler(this.cbxOrdenacao_SelectedIndexChanged);
             // 
             // label3
             // 
