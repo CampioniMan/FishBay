@@ -16,6 +16,7 @@ namespace Fish_Bay
         public const int VELOCIDADE_AJUDANTE = 3;
         public static readonly string[] DEFAULT_IMAGES = { "../../../../imagens/Peixes/", "../../../../imagens/NPCs/", "../../../../imagens/Fundo/" };
         public static readonly Point PONTO_FIXO_VARA = new Point(908, 222);
+        private int qtosPeixes = 0;
 
         private Menu menu;
 
@@ -159,7 +160,12 @@ namespace Fish_Bay
 
             // tenta botar o peixe, que está na vara, na mesa se não estiver cheia
             if (e.Y <= 222)
-                TodosOsPeixes.verSeDaPraBotarNaMesa();
+            {
+                if (TodosOsPeixes.podeBotarNaMesa())
+                    lblQtosPeixes.Text = Convert.ToString(++qtosPeixes);
+                TodosOsPeixes.botarNaMesa();
+            }
+                
         }
 
         private void pbDesenho_Paint(object sender, PaintEventArgs e)

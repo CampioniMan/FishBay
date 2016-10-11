@@ -169,9 +169,7 @@ namespace Fish_Bay
             {
                 if (!this.peixes[i].Pescado)
                 {
-                    if (this.peixes[i].pescou(new Point(vara.X-10,vara.Y+12), ALTURA_PEIXE) || this.peixes[i].pescou(new Point(vara.X - 10, vara.Y + 11), ALTURA_PEIXE) || this.peixes[i].pescou(new Point(vara.X - 10, vara.Y + 10), ALTURA_PEIXE)
-                        || this.peixes[i].pescou(new Point(vara.X - 10, vara.Y + 9), ALTURA_PEIXE) || this.peixes[i].pescou(new Point(vara.X - 10, vara.Y + 8), ALTURA_PEIXE) || this.peixes[i].pescou(new Point(vara.X - 10, vara.Y + 7), ALTURA_PEIXE)
-                        || this.peixes[i].pescou(new Point(vara.X - 10, vara.Y + 6), ALTURA_PEIXE) || this.peixes[i].pescou(new Point(vara.X - 10, vara.Y + 5), ALTURA_PEIXE) || this.peixes[i].pescou(new Point(vara.X - 10, vara.Y + 4), ALTURA_PEIXE))
+                    if (this.peixes[i].pescou(new Point(vara.X - 10, vara.Y + 12), ALTURA_PEIXE))
                         this.pescarPeixeNoIndice(i);
                 }
             }
@@ -194,7 +192,15 @@ namespace Fish_Bay
         * Remove do vetor de "pescaNdo" e adiciona em "pescado"(quando vai botar na mesa)
         * 
         */
-        public void verSeDaPraBotarNaMesa()
+
+        public bool podeBotarNaMesa()
+        {
+            if (this.peixePescando[0] != null)
+                return true;
+
+            return false;
+        }
+        public void botarNaMesa()
         {
             if (this.peixePescando[0] != null)
                 this.adicionarPescado(this.removerPescando());
