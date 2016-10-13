@@ -21,7 +21,6 @@ namespace Fish_Bay
 
         // vetores de peixes
         private Peixe[] peixes, peixesPescados, peixePescando;
-        private Peixe bota,botaPescada;
 
         // quantidades
         private int qtosPeixesNadando, qtosPeixesPescando, qtosPeixesPescados;
@@ -110,20 +109,6 @@ namespace Fish_Bay
             set
             {
                 qtosPeixesPescando = value;
-            }
-        }
-
-        // Propriedade referente à bota
-        public Peixe Bota
-        {
-            get
-            {
-                return bota;
-            }
-
-            set
-            {
-                bota = value;
             }
         }
 

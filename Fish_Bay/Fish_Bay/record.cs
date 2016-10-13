@@ -13,6 +13,7 @@ namespace Fish_Bay
 {
     public partial class Record : Form
     {
+        private string[] codigosSQL = new string[] { "SELECT q.* FROM(SELECT TOP 10 pontos, nomeJog FROM Recordes ORDER BY pontos DESC) q", "SELECT q.* FROM(SELECT TOP 10 pontos, nomeJog FROM Recordes ORDER BY peixes DESC) q", "SELECT q.* FROM(SELECT TOP 10 pontos, nomeJog FROM Recordes ORDER BY (pontos/peixes) DESC) q" };
         public Record()
         {
             InitializeComponent();
@@ -20,10 +21,20 @@ namespace Fish_Bay
 
         private void frmRecordes_Load(object sender, EventArgs e)
         {
+            exibirRecords(0);
+        }
+
+        private void cbxOrdenacao_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            exibirRecords(cbxOrdenacao.SelectedIndex);
+        }
+
+        private void exibirRecords(int index)
+        {
             try
             {
                 SqlConnection cnn = Conexao.getConexao();
-                SqlCommand cmd = new SqlCommand("SELECT q.* FROM(SELECT TOP 10 pontos, nomeJog FROM Recordes ORDER BY pontos DESC) q", cnn);
+                SqlCommand cmd = new SqlCommand(codigosSQL[index], cnn);
                 SqlDataReader reader = cmd.ExecuteReader();
 
                 reader.Read();
@@ -92,9 +103,9 @@ namespace Fish_Bay
             }
             catch (Exception)
             {
-                MessageBox.Show("Houve um erro de conexão com o servidor.\n"+
-                                "                  Tente novamente mais tarde.", "Erro de conexão");
-                this.Close();
+                MessageBox.Show("Houve um erro de conexão com o servidor.\n" +
+                                "              Tente novamente mais tarde.", "Erro de conexão");
+
             }
         }
     }
