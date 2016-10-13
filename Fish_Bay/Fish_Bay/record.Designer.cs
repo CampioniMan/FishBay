@@ -50,8 +50,6 @@
             this.lblNome1 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.cbxOrdenacao = new System.Windows.Forms.ComboBox();
-            this.label3 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lblRec10
@@ -253,42 +251,11 @@
             this.label2.TabIndex = 42;
             this.label2.Text = "Top 10 pescadores fenomenais";
             // 
-            // cbxOrdenacao
-            // 
-            this.cbxOrdenacao.AutoCompleteCustomSource.AddRange(new string[] {
-            "Dinheiro adquirido",
-            "Peixes Vendidos",
-            "Dinheiro/Peixes"});
-            this.cbxOrdenacao.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
-            this.cbxOrdenacao.DisplayMember = "0";
-            this.cbxOrdenacao.Items.AddRange(new object[] {
-            "Dinheiro adquirido",
-            "Peixes vendidos",
-            "Dinheiro/Peixes"});
-            this.cbxOrdenacao.Location = new System.Drawing.Point(120, 34);
-            this.cbxOrdenacao.Name = "cbxOrdenacao";
-            this.cbxOrdenacao.Size = new System.Drawing.Size(146, 21);
-            this.cbxOrdenacao.TabIndex = 43;
-            this.cbxOrdenacao.Text = "Dinheiro adquirido";
-            this.cbxOrdenacao.ValueMember = "0";
-            this.cbxOrdenacao.SelectedIndexChanged += new System.EventHandler(this.cbxOrdenacao_SelectedIndexChanged);
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(51, 37);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(63, 13);
-            this.label3.TabIndex = 44;
-            this.label3.Text = "Ordene por:";
-            // 
             // Record
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(325, 402);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.cbxOrdenacao);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.lblRec10);
             this.Controls.Add(this.lblRec9);
@@ -344,7 +311,5 @@
         private System.Windows.Forms.Label lblNome1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.ComboBox cbxOrdenacao;
-        private System.Windows.Forms.Label label3;
     }
 }

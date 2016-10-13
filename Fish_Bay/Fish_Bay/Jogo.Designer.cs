@@ -64,7 +64,7 @@
             this.lblQtosPont.AutoSize = true;
             this.lblQtosPont.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.lblQtosPont.Font = new System.Drawing.Font("Consolas", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblQtosPont.Location = new System.Drawing.Point(95, 101);
+            this.lblQtosPont.Location = new System.Drawing.Point(97, 104);
             this.lblQtosPont.Name = "lblQtosPont";
             this.lblQtosPont.Size = new System.Drawing.Size(22, 24);
             this.lblQtosPont.TabIndex = 4;
@@ -75,7 +75,7 @@
             this.lblQtosPeixes.AutoSize = true;
             this.lblQtosPeixes.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.lblQtosPeixes.Font = new System.Drawing.Font("Consolas", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblQtosPeixes.Location = new System.Drawing.Point(95, 51);
+            this.lblQtosPeixes.Location = new System.Drawing.Point(97, 51);
             this.lblQtosPeixes.Name = "lblQtosPeixes";
             this.lblQtosPeixes.Size = new System.Drawing.Size(22, 24);
             this.lblQtosPeixes.TabIndex = 6;
@@ -84,7 +84,7 @@
             // pictureBox1
             // 
             this.pictureBox1.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.pictureBox1.Image = global::Fish_Bay.Properties.Resources.moedas1;
+            this.pictureBox1.Image = global::Fish_Bay.Properties.Resources.moedas5;
             this.pictureBox1.Location = new System.Drawing.Point(12, 90);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(142, 52);
@@ -104,7 +104,7 @@
             // pbIcon_Clien
             // 
             this.pbIcon_Clien.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.pbIcon_Clien.Image = global::Fish_Bay.Properties.Resources.Icon_Clien;
+            this.pbIcon_Clien.Image = global::Fish_Bay.Properties.Resources.Icon_Clien1;
             this.pbIcon_Clien.Location = new System.Drawing.Point(12, 8);
             this.pbIcon_Clien.Name = "pbIcon_Clien";
             this.pbIcon_Clien.Size = new System.Drawing.Size(142, 32);

@@ -33,19 +33,6 @@ namespace Fish_Bay
             }
         }
 
-        public Cliente this[int i]
-        {
-            get
-            {
-                return clientes[i];
-            }
-
-            set
-            {
-                clientes[i] = value;
-            }
-        }
-
         public bool EstaVazia
         {
             get
