@@ -105,33 +105,9 @@ namespace Fish_Bay
             // atualizando coordenadas dos peixes e dos clientes
             TodosOsPeixes.nadem(rand.Next(5, 50));
             fila.andar();
-
-            // pegando o peixe do topo da pilha de peixes da mesa
-            if (ajudante.Coord.X >= 730 && TodosOsPeixes.QtosPeixesPescados > 0 && !ajudante.TemPeixe)
-            {
-                ajudante.TemPeixe = true;
-                Peixe aux = TodosOsPeixes.tirarDaMesaPeixeDoTopo();
-                if (aux.Dourado)
-                    ehDourado = true;
-                else
-                    ehDourado = false;
-                ajudante.Skin.Img = aux.TransformaAlimento(nomeAju);
-            }
-
-            // entregando o peixe ao cliente se o vendedor está no balcão
-            if (ajudante.Coord.X <= 450 && ajudante.AndandoAoContrario && ajudante.TemPeixe)
-            {
-                ajudante.TemPeixe = false;
-                Peixe aux = new Peixe(new Point(-ControladorPeixe.LARGURA_BOTA, rand.Next(380, 530)), 1, new Figura(Image.FromFile(DEFAULT_IMAGES[0] + "bota.png")), ehDourado);
-                ind = fila.vaiSair();
-                if (fila.Clientes[ind].EhVIP)
-                    pont = aux.DarPontosVipado();
-                else
-                    pont = aux.DarPontos();
-                fila.sairIndice(ind);             
-                lblQtosPont.Text = (Convert.ToInt32(lblQtosPont.Text) + pont) + "";
-                ajudante.Skin.Img = Image.FromFile(DEFAULT_IMAGES[1] + nomeAju + ".png");
-            }
+            
+            ajudante.EstaNoCanto[0] = ajudante.Coord.X <= 450;
+            ajudante.EstaNoCanto[1] = ajudante.Coord.X >= 730;
 
             // estressando clientes e vendo se já estressaram ao máximo
             for (int i = 0; i < fila.TamanhoFila; i++)
@@ -175,7 +151,7 @@ namespace Fish_Bay
             // desenhando todos os peixes
             TodosOsPeixes.desenharTodos(g, (coordMouse.Y > 222)?(coordMouse):(PONTO_FIXO_VARA));
             
-            // desenhando todos os clentes
+            // desenhando todos os clientes
             for (int i = 0; i < fila.TamanhoFila; i++)
             {
                 fila.Clientes[i].Draw(g);
@@ -264,6 +240,29 @@ namespace Fish_Bay
             {
                 ajudante.AndandoAoContrario = false;
                 this.verificaPosicao();
+            }
+
+            else if (e.KeyChar.ToString().ToUpper().Equals(" "))
+            {
+                if (ajudante.EstaNoCanto[0] && !fila.EstaVazia && ajudante.TemPeixe)
+                {
+                    ajudante.TemPeixe = false;
+                    Peixe aux = new Peixe(new Point(-ControladorPeixe.LARGURA_BOTA, rand.Next(380, 530)), 1, new Figura(Image.FromFile(DEFAULT_IMAGES[0] + "bota.png")), ehDourado);
+                    ind = fila.vaiSair();
+                    if (fila.Clientes[ind].EhVIP)
+                        pont = aux.DarPontosVipado();
+                    else
+                        pont = aux.DarPontos();
+                    fila.sairIndice(ind);
+                    lblQtosPont.Text = (Convert.ToInt32(lblQtosPont.Text) + pont) + "";
+                    ajudante.Skin.Img = Image.FromFile(DEFAULT_IMAGES[1] + nomeAju + ".png");
+                }
+                else if (ajudante.EstaNoCanto[1] && TodosOsPeixes.QtosPeixesPescados > 0)
+                {
+                    ajudante.TemPeixe = true;
+                    Peixe aux = TodosOsPeixes.tirarDaMesaPeixeDoTopo();
+                    ajudante.Skin.Img = aux.TransformaAlimento(nomeAju);
+                }
             }
         }
 
