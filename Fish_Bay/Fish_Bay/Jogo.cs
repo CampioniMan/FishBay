@@ -245,7 +245,7 @@ namespace Fish_Bay
             if (lblQtosClien.Text.Equals("0"))
             {
                 timerSpawn.Stop();
-                GameOver gv = new GameOver(nomeJogador, lblQtosPont.Text, this);
+                GameOver gv = new GameOver(nomeJogador, lblQtosPont.Text,lblQtosPeixes.Text, this);
                 gv.Show();
             }
         }

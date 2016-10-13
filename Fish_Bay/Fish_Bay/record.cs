@@ -13,17 +13,46 @@ namespace Fish_Bay
 {
     public partial class Record : Form
     {
+        string comando ;
         public Record()
         {
             InitializeComponent();
         }
-
-        private void frmRecordes_Load(object sender, EventArgs e)
+        public Record(int i)
         {
+            InitializeComponent();
+            
+            MessageBox.Show(i.ToString());
+            
+        }
+
+        public void atualizarRecordes(int i)
+        {
+            if (i == 0)
+            {
+                comando = "SELECT q.* FROM(SELECT TOP 10 pontos, nomeJog FROM Recordes ORDER BY pontos DESC) q";
+                lblOque.Text = "Dinheiro";
+            }             
+            else
+            {
+                if(i == 1)
+                {
+                    comando = "SELECT q.* FROM(SELECT TOP 10 peixes, nomeJog FROM Recordes ORDER BY peixes DESC) q";
+                    lblOque.Text = "Peixes";
+                }
+                else
+                {
+                    comando = "SELECT q.* FROM(SELECT TOP 10 peixes, nomeJog FROM Recordes ORDER BY peixes DESC) q";
+                    lblOque.Text = "Dourados";
+                }
+                
+            }
+                
+
             try
             {
                 SqlConnection cnn = Conexao.getConexao();
-                SqlCommand cmd = new SqlCommand("SELECT q.* FROM(SELECT TOP 10 pontos, nomeJog FROM Recordes ORDER BY pontos DESC) q", cnn);
+                SqlCommand cmd = new SqlCommand(comando, cnn);
                 SqlDataReader reader = cmd.ExecuteReader();
 
                 reader.Read();
@@ -92,10 +121,24 @@ namespace Fish_Bay
             }
             catch (Exception)
             {
-                MessageBox.Show("Houve um erro de conexão com o servidor.\n"+
+                MessageBox.Show("Houve um erro de conexão com o servidor.\n" +
                                 "                  Tente novamente mais tarde.", "Erro de conexão");
                 this.Close();
             }
+        }
+
+        private void frmRecordes_Load(object sender, EventArgs e)
+        {
+            atualizarRecordes(0);
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cbxOrd.SelectedIndex == 0)
+                atualizarRecordes(0);
+            else
+                atualizarRecordes(1);
+
         }
     }
 }
