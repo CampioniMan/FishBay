@@ -16,7 +16,7 @@ namespace Fish_Bay
         public const int VELOCIDADE_AJUDANTE = 3;
         public static readonly string[] DEFAULT_IMAGES = { "../../../../imagens/Peixes/", "../../../../imagens/NPCs/", "../../../../imagens/Fundo/" };
         public static readonly Point PONTO_FIXO_VARA = new Point(908, 222);
-        private int qtosPeixes = 0;
+        private int qtosPeixes = 0, qtosPeixesDourados = 0;
 
         private Menu menu;
 
@@ -30,7 +30,6 @@ namespace Fish_Bay
         private FilaCliente fila;
         private Vendedor ajudante;
         private int ind = 0;
-        private bool ehDourado = true;
 
         // randômico global
         private Random rand;
@@ -138,8 +137,16 @@ namespace Fish_Bay
             if (e.Y <= 222)
             {
                 if (TodosOsPeixes.podeBotarNaMesa())
+                {
                     lblQtosPeixes.Text = Convert.ToString(++qtosPeixes);
-                TodosOsPeixes.botarNaMesa();
+                    Peixe aux = TodosOsPeixes.botarNaMesa();
+                    if (aux.Dourado)
+                        lblPeixeDourados.Text = Convert.ToString(++qtosPeixesDourados);
+                }
+                else
+                {
+                    TodosOsPeixes.botarNaMesa();
+                }
             }
                 
         }
@@ -221,7 +228,7 @@ namespace Fish_Bay
             if (lblQtosClien.Text.Equals("0"))
             {
                 timerSpawn.Stop();
-                GameOver gv = new GameOver(nomeJogador, lblQtosPont.Text,lblQtosPeixes.Text, this);
+                GameOver gv = new GameOver(nomeJogador, lblQtosPont.Text,lblQtosPeixes.Text, lblPeixeDourados.Text, this);
                 gv.Show();
             }
         }
@@ -235,15 +242,17 @@ namespace Fish_Bay
                 this.verificaPosicao();
             }
 
-            // andando certo(peixe na mão)
+            // andando pro balcão(peixe na mão)
             else if (e.KeyChar.ToString().ToUpper().Equals("D"))  
             {
                 ajudante.AndandoAoContrario = false;
                 this.verificaPosicao();
             }
 
+            // se ele estiver em algum dos cantos, entrega ou pega um peixe
             else if (e.KeyChar.ToString().ToUpper().Equals(" "))
             {
+                // entrega um peixe para o primeiro da fila
                 if (ajudante.EstaNoCanto[0] && !fila.EstaVazia && ajudante.TemPeixe)
                 {
                     ajudante.TemPeixe = false;
@@ -254,6 +263,7 @@ namespace Fish_Bay
                     lblQtosPont.Text = (Convert.ToInt32(lblQtosPont.Text) + pont) + "";
                     ajudante.Skin.Img = Image.FromFile(DEFAULT_IMAGES[1] + nomeAju + ".png");
                 }
+                // pega o peixe do topo da pilha
                 else if (ajudante.EstaNoCanto[1] && TodosOsPeixes.QtosPeixesPescados > 0 && !ajudante.TemPeixe)
                 {
                     ajudante.TemPeixe = true;
@@ -280,6 +290,7 @@ namespace Fish_Bay
 
         private void pbDesenho_MouseClick(object sender, MouseEventArgs e)
         {
+            // caso queira remover o peixe que está na vara
             if (e.Button == MouseButtons.Right)
                 if (TodosOsPeixes.PeixePescando[0] != null)
                     TodosOsPeixes.removerPescando();

@@ -76,10 +76,10 @@
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.Location = new System.Drawing.Point(1, 141);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(901, 20);
+            this.label3.Size = new System.Drawing.Size(975, 20);
             this.label3.TabIndex = 3;
             this.label3.Text = " 3.    Após ter pego o peixe, arraste-o à superfície e faça o ajudante os entrega" +
-    "r para os clientes por meios das teclas \"A\" e \"D\".";
+    "r para os clientes por meios das teclas \"A\", \"D\" e \"Espaço\".";
             // 
             // label4
             // 
@@ -128,7 +128,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(954, 330);
+            this.ClientSize = new System.Drawing.Size(974, 330);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);

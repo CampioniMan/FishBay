@@ -38,7 +38,7 @@
             this.pbIcon_Clien = new System.Windows.Forms.PictureBox();
             this.pbDesenho = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.label1 = new System.Windows.Forms.Label();
+            this.lblPeixeDourados = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbIcon_Pont)).BeginInit();
@@ -137,16 +137,16 @@
             this.pictureBox2.TabIndex = 7;
             this.pictureBox2.TabStop = false;
             // 
-            // label1
+            // lblPeixeDourados
             // 
-            this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.label1.Font = new System.Drawing.Font("Consolas", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(96, 123);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(22, 24);
-            this.label1.TabIndex = 8;
-            this.label1.Text = "0";
+            this.lblPeixeDourados.AutoSize = true;
+            this.lblPeixeDourados.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.lblPeixeDourados.Font = new System.Drawing.Font("Consolas", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPeixeDourados.Location = new System.Drawing.Point(96, 123);
+            this.lblPeixeDourados.Name = "lblPeixeDourados";
+            this.lblPeixeDourados.Size = new System.Drawing.Size(22, 24);
+            this.lblPeixeDourados.TabIndex = 8;
+            this.lblPeixeDourados.Text = "0";
             // 
             // panel1
             // 
@@ -161,7 +161,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1268, 567);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.lblPeixeDourados);
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.lblQtosPont);
             this.Controls.Add(this.lblQtosPeixes);
@@ -198,7 +198,7 @@
         private System.Windows.Forms.PictureBox pbIcon_Pont;
         private System.Windows.Forms.Label lblQtosPeixes;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblPeixeDourados;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.Panel panel1;
     }

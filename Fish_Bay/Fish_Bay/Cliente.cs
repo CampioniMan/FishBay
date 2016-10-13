@@ -121,7 +121,7 @@ namespace Fish_Bay
         {
             g.DrawImage(skin.Img, coord);
             stress.desenhar(g);
-            g.DrawString("VIP", new Font("Consolas", 15), new SolidBrush(Color.Black), stress.Coord);
+            g.DrawString("V", new Font("Consolas", 15), new SolidBrush(Color.Black), stress.Coord);
         }
 
         /* direcao= 1 ou direcao= -1 para o player andar para frente ou para trás */

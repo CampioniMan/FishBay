@@ -13,7 +13,9 @@ namespace Fish_Bay
 {
     public partial class Record : Form
     {
-        string comando ;
+        string[] comando = new string[3] { "SELECT q.* FROM(SELECT TOP 10 pontos, nomeJog FROM Recordes ORDER BY pontos DESC) q" ,
+            "SELECT q.* FROM(SELECT TOP 10 peixes, nomeJog FROM Recordes ORDER BY peixes DESC) q" ,
+            "SELECT q.* FROM(SELECT TOP 10 dourados, nomeJog FROM Recordes ORDER BY dourados DESC) q" };
         public Record()
         {
             InitializeComponent();
@@ -30,29 +32,22 @@ namespace Fish_Bay
         {
             if (i == 0)
             {
-                comando = "SELECT q.* FROM(SELECT TOP 10 pontos, nomeJog FROM Recordes ORDER BY pontos DESC) q";
                 lblOque.Text = "Dinheiro";
             }             
+            else if(i == 1)
+            {
+                lblOque.Text = "Peixes";
+            }
             else
             {
-                if(i == 1)
-                {
-                    comando = "SELECT q.* FROM(SELECT TOP 10 peixes, nomeJog FROM Recordes ORDER BY peixes DESC) q";
-                    lblOque.Text = "Peixes";
-                }
-                else
-                {
-                    comando = "SELECT q.* FROM(SELECT TOP 10 peixes, nomeJog FROM Recordes ORDER BY peixes DESC) q";
-                    lblOque.Text = "Dourados";
-                }
-                
+                lblOque.Text = "Dourados";
             }
                 
 
             try
             {
                 SqlConnection cnn = Conexao.getConexao();
-                SqlCommand cmd = new SqlCommand(comando, cnn);
+                SqlCommand cmd = new SqlCommand(comando[i], cnn);
                 SqlDataReader reader = cmd.ExecuteReader();
 
                 reader.Read();
@@ -134,11 +129,7 @@ namespace Fish_Bay
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (cbxOrd.SelectedIndex == 0)
-                atualizarRecordes(0);
-            else
-                atualizarRecordes(1);
-
+            atualizarRecordes(cbxOrd.SelectedIndex);
         }
     }
 }

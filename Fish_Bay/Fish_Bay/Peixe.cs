@@ -199,6 +199,7 @@ namespace Fish_Bay
             }
         }
 
+        // construtor default
         public Peixe(Point novaCoordenada, int direcaoAndar, Figura novaSkin, bool ehDourado)
         {
             this.coord.X = novaCoordenada.X;
@@ -223,6 +224,7 @@ namespace Fish_Bay
             }
         }
 
+        // construtor de cópia
         public Peixe(Peixe clonado)
         {
             this.coord.X = clonado.Coord.X;
@@ -246,6 +248,7 @@ namespace Fish_Bay
             }
         }
 
+        // Método para retornar quantos pontos vale um peixe normal, dependendo se o cliente é VIP
         public int darPontosNormal(bool clienteEhVIP)
         {
             if (clienteEhVIP)
@@ -253,6 +256,7 @@ namespace Fish_Bay
             return 10;
         }
 
+        // Método para retornar quantos pontos vale um peixe dourado, dependendo se o cliente é VIP
         public int darPontosDourado(bool clienteEhVIP)
         {
             if (clienteEhVIP)
@@ -260,35 +264,33 @@ namespace Fish_Bay
             return 100;
         }
 
+        // Método que retorna qual imagem é referente ao peixe normal pescado
         public Image transformaSushiNormal(string nomeAju)
         {
             return Image.FromFile(Jogo.DEFAULT_IMAGES[1] + nomeAju + "peixe.png");
         }
 
+        // Método que retorna qual imagem é referente ao peixe dourado pescado
         public Image transformaSushiDourado(string nomeAju)
         {
             return Image.FromFile(Jogo.DEFAULT_IMAGES[1] + nomeAju + "peixedourado.png");
         }
 
+        // atualiza a coordenada do peixe
         public void nadar()
         {
             this.coordAntigo = this.coord;
             this.coord.X += direcao;
         }
 
+        // atualiza a coordenada do peixe com uma determinada velocidade
         public void nadar(int velocidade)
         {
             this.coordAntigo = this.coord;
             this.coord.X += velocidade*direcao;
         }
-        public void voltarAoZero()
-        {
-            this.coordAntigo = this.coord;
-            this.coord.X = 0;
-            Random rand = new Random();
-            this.coord.Y = rand.Next(380, 530);
-        }
 
+        // vê se o peixe está no ponto para ser pescado
         public bool pescou(Point pontoLinha, int ALTURA)
         {
             if (this.pescado)
@@ -299,17 +301,19 @@ namespace Fish_Bay
                 pontoLinha.Y >= this.coord.Y));
         }
 
-
+        // método clone de this
         public Peixe clone()
         {
             return new Peixe(this);
         }
 
+        // desenha um peixe normal
         private void desenharNormal(Graphics g)
         {
             Skin.desenhar(g, coord);
         }
 
+        // desenha um peixe dourado
         private void desenharDourado(Graphics g)
         {
             g.DrawImage(Figura.RotateImage(Skin.Img), coord);

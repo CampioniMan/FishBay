@@ -14,14 +14,15 @@ namespace Fish_Bay
 {
     public partial class GameOver : Form
     {
-        private string nomeJog, pontos,peixes;
+        private string nomeJog, pontos,peixes, dourados;
         private Jogo jog;
 
-        public GameOver(string novoNomeJog, string novoPontos,string novoPeixes, Jogo novoJog)
+        public GameOver(string novoNomeJog, string novoPontos, string novoPeixes, string novoDourados, Jogo novoJog)
         {
             this.nomeJog = novoNomeJog;
             this.pontos = novoPontos;
             this.peixes = novoPeixes;
+            this.dourados = novoDourados;
             this.jog = novoJog;
             InitializeComponent();
         }
@@ -51,15 +52,14 @@ namespace Fish_Bay
         {
             try
             {
-                string query = "insert into Recordes values(@nome, @pontos,@peixes)";
+                string query = "insert into Recordes values(@nome, @pontos, @peixes, @dourados)";
                 SqlCommand sqlCom = new SqlCommand(query, this.getConexao());
 
                 sqlCom.Parameters.AddWithValue("@nome", this.nomeJog);
                 sqlCom.Parameters.AddWithValue("@pontos", this.pontos);
                 sqlCom.Parameters.AddWithValue("@peixes", this.peixes);
+                sqlCom.Parameters.AddWithValue("@dourados", this.dourados);
                 sqlCom.ExecuteNonQuery();
-
-                MessageBox.Show("Recorde Cadastrado");
             }
             catch (Exception ex)
             {

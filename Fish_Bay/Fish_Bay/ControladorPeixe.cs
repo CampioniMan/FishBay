@@ -195,15 +195,20 @@ namespace Fish_Bay
 
         public bool podeBotarNaMesa()
         {
-            if (this.peixePescando[0] != null)
+            if (this.peixePescando[0] != null && this.qtosPeixesPescados < 6)
                 return true;
 
             return false;
         }
-        public void botarNaMesa()
+        public Peixe botarNaMesa()
         {
             if (this.peixePescando[0] != null)
-                this.adicionarPescado(this.removerPescando());
+            {
+                Peixe aux = this.removerPescando();
+                this.adicionarPescado(aux);
+                return aux;
+            }
+            return null;
         }
 
         /**
