@@ -35,11 +35,8 @@ namespace Fish_Bay
         private TipoDesenhar desenhar;
 
         // tipo de função para dar pontos equivalentes à raridade do peixe
-        public delegate int TipoDarPontos();
+        public delegate int TipoDarPontos(bool clienteEhVIP);
         private TipoDarPontos darPontos;
-
-        public delegate int TipoDarPontosVipado();
-        private TipoDarPontosVipado darPontosVipado;
 
         // tipo de Imagem que será retornada quando o peixe é pêgo na mesa pelo vendedor
         public delegate Image TipoSushi(string nomeAju);
@@ -202,19 +199,6 @@ namespace Fish_Bay
             }
         }
 
-        public TipoDarPontosVipado DarPontosVipado
-        {
-            get
-            {
-                return darPontosVipado;
-            }
-
-            set
-            {
-                darPontosVipado = value;
-            }
-        }
-
         public Peixe(Point novaCoordenada, int direcaoAndar, Figura novaSkin, bool ehDourado)
         {
             this.coord.X = novaCoordenada.X;
@@ -229,14 +213,12 @@ namespace Fish_Bay
             {
                 desenhar = desenharDourado;
                 darPontos = darPontosDourado;
-                darPontosVipado = darPontosDouradoVipado;
                 transformaAlimento = transformaSushiDourado;
             }
             else
             {
                 desenhar = desenharNormal;
                 darPontos = darPontosNormal;
-                darPontosVipado = darPontosNormalVipado;
                 transformaAlimento = transformaSushiNormal;
             }
         }
@@ -253,7 +235,6 @@ namespace Fish_Bay
             if (this.dourado)
             {
                 desenhar = desenharDourado;
-                darPontosVipado = darPontosDouradoVipado;
                 darPontos = darPontosDourado;
                 transformaAlimento = transformaSushiDourado;
             }
@@ -261,31 +242,23 @@ namespace Fish_Bay
             {
                 desenhar = desenharNormal;
                 darPontos = darPontosNormal;
-                darPontosVipado = darPontosNormalVipado;
                 transformaAlimento = transformaSushiNormal;
             }
         }
 
-        public int darPontosNormal()
+        public int darPontosNormal(bool clienteEhVIP)
         {
+            if (clienteEhVIP)
+                return 20;
             return 10;
         }
 
-        public int darPontosDourado()
+        public int darPontosDourado(bool clienteEhVIP)
         {
+            if (clienteEhVIP)
+                return 200;
             return 100;
         }
-
-        public int darPontosNormalVipado()
-        {
-            return 20;
-        }
-        public int darPontosDouradoVipado()
-        {
-            return 200;
-        }
-
-
 
         public Image transformaSushiNormal(string nomeAju)
         {

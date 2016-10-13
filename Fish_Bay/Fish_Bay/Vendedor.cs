@@ -15,6 +15,7 @@ namespace Fish_Bay
         private bool podeAndar;
         private int direcao;
         private bool temPeixe;
+        private Peixe peixeSegurando;
         private bool[] estaNoCanto;
 
         public Figura Skin
@@ -135,12 +136,26 @@ namespace Fish_Bay
             }
         }
 
+        public Peixe PeixeSegurando
+        {
+            get
+            {
+                return peixeSegurando;
+            }
+
+            set
+            {
+                peixeSegurando = value;
+            }
+        }
+
         public Vendedor(Image novaSkin, Point novaCoordenada, int novaDirecao)
         {
             this.skin = new Figura(novaSkin);
             this.coord = novaCoordenada;
             this.direcao = novaDirecao;
             this.estaNoCanto = new bool[] { false, false };
+            this.peixeSegurando = null;
         }
 
         public Vendedor(Image novaSkin, Point novaCoordenada) : this(novaSkin, novaCoordenada, 1)

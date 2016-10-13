@@ -247,21 +247,18 @@ namespace Fish_Bay
                 if (ajudante.EstaNoCanto[0] && !fila.EstaVazia && ajudante.TemPeixe)
                 {
                     ajudante.TemPeixe = false;
-                    Peixe aux = new Peixe(new Point(-ControladorPeixe.LARGURA_BOTA, rand.Next(380, 530)), 1, new Figura(Image.FromFile(DEFAULT_IMAGES[0] + "bota.png")), ehDourado);
+                    Peixe aux = new Peixe(new Point(-ControladorPeixe.LARGURA_BOTA, rand.Next(380, 530)), 1, new Figura(Image.FromFile(DEFAULT_IMAGES[0] + "bota.png")), ajudante.PeixeSegurando.Dourado);
                     ind = fila.vaiSair();
-                    if (fila.Clientes[ind].EhVIP)
-                        pont = aux.DarPontosVipado();
-                    else
-                        pont = aux.DarPontos();
+                    pont = aux.DarPontos(fila.Clientes[ind].EhVIP);
                     fila.sairIndice(ind);
                     lblQtosPont.Text = (Convert.ToInt32(lblQtosPont.Text) + pont) + "";
                     ajudante.Skin.Img = Image.FromFile(DEFAULT_IMAGES[1] + nomeAju + ".png");
                 }
-                else if (ajudante.EstaNoCanto[1] && TodosOsPeixes.QtosPeixesPescados > 0)
+                else if (ajudante.EstaNoCanto[1] && TodosOsPeixes.QtosPeixesPescados > 0 && !ajudante.TemPeixe)
                 {
                     ajudante.TemPeixe = true;
-                    Peixe aux = TodosOsPeixes.tirarDaMesaPeixeDoTopo();
-                    ajudante.Skin.Img = aux.TransformaAlimento(nomeAju);
+                    ajudante.PeixeSegurando = TodosOsPeixes.tirarDaMesaPeixeDoTopo();
+                    ajudante.Skin.Img = ajudante.PeixeSegurando.TransformaAlimento(nomeAju);
                 }
             }
         }
