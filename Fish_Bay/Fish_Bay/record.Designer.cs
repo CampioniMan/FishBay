@@ -256,16 +256,23 @@
             // 
             // cbxOrd
             // 
+            this.cbxOrd.BackColor = System.Drawing.SystemColors.MenuHighlight;
+            this.cbxOrd.Cursor = System.Windows.Forms.Cursors.Arrow;
+            this.cbxOrd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cbxOrd.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbxOrd.ForeColor = System.Drawing.Color.White;
             this.cbxOrd.FormattingEnabled = true;
             this.cbxOrd.Items.AddRange(new object[] {
             "Dinheiro",
             "Peixes",
             "Peixes Dourados"});
-            this.cbxOrd.Location = new System.Drawing.Point(100, 56);
+            this.cbxOrd.Location = new System.Drawing.Point(100, 51);
             this.cbxOrd.Name = "cbxOrd";
-            this.cbxOrd.Size = new System.Drawing.Size(121, 21);
+            this.cbxOrd.Size = new System.Drawing.Size(138, 24);
             this.cbxOrd.TabIndex = 43;
+            this.cbxOrd.Text = "Dinheiro";
             this.cbxOrd.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            this.cbxOrd.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cbxOrd_KeyPress);
             // 
             // label3
             // 

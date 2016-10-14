@@ -131,5 +131,11 @@ namespace Fish_Bay
         {
             atualizarRecordes(cbxOrd.SelectedIndex);
         }
+
+        private void cbxOrd_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = true;
+        }
+
     }
 }
