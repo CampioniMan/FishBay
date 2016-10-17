@@ -117,44 +117,4 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="Icon_Pont" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Icon_Pont.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="moedas1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\moedas1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="moedas5" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\moedas5.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="moedas3" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\moedas3.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="imagem_fundo_jogo1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\imagem_fundo_jogo1.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Icon_Clien" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Icon_Clien.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="moedas2" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\moedas2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="capa_inicio" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\capa_inicio.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Icon_Clien1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Icon_Clien1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="moedas4" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\moedas4.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="moedas" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\moedas.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="imagem_fundo_jogo" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\imagem_fundo_jogo.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="PeixeEsp" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\PeixeEsp.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
 </root>

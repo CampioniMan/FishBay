@@ -9,11 +9,16 @@ namespace Fish_Bay
 {
     public class Cliente
     {
-        private bool ehVIP;
+        private bool ehVIP, querPeixe;
         private Stress stress;
         private Figura skin;
         private Point coord;
-        private bool querPeixe;
+
+        public delegate void TipoStressar(int qto);
+        private TipoStressar stressar;
+
+        public delegate void TipoDesenhar(Graphics g);
+        private TipoDesenhar draw;
 
         public Figura Skin
         {
@@ -80,10 +85,43 @@ namespace Fish_Bay
             }
         }
 
-        public void desenhar(Graphics g)
+        public TipoStressar StressarCliente
+        {
+            get
+            {
+                return stressar;
+            }
+
+            set
+            {
+                stressar = value;
+            }
+        }
+
+        public TipoDesenhar Draw
+        {
+            get
+            {
+                return draw;
+            }
+
+            set
+            {
+                draw = value;
+            }
+        }
+
+        private void desenhar(Graphics g)
         {
             g.DrawImage(skin.Img, coord);
             stress.desenhar(g);
+        }
+
+        private void desenharVIP(Graphics g)
+        {
+            g.DrawImage(skin.Img, coord);
+            stress.desenhar(g);
+            g.DrawString("V", new Font("Consolas", 15), new SolidBrush(Color.Black), stress.Coord);
         }
 
         /* direcao= 1 ou direcao= -1 para o player andar para frente ou para trás */
@@ -107,6 +145,16 @@ namespace Fish_Bay
             return this.coord.X < limiteX;
         }
 
+        private void incStress(int rand)
+        {
+            this.Stress.stressar(rand);
+        }
+
+        private void incVIPStress(int rand)
+        {
+            this.Stress.stressar(rand+(int)(0.6*rand));
+        }
+
         public Cliente(Stress novoEstresse, bool seEhVIP, Image novaSkin, Point novaCoordenada)
         {
             this.stress = novoEstresse;
@@ -114,6 +162,18 @@ namespace Fish_Bay
             this.skin = new Figura(novaSkin);
             this.coord = novaCoordenada;
             querPeixe = true;
+
+            // Função variável!!!
+            if (this.ehVIP)
+            {
+                this.stressar = incVIPStress;
+                this.draw = desenharVIP;
+            }
+            else
+            {
+                this.stressar = incStress;
+                this.draw = desenhar;
+            }
         }
 
         public Cliente(int novoStress, Point novoStressCoordenada, Point novosStressTamanhos, bool seEhVIP, Image novaSkin, Point novaCoordenada) : this(new Stress(novoStress, novaCoordenada, novosStressTamanhos), seEhVIP, novaSkin, novaCoordenada)

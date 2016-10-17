@@ -9,13 +9,38 @@ namespace Fish_Bay
 {
     public class Peixe
     {
-        private const int LARGURA = 56;
+        // constantes
+        private const int LARGURA = ControladorPeixe.LARGURA_PEIXE;
+
+        // coordenada anterior do peixe
         private Point coordAntigo;
+
+        // coordenada atual do peixe
         private Point coord;
+
+        // direcao do peixe(nunca alteramos)
         private int direcao;
+
+        // Skin do peixe
         private Figura skin;
+
+        // estado atual do peixe
         private bool pescado, nadando, pescando;
-        private int posMesa;
+        
+        // quanda se o peixe é dourado ou não
+        private bool dourado;
+
+        // tipo de função para desenhar
+        public delegate void TipoDesenhar(Graphics g);
+        private TipoDesenhar desenhar;
+
+        // tipo de função para dar pontos equivalentes à raridade do peixe
+        public delegate int TipoDarPontos(bool clienteEhVIP);
+        private TipoDarPontos darPontos;
+
+        // tipo de Imagem que será retornada quando o peixe é pêgo na mesa pelo vendedor
+        public delegate Image TipoSushi(string nomeAju);
+        private TipoSushi transformaAlimento;
 
         public Point Coord
         {
@@ -122,48 +147,150 @@ namespace Fish_Bay
             }
         }
 
-        public int PosMesa
+        public TipoDesenhar Desenhar
         {
             get
             {
-                return posMesa;
+                return desenhar;
             }
 
             set
             {
-                posMesa = value;
+                desenhar = value;
             }
         }
 
-        public Peixe(Point novaCoordenada, int direcaoAndar, Figura novaSkin)
+        public bool Dourado
+        {
+            get
+            {
+                return dourado;
+            }
+
+            set
+            {
+                dourado = value;
+            }
+        }
+
+        public TipoDarPontos DarPontos
+        {
+            get
+            {
+                return darPontos;
+            }
+
+            set
+            {
+                darPontos = value;
+            }
+        }
+
+        public TipoSushi TransformaAlimento
+        {
+            get
+            {
+                return transformaAlimento;
+            }
+
+            set
+            {
+                transformaAlimento = value;
+            }
+        }
+
+        // construtor default
+        public Peixe(Point novaCoordenada, int direcaoAndar, Figura novaSkin, bool ehDourado)
         {
             this.coord.X = novaCoordenada.X;
             this.coord.Y = novaCoordenada.Y;
             this.direcao = direcaoAndar;
             this.skin = novaSkin;
             this.pescado = false;
-            this.posMesa = 212;
+            this.dourado = ehDourado;
+
+            // verificando quais funções serão utilizadas(para peixes dourados ou não)
+            if (ehDourado)
+            {
+                desenhar = desenharDourado;
+                darPontos = darPontosDourado;
+                transformaAlimento = transformaSushiDourado;
+            }
+            else
+            {
+                desenhar = desenharNormal;
+                darPontos = darPontosNormal;
+                transformaAlimento = transformaSushiNormal;
+            }
         }
 
+        // construtor de cópia
+        public Peixe(Peixe clonado)
+        {
+            this.coord.X = clonado.Coord.X;
+            this.coord.Y = clonado.Coord.Y;
+            this.direcao = clonado.direcao;
+            this.skin = clonado.Skin;
+            this.pescado = clonado.Pescado;
+            this.dourado = clonado.Dourado;
+
+            if (this.dourado)
+            {
+                desenhar = desenharDourado;
+                darPontos = darPontosDourado;
+                transformaAlimento = transformaSushiDourado;
+            }
+            else
+            {
+                desenhar = desenharNormal;
+                darPontos = darPontosNormal;
+                transformaAlimento = transformaSushiNormal;
+            }
+        }
+
+        // Método para retornar quantos pontos vale um peixe normal, dependendo se o cliente é VIP
+        public int darPontosNormal(bool clienteEhVIP)
+        {
+            if (clienteEhVIP)
+                return 20;
+            return 10;
+        }
+
+        // Método para retornar quantos pontos vale um peixe dourado, dependendo se o cliente é VIP
+        public int darPontosDourado(bool clienteEhVIP)
+        {
+            if (clienteEhVIP)
+                return 200;
+            return 100;
+        }
+
+        // Método que retorna qual imagem é referente ao peixe normal pescado
+        public Image transformaSushiNormal(string nomeAju)
+        {
+            return Image.FromFile(Jogo.DEFAULT_IMAGES[1] + nomeAju + "peixe.png");
+        }
+
+        // Método que retorna qual imagem é referente ao peixe dourado pescado
+        public Image transformaSushiDourado(string nomeAju)
+        {
+            return Image.FromFile(Jogo.DEFAULT_IMAGES[1] + nomeAju + "peixedourado.png");
+        }
+
+        // atualiza a coordenada do peixe
         public void nadar()
         {
             this.coordAntigo = this.coord;
             this.coord.X += direcao;
         }
 
+        // atualiza a coordenada do peixe com uma determinada velocidade
         public void nadar(int velocidade)
         {
             this.coordAntigo = this.coord;
             this.coord.X += velocidade*direcao;
         }
-        public void voltarAoZero()
-        {
-            this.coordAntigo = this.coord;
-            this.coord.X = 0;
-            Random rand = new Random();
-            this.coord.Y = rand.Next(380, 530);
-        }
 
+        // vê se o peixe está no ponto para ser pescado
         public bool pescou(Point pontoLinha, int ALTURA)
         {
             if (this.pescado)
@@ -174,13 +301,22 @@ namespace Fish_Bay
                 pontoLinha.Y >= this.coord.Y));
         }
 
-        public void desenharDebug(Graphics g, int ALTURA)
+        // método clone de this
+        public Peixe clone()
         {
-            g.DrawLine(new Pen(Color.Red, 5), this.coord.X - this.Diferenca.X + LARGURA, this.Coord.Y         , this.coordAntigo.X                    + LARGURA, this.coordAntigo.Y + ALTURA);
-            g.DrawLine(new Pen(Color.Red, 5), this.coord.X                    + LARGURA, this.Coord.Y         , this.coordAntigo.X + this.Diferenca.X + LARGURA, this.coordAntigo.Y + ALTURA);
-            g.DrawLine(new Pen(Color.Red, 5), this.coord.X - this.Diferenca.X + LARGURA, this.Coord.Y + ALTURA, this.coordAntigo.X                    + LARGURA, this.coordAntigo.Y);
-            g.DrawLine(new Pen(Color.Red, 5), this.coord.X                    + LARGURA, this.Coord.Y + ALTURA, this.coordAntigo.X + this.Diferenca.X + LARGURA, this.coordAntigo.Y);
-            
+            return new Peixe(this);
+        }
+
+        // desenha um peixe normal
+        private void desenharNormal(Graphics g)
+        {
+            Skin.desenhar(g, coord);
+        }
+
+        // desenha um peixe dourado
+        private void desenharDourado(Graphics g)
+        {
+            g.DrawImage(Figura.RotateImage(Skin.Img), coord);
         }
     }
 }

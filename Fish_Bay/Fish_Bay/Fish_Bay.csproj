@@ -12,6 +12,21 @@
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -34,6 +49,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -47,7 +63,20 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Cliente.cs" />
+    <Compile Include="ComoJogar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ComoJogar.Designer.cs">
+      <DependentUpon>ComoJogar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Conexao.cs" />
     <Compile Include="FilaCliente.cs" />
+    <Compile Include="GameOver.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GameOver.Designer.cs">
+      <DependentUpon>GameOver.cs</DependentUpon>
+    </Compile>
     <Compile Include="Jogo.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -73,6 +102,12 @@
     </Compile>
     <Compile Include="Stress.cs" />
     <Compile Include="Vendedor.cs" />
+    <EmbeddedResource Include="ComoJogar.resx">
+      <DependentUpon>ComoJogar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GameOver.resx">
+      <DependentUpon>GameOver.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Jogo.resx">
       <DependentUpon>Jogo.cs</DependentUpon>
     </EmbeddedResource>
@@ -113,6 +148,48 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\imagem_fundo_jogo1.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Icon_Clien.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Icon_Pont.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.5.2">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.5.2 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\moedas.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\moedas1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Icon_Clien1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\moedas2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\moedas3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\moedas4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\moedas5.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PeixeEsp.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

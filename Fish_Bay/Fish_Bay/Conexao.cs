@@ -14,7 +14,7 @@ namespace Fish_Bay
         private static SqlConnection cnn;
         public static SqlConnection getConexao()
         {
-            string connetionString = ConfigurationManager.ConnectionStrings["con"].ConnectionString;
+            string connetionString = ConfigurationManager.ConnectionStrings["Conn"].ConnectionString;
             cnn = new SqlConnection(connetionString);
             openConexao();
             return cnn;

@@ -57,15 +57,26 @@ namespace Fish_Bay
 
         private void btnRecordes_Click(object sender, EventArgs e)
         {
-            Record record = new Record();
-            record.Show();
+            Record rec = new Record();
+            rec.Show();
         }
 
         private void btnInicio_Click(object sender, EventArgs e)
         {
-            Jogo jogo = new Jogo(this);
+            this.reiniciar();
+        }
+
+        public void reiniciar()
+        {
+            Jogo jogo = new Jogo(this, txtNomeJog.Text);
             jogo.Show();
             this.Hide();
+        }
+
+        private void btnComoJogar_Click(object sender, EventArgs e)
+        {
+            ComoJogar comoJogar = new ComoJogar();
+            comoJogar.Show();
         }
     }
 }

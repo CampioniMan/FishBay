@@ -9,8 +9,13 @@ namespace Fish_Bay
 {
     public class Stress
     {
+        // Quanto está o stress do personagem
         private double porcentagem;
+
+        // cor atual do stress
         private Color cor;
+
+        // coordenadas úteis para a classe
         public Point coord, tamanhos;
 
         public double Porcentagem
@@ -61,12 +66,12 @@ namespace Fish_Bay
             }
         }
 
+        // método que desenha o stress
         public void desenhar(Graphics g)
         {
             atualizarCor();
+            g.FillRectangle(new SolidBrush(this.cor), coord.X, coord.Y+tamanhos.Y - (int)(tamanhos.Y * porcentagem / 100), tamanhos.X, (int)(tamanhos.Y * porcentagem/100));
             g.DrawRectangle(new Pen(Color.Black), coord.X, coord.Y, tamanhos.X, tamanhos.Y);
-            g.FillRectangle(new SolidBrush(this.cor), coord.X, coord.Y, tamanhos.X, tamanhos.Y);
-            g.DrawString(this.porcentagem+"", new Font("Consolas", 15), new SolidBrush(Color.Black), coord);
         }
 
         private void atualizarCor()
@@ -96,18 +101,6 @@ namespace Fish_Bay
             this.coord = ondeFigura;
             this.tamanhos = novosTamanhos;
             atualizarCor();
-        }
-
-        public Stress() : this(0, default(Point), default(Point))
-        {
-        }
-
-        public Stress(int novaPorcentagem) : this(novaPorcentagem, default(Point), default(Point))
-        {
-        }
-
-        public Stress(int novaPorcentagem, Point Figura) : this(novaPorcentagem, Figura, default(Point))
-        {
         }
 
         public Stress(Point Figura, Point Tamanho) : this(0 ,Figura, Tamanho)
